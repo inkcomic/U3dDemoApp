@@ -17,11 +17,17 @@ public class GameState{
 
    public bool ResUpdateDone = false;
 
+
+//    private IEnumerator AsyncLoadCoroutine(string name, System.Type type)
+//    {
+//       
+//    }
+
 	public void ResourceUpdateDone()
     {
         ResUpdateDone = true;
 
-        MyScriptMain.inst.Start();
+       
 
 
         //测试加载 Prefab UI,优先用热更新中的资源查找，没有则用包内的资源
@@ -37,12 +43,9 @@ public class GameState{
                 {
                     test.BeginLoadAssetBundle((res, tag) =>
                     {
-                        AssetBundle assetBundle = res;
-                        objGUIRes = assetBundle.Load("LoinPanel") as GameObject;
+                        objGUIRes = res.Load("LoinPanel") as GameObject;
 
-                        assetBundle.Unload(false);
-
-
+                        res.Unload(false);
 
                         GameObject _father = GameObject.Find("Canvas/UICamera/Panel");
                         {
@@ -61,7 +64,6 @@ public class GameState{
             {
                 objGUIRes = Resources.Load("DefaultRes/LoinPanel") as GameObject;
 
-
                 GameObject _father = GameObject.Find("Canvas/UICamera/Panel");
                 {
                     GameObject ret = GameObject.Instantiate(objGUIRes) as GameObject;
@@ -69,13 +71,14 @@ public class GameState{
                     ret.transform.parent = _father.transform;
                     ret.transform.localPosition = Vector3.zero;
                     ret.transform.localScale = Vector3.one;
+
                 }
             }
 
             
         }
-        
 
+        //MyScriptMain.inst.Start();
 //         //try load GUI 
 //         foreach (var file in ResmgrNative.Instance.verLocal.groups["test1_ios"].listfiles.Values)
 //         {
