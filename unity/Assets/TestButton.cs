@@ -8,10 +8,10 @@ public class TestButton : MonoBehaviour {
 	Image image;
 	void Start () 
 	{
-		button = transform.Find("Button").GetComponent<Button>();
-		image = transform.Find("Image").GetComponent<Image>();
-		EventTriggerListener.Get(button.gameObject).onClick =OnButtonClick;
-		EventTriggerListener.Get(image.gameObject).onClick =OnButtonClick;
+// 		button = transform.Find("Button").GetComponent<Button>();
+// 		image = transform.Find("Image").GetComponent<Image>();
+// 		EventTriggerListener.Get(button.gameObject).onClick =OnButtonClick;
+// 		EventTriggerListener.Get(image.gameObject).onClick =OnButtonClick;
 	}
  
 	private void OnButtonClick(GameObject go){
