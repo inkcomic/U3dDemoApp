@@ -405,6 +405,28 @@ public class ResmgrNative
                             addcount++;
                         }
                     }
+
+                    //remove files from local cache 
+                    if ((verLocal.groups[g].listfiles.Count != verRemote.groups[g].files.Count)&&
+                        (verRemote.groups[g].files.Count!=0))
+                    {
+                        var removeList = new List<string>();
+                        foreach (var f in verLocal.groups[g].listfiles)
+                        {
+                            if (!verRemote.groups[g].files.ContainsKey(f.Key))
+                            {
+                                removeList.Add(f.Key);
+                            }
+                        }
+
+                        //删除在本地列表的记录，存储文件暂不考虑删除
+                        foreach (var f in removeList)
+                        {
+                            verLocal.groups[g].listfiles.Remove(f);
+                        }
+                    }
+                    
+                   
                 }
                 Debug.Log("(ver)addcount:" + addcount + ",updatecount:" + updatecount);
                 verLocal.Save(groups);
