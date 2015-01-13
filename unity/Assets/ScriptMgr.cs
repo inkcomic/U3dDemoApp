@@ -95,40 +95,48 @@ public class ScriptMgr
     /// </summary>
     void RegTypes()
     {
+        env.RegType(CSLE.RegHelper_Type.MakeType(typeof(Debug), null));
         //大部分类型用RegHelper_Type提供即可
-        env.RegType(new CSLE.RegHelper_Type(typeof(Vector2)));
-        env.RegType(new CSLE.RegHelper_Type(typeof(Vector3)));
-        env.RegType(new CSLE.RegHelper_Type(typeof(Vector4)));
-        env.RegType(new CSLE.RegHelper_Type(typeof(Time)));
+        env.RegType(CSLE.RegHelper_Type.MakeType(typeof(Vector2), "Vector2"));
+        env.RegType(CSLE.RegHelper_Type.MakeType(typeof(Vector3), "Vector3"));
+        env.RegType(CSLE.RegHelper_Type.MakeType(typeof(Vector4), "Vector4"));
+        env.RegType(CSLE.RegHelper_Type.MakeType(typeof(Time), "Time"));
 
         //env.RegType(new CSLE.RegHelper_Type(typeof(Debug)));
-        env.RegType(new MyRegDebug());//换我们扩展过的版本注册
+        //env.RegType(CSLE.RegHelper_Type.MakeType(typeof(MyRegDebug), "MyRegDebug"));//换我们扩展过的版本注册
 
-        env.RegType(new CSLE.RegHelper_Type(typeof(GameObject)));
-        env.RegType(new CSLE.RegHelper_Type(typeof(Component)));
-        env.RegType(new CSLE.RegHelper_Type(typeof(UnityEngine.Object)));
-        env.RegType(new CSLE.RegHelper_Type(typeof(Transform)));
+        env.RegType(CSLE.RegHelper_Type.MakeType(typeof(UnityEngine.GameObject), "GameObject"));
+        env.RegType(CSLE.RegHelper_Type.MakeType(typeof(Component), "Component"));
+        env.RegType(CSLE.RegHelper_Type.MakeType(typeof(UnityEngine.Object), "UnityEngine.Object"));
+        env.RegType(CSLE.RegHelper_Type.MakeType(typeof(Transform), "Transform"));
+
         //对于AOT环境，比如IOS，get set不能用RegHelper直接提供，就用AOTExt里面提供的对应类替换
-        env.RegType(new CSLE.RegHelper_Type(typeof(int[]), "int[]"));//数组要独立注册
-        env.RegType(new CSLE.RegHelper_Type(typeof(List<int>), "List<int>"));//模板类要独立注册
+        env.RegType(CSLE.RegHelper_Type.MakeType(typeof(int[]), "int[]"));//数组要独立注册
+        env.RegType(CSLE.RegHelper_Type.MakeType(typeof(List<int>), "List<int>"));//模板类要独立注册
 
 
 
         //每一种回调类型要独立注册
-        env.RegDeleType(new CSLE.RegHelper_DeleAction("Action")); //unity 用的dotnet 2.0 没有Action
-        env.RegDeleType(new CSLE.RegHelper_DeleAction<int>("Action<int>")); ;
+        env.RegType(CSLE.RegHelper_Type.MakeType(typeof(void), "Action")); //unity 用的dotnet 2.0 没有Action
+        env.RegType(CSLE.RegHelper_Type.MakeType(typeof(Action<int>), "Action<int>"));
 
+        env.RegType(CSLE.RegHelper_Type.MakeType(typeof(Action<AssetBundle, string>), "Action<AssetBundle, string>"));
 
-        env.RegType(new CSLE.RegHelper_Type(typeof(StateMgr)));
-        env.RegType(new CSLE.RegHelper_Type(typeof(Rect)));
-        env.RegType(new CSLE.RegHelper_Type(typeof(ScriptInstanceState)));
-        env.RegType(new CSLE.RegHelper_Type(typeof(PrimitiveType)));
-        env.RegType(new CSLE.RegHelper_Type(typeof(App)));
+        env.RegType(CSLE.RegHelper_Type.MakeType(typeof(StateMgr), "StateMgr"));
+
+        env.RegType(CSLE.RegHelper_Type.MakeType(typeof(Rect), "Rect"));
+        env.RegType(CSLE.RegHelper_Type.MakeType(typeof(ScriptInstanceState), "ScriptInstanceState"));
+        env.RegType(CSLE.RegHelper_Type.MakeType(typeof(PrimitiveType), "PrimitiveType"));
+        env.RegType(CSLE.RegHelper_Type.MakeType(typeof(App), "App"));
 
         //UGUI
   //      env.RegType(new CSLE.RegHelper_Type(typeof(Canvas)));
   //      env.RegType(new CSLE.RegHelper_Type(typeof()));
-
+        env.RegType(CSLE.RegHelper_Type.MakeType(typeof(LocalVersion), "LocalVersion"));
+        env.RegType(CSLE.RegHelper_Type.MakeType(typeof(System.Exception), "System.Exception"));
+        env.RegType(CSLE.RegHelper_Type.MakeType(typeof(AssetBundle), "AssetBundle"));
+        
+ 
 
     }
 
@@ -150,7 +158,7 @@ public class ScriptMgr
                 var tokens = env.tokenParser.Parse(System.IO.File.ReadAllText(v));
                 project.Add(v, tokens);
             }
-            env.Project_Compiler(project, true);
+            env.Project_Compile(project, true);
             projectLoaded = true;
         }
         catch (Exception err)

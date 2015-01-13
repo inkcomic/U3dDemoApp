@@ -86,4 +86,15 @@ public class App
     }
     public static event Action<int> onclick;
     public static event Action onupdate;
+
+
+
+    public static void LoadAssetBundle(string _platform, string path, Action<AssetBundle, string> onLoad)
+    {
+        LocalVersion.ResInfo test;
+        if (ResmgrNative.Instance.verLocal.groups[_platform].listfiles.TryGetValue(path, out test))
+        {
+            test.BeginLoadAssetBundle(onLoad);
+        }
+    }
 }

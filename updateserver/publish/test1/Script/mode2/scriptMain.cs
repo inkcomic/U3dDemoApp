@@ -1,10 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 //This is Dynmic Script
 public class ScriptMain
 {
     static scriptFun1 f1 = new scriptFun1();
+
+
+
     static void Run()
     {
         App.onupdate += Update;
@@ -16,6 +20,44 @@ public class ScriptMain
         //、、App.AddButton(new Rect(200, 250, 200, 50), "Stop", 11);
         App.AddButton(new Rect(200, 250, 200, 50), f1.GetSpecialName(), 11);
         Debug.Log("ScriptMain Start.");
+
+       // Action<AssetBundle, string> act = (AssetBundle res, string tag) => 
+       // {
+       //     GameObject objGUIRes = null;
+
+       //     objGUIRes = res.Load("LoinPanel", typeof(GameObject)) as GameObject;
+
+       //     res.Unload(false);
+
+       //     GameObject _father = GameObject.Find("Canvas/UICamera/Panel");
+       //     {
+       //         GameObject ret = GameObject.Instantiate(objGUIRes) as GameObject;
+       //         ret.name = objGUIRes.name;
+       //         ret.transform.parent = _father.transform;
+       //         ret.transform.localPosition = Vector3.zero;
+       //         ret.transform.localScale = Vector3.one;
+       //     }
+       //};
+       // Action<AssetBundle, string> act = null;
+        //App.onLoadAssetBundle += (AssetBundle res, string tag) => { };
+        //测试加载 Prefab UI,优先用热更新中的资源查找，没有则用包内的资源
+        App.LoadAssetBundle("test1", "ui.assetbundle", (AssetBundle res, string tag) => 
+        {
+            GameObject objGUIRes = null;
+
+            objGUIRes = (GameObject)res.Load("LoinPanel", typeof(GameObject));
+
+            res.Unload(false);
+
+            GameObject _father = GameObject.Find("Canvas/UICamera/Panel");
+            {
+                GameObject ret = (GameObject)GameObject.Instantiate(objGUIRes);
+                ret.name = objGUIRes.name;
+                ret.transform.parent = _father.transform;
+                ret.transform.localPosition = Vector3.zero;
+                ret.transform.localScale = Vector3.one;
+            }
+       });
         
     }
 
@@ -23,7 +65,7 @@ public class ScriptMain
     {
         f1.Update(Time.deltaTime);
         
-        /*int c = 0;*/
+       // int c = 0;
         if (curState != null)
         {
             curState.OnUpdate();
