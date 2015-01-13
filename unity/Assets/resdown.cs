@@ -4,7 +4,19 @@ using System.Collections.Generic;
 
 public class resdown : MonoBehaviour
 {
-   
+    private static resdown _inst = null;
+    public static resdown inst
+    {
+        get
+        {
+            return _inst;
+        }
+    }
+
+    void Awake()
+    {
+        _inst = this;
+    }
     // Use this for initialization
     void Start()
     {
@@ -33,8 +45,6 @@ public class resdown : MonoBehaviour
             }
             ResmgrNative.Instance.WaitForTaskFinish(DownLoadFinish);
             indown = true;
-
-            GameState.inst.ResourceUpdateDone();
         }
         else
             strState = null;
@@ -43,6 +53,10 @@ public class resdown : MonoBehaviour
     {
         indown = false;
         strState = "更新完成";
+
+
+        GameState.inst.ResourceUpdateDone();
+
         foreach (var file in ResmgrNative.Instance.verLocal.groups["test1_ios"].listfiles.Values)
         {
             if(file.FileName.Contains(".jpg"))
@@ -87,5 +101,10 @@ public class resdown : MonoBehaviour
         }
 
         GameState.inst.OnGUI();
+    }
+
+    public void StartChildCoroutine(IEnumerator coroutineMethod)
+    {
+        StartCoroutine(coroutineMethod);
     }
 }

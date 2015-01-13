@@ -23,7 +23,7 @@ public class ScriptMain
     {
         f1.Update(Time.deltaTime);
         
-        int c = 0;
+        /*int c = 0;*/
         if (curState != null)
         {
             curState.OnUpdate();

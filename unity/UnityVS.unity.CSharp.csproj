@@ -78,5 +78,11 @@
     <Compile Include="Assets\mode1.cs" />
     <Compile Include="Assets\resdown.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\StreamingAssets\allver.ver.txt" />
+    <None Include="Assets\StreamingAssets\test1.ver.txt" />
+    <None Include="Assets\StreamingAssets\test1_ios.ver.txt" />
+    <None Include="Assets\StreamingAssets\test1_ios\readme.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2013\UnityVS.CSharp.targets" />
 </Project>

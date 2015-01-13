@@ -47,6 +47,10 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\Editor\ExportAssetBundles.cs" />
+     <None Include="Assets\StreamingAssets\test1.ver.txt" />
+     <None Include="Assets\StreamingAssets\test1_ios\readme.txt" />
+     <None Include="Assets\StreamingAssets\test1_ios.ver.txt" />
+     <None Include="Assets\StreamingAssets\allver.ver.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.0/UnityEngine.UI.dll</HintPath>
  </Reference>

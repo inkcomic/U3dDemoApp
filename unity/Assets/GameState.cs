@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class GameState{
     private static GameState _inst = null;
@@ -18,10 +19,26 @@ public class GameState{
    public bool ResUpdateDone = false;
 
 
-//    private IEnumerator AsyncLoadCoroutine(string name, System.Type type)
-//    {
-//       
-//    }
+    IEnumerator LoadUIBundle(AssetBundle res)
+     {
+         AssetBundleRequest req = res.LoadAsync("LoinPanel", typeof(GameObject));
+         while (req.isDone == false)
+             yield return null;
+         GameObject objGUIRes = null;
+
+         objGUIRes = req.asset as GameObject;
+
+         res.Unload(false);
+ 
+         GameObject _father = GameObject.Find("Canvas/UICamera/Panel");
+         {
+             GameObject ret = GameObject.Instantiate(objGUIRes) as GameObject;
+             ret.name = objGUIRes.name;
+             ret.transform.parent = _father.transform;
+             ret.transform.localPosition = Vector3.zero;
+             ret.transform.localScale = Vector3.one;
+         }
+     }
 
 	public void ResourceUpdateDone()
     {
@@ -35,45 +52,55 @@ public class GameState{
             GameObject objGUIRes = null;
 
 
-            LocalVersion.ResInfo test;
 
+            LocalVersion.ResInfo test;
             if (ResmgrNative.Instance.verLocal.groups["test1"].listfiles.TryGetValue("ui.assetbundle", out test))
             {
-               // if ((test.state & LocalVersion.ResState.ResState_UseDownloaded) == LocalVersion.ResState.ResState_UseDownloaded)
+                test.BeginLoadAssetBundle((res, tag) =>
                 {
-                    test.BeginLoadAssetBundle((res, tag) =>
-                    {
-                        objGUIRes = res.Load("LoinPanel") as GameObject;
-
-                        res.Unload(false);
-
-                        GameObject _father = GameObject.Find("Canvas/UICamera/Panel");
-                        {
-                            GameObject ret = GameObject.Instantiate(objGUIRes) as GameObject;
-                            ret.name = objGUIRes.name;
-                            ret.transform.parent = _father.transform;
-                            ret.transform.localPosition = Vector3.zero;
-                            ret.transform.localScale = Vector3.one;
-                        }
-
-                    });
-                }
-
+                    resdown.inst.StartChildCoroutine(LoadUIBundle(res));
+                });
             }
-            else
-            {
-                objGUIRes = Resources.Load("DefaultRes/LoinPanel") as GameObject;
 
-                GameObject _father = GameObject.Find("Canvas/UICamera/Panel");
-                {
-                    GameObject ret = GameObject.Instantiate(objGUIRes) as GameObject;
-                    ret.name = objGUIRes.name;
-                    ret.transform.parent = _father.transform;
-                    ret.transform.localPosition = Vector3.zero;
-                    ret.transform.localScale = Vector3.one;
-
-                }
-            }
+//             if (ResmgrNative.Instance.verLocal.groups["test1"].listfiles.TryGetValue("ui.assetbundle", out test))
+//             {
+//                // if ((test.state & LocalVersion.ResState.ResState_UseDownloaded) == LocalVersion.ResState.ResState_UseDownloaded)
+//                 {
+//                     test.BeginLoadAssetBundle((res, tag) =>
+//                     {
+//                         resdown.inst.StartChildCoroutine(LoadUIBundle(res));
+// 
+// //                         objGUIRes = res.Load("LoinPanel", typeof(GameObject)) as GameObject;
+// // 
+// //                         res.Unload(false);
+// // 
+// //                         GameObject _father = GameObject.Find("Canvas/UICamera/Panel");
+// //                         {
+// //                             GameObject ret = GameObject.Instantiate(objGUIRes) as GameObject;
+// //                             ret.name = objGUIRes.name;
+// //                             ret.transform.parent = _father.transform;
+// //                             ret.transform.localPosition = Vector3.zero;
+// //                             ret.transform.localScale = Vector3.one;
+// //                         }
+// // 
+//                      });
+//                 }
+// 
+//             }
+//             else
+//             {
+//                 objGUIRes = Resources.Load("DefaultRes/LoinPanel") as GameObject;
+// 
+//                 GameObject _father = GameObject.Find("Canvas/UICamera/Panel");
+//                 {
+//                     GameObject ret = GameObject.Instantiate(objGUIRes) as GameObject;
+//                     ret.name = objGUIRes.name;
+//                     ret.transform.parent = _father.transform;
+//                     ret.transform.localPosition = Vector3.zero;
+//                     ret.transform.localScale = Vector3.one;
+// 
+//                 }
+//             }
 
             
         }
