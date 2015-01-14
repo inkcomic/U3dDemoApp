@@ -82,6 +82,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\StreamingAssets\allver.ver.txt" />
+    <None Include="Assets\StreamingAssets\demo.ver.txt" />
     <None Include="Assets\StreamingAssets\test1.ver.txt" />
     <None Include="Assets\StreamingAssets\test1_ios.ver.txt" />
     <None Include="Assets\StreamingAssets\test1_ios\readme.txt" />

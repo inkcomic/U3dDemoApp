@@ -21,7 +21,8 @@ public class MyScriptMain {
 
     public void Start () {
         ScriptMgr.Instance.LoadProject();
-        ScriptMgr.Instance.Execute("ScriptMain.Run()");
+       // ScriptMgr.Instance.Execute("ScriptMain.Run()");
+        ScriptMgr.Instance.Execute("UIMain.Start(\"" + "init" + "\");");
 	}
     float timer = 0;
     public float ScriptUpdateFPS = 5.0f;
@@ -95,6 +96,42 @@ public class App
         if (ResmgrNative.Instance.verLocal.groups[_platform].listfiles.TryGetValue(path, out test))
         {
             test.BeginLoadAssetBundle(onLoad);
+        }
+    }
+
+    public static void LoadGameObjectFromAssetBundle(string _platform, string path,string objectName,string fatherNode = null)
+    {
+        LocalVersion.ResInfo resInfo;
+        if (ResmgrNative.Instance.verLocal.groups[_platform].listfiles.TryGetValue(path, out resInfo))
+        {
+            resInfo.BeginLoadAssetBundle((AssetBundle res, string tag) =>
+            {
+                GameObject objGUIRes = null;
+
+                objGUIRes = (GameObject)res.Load(objectName, typeof(GameObject));
+
+                res.Unload(false);
+
+
+                if (fatherNode!=null)
+                {
+                    GameObject _father = GameObject.Find(fatherNode);
+                    {
+                        GameObject ret = (GameObject)GameObject.Instantiate(objGUIRes);
+                        ret.name = objGUIRes.name;
+                        ret.transform.parent = _father.transform;
+                        ret.transform.localPosition = Vector3.zero;
+                        ret.transform.localScale = Vector3.one;
+                    }
+                }
+                else
+                {
+                    GameObject ret = (GameObject)GameObject.Instantiate(objGUIRes);
+                    ret.name = objGUIRes.name;
+                    ret.transform.localPosition = Vector3.zero;
+                    ret.transform.localScale = Vector3.one;
+                }
+            });
         }
     }
 }

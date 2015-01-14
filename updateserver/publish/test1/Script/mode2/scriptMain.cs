@@ -41,23 +41,23 @@ public class ScriptMain
        // Action<AssetBundle, string> act = null;
         //App.onLoadAssetBundle += (AssetBundle res, string tag) => { };
         //测试加载 Prefab UI,优先用热更新中的资源查找，没有则用包内的资源
-        App.LoadAssetBundle("test1", "ui.assetbundle", (AssetBundle res, string tag) => 
-        {
-            GameObject objGUIRes = null;
+        //App.LoadAssetBundle("test1", "ui.assetbundle", (AssetBundle res, string tag) => 
+       // {
+        //    GameObject objGUIRes = null;
 
-            objGUIRes = (GameObject)res.Load("LoinPanel", typeof(GameObject));
+         //   objGUIRes = (GameObject)res.Load("LoinPanel", typeof(GameObject));
 
-            res.Unload(false);
+         //   res.Unload(false);
 
-            GameObject _father = GameObject.Find("Canvas/UICamera/Panel");
-            {
-                GameObject ret = (GameObject)GameObject.Instantiate(objGUIRes);
-                ret.name = objGUIRes.name;
-                ret.transform.parent = _father.transform;
-                ret.transform.localPosition = Vector3.zero;
-                ret.transform.localScale = Vector3.one;
-            }
-       });
+         //   GameObject _father = GameObject.Find("Canvas/UICamera/Panel");
+         //   {
+         //       GameObject ret = (GameObject)GameObject.Instantiate(objGUIRes);
+         //       ret.name = objGUIRes.name;
+         //       ret.transform.parent = _father.transform;
+         //       ret.transform.localPosition = Vector3.zero;
+         //       ret.transform.localScale = Vector3.one;
+         //   }
+       //});
         
     }
 

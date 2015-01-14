@@ -61,12 +61,13 @@
     <Compile Include="Assets\GameState.cs" />
     <Compile Include="Assets\MyScriptMain.cs" />
     <Compile Include="Assets\ScriptMgr.cs" />
+    <Compile Include="Assets\Scripts\Helper\LHelper.cs" />
     <Compile Include="Assets\Scripts\ResDownMgr\ResmgrNative.cs" />
     <Compile Include="Assets\Scripts\ResDownMgr\VersionInfoLocal.cs" />
     <Compile Include="Assets\Scripts\ResDownMgr\VersionInfoRemote.cs" />
     <Compile Include="Assets\Scripts\ResDownMgr\platform.cs" />
-    <Compile Include="Assets\Scripts\helper\LHelper.cs" />
-    <Compile Include="Assets\Scripts\ugui\EventTriggerListener.cs" />
+    <Compile Include="Assets\Scripts\UGUI\EventTriggerListener.cs" />
+    <Compile Include="Assets\Scripts\UGUI\UICommon.cs" />
     <Compile Include="Assets\StateMgr.cs" />
     <Compile Include="Assets\StreamingAssets\test1\Script\mode1\IScripte.cs" />
     <Compile Include="Assets\StreamingAssets\test1\Script\mode1\State1.cs" />
@@ -80,6 +81,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\StreamingAssets\allver.ver.txt" />
+    <None Include="Assets\StreamingAssets\demo.ver.txt" />
     <None Include="Assets\StreamingAssets\test1.ver.txt" />
     <None Include="Assets\StreamingAssets\test1_ios.ver.txt" />
     <None Include="Assets\StreamingAssets\test1_ios\readme.txt" />

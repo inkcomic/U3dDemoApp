@@ -1,3 +1,4 @@
-﻿Ver:3
-test1|HqyKqhfeJ1EGqpK6BalSDojTlAw=|1
-test1_ios|RTQwgSvsKT51N64kozTjahNJyJk=|6
+﻿Ver:1
+demo|4H8L+u92MegwdPK/T2FhZRUrxSw=|1
+test1|MVNi7pHJ3C/NCN4PxyNjEHS8950=|6
+test1_ios|Gq3VsYdTs5HIqMcIw1SxxlDFk48=|6

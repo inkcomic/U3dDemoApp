@@ -21,11 +21,16 @@ public class resdown : MonoBehaviour
     void Start()
     {
         List<string> wantdownGroup = new List<string>();
-        wantdownGroup.Add("test1");
-        wantdownGroup.Add("test1_ios");
+        GetCheckGroups(wantdownGroup);
         ResmgrNative.Instance.BeginInit("http://192.168.1.200:8080/publish/"/*"http://lightszero.github.io/publish/"*/, OnInitFinish, wantdownGroup);
         strState = "检查资源";
 
+    }
+    void GetCheckGroups(List<string> oGroups)
+    {
+        oGroups.Add("demo");
+        oGroups.Add("test1");
+        oGroups.Add("test1_ios");
     }
     bool indown = false;
     void OnInitFinish(System.Exception err)
@@ -36,8 +41,7 @@ public class resdown : MonoBehaviour
             ResmgrNative.Instance.taskState.Clear();
             strState = "检查资源完成";
             List<string> wantdownGroup = new List<string>();
-            wantdownGroup.Add("test1");
-            wantdownGroup.Add("test1_ios");
+            GetCheckGroups(wantdownGroup);
             var downlist = ResmgrNative.Instance.GetNeedDownloadRes(wantdownGroup);
             foreach (var d in downlist)
             {

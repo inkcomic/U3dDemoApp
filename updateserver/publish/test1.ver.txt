@@ -1,7 +1,6 @@
-﻿Ver:41|FileCount:7
-ui.assetbundle|xaVs14cmBjPZgbvMc2jQIKEkXy4=@58539
+﻿Ver:3|FileCount:6
 Script/mode2/scriptFun1.cs|TaG+oJBdvQmrdolsw7uDIvFmDvM=@480
-Script/mode2/scriptMain.cs|qm86lkgC8X37dolPDgSg2vB6FBY=@3357
+Script/mode2/scriptMain.cs|kUDxcS4rQ1bcbYO0gd/t9BEEfDk=@3385
 Script/mode1/IScripte.cs|9A0+ycylN95vflsCyWhYwiWSZCE=@249
 Script/mode1/State1.cs|M3OwEYs5MSze+qYZGJSTvNbO6a0=@1098
 Script/mode1/State2.cs|m2fWZEMGuVnnPvZ1AJNMc7xBTP0=@967

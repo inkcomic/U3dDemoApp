@@ -1,0 +1,3 @@
+﻿Ver:3|FileCount:2
+ui.assetbundle|bSnbn5vbwzHKcCdZnK1Rz/ANhUA=@58539
+UIMain.cs|vZGE9tvPGZpnfWTArAK1UthOLFg=@490
