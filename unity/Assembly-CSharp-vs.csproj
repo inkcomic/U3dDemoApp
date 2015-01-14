@@ -46,27 +46,26 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\AutoResizeCamera.cs" />
-     <Compile Include="Assets\GameState.cs" />
-     <Compile Include="Assets\MyScriptMain.cs" />
-     <Compile Include="Assets\ScriptMgr.cs" />
+     <Compile Include="Assets\Scripts\CsLight\ScriptMgr.cs" />
+     <Compile Include="Assets\Scripts\CsLight\StateMgr.cs" />
+     <Compile Include="Assets\Scripts\GameState.cs" />
+     <Compile Include="Assets\Scripts\Helper\AutoResizeCamera.cs" />
      <Compile Include="Assets\Scripts\Helper\LHelper.cs" />
+     <Compile Include="Assets\Scripts\MyScriptInterface.cs" />
      <Compile Include="Assets\Scripts\ResDownMgr\ResmgrNative.cs" />
      <Compile Include="Assets\Scripts\ResDownMgr\VersionInfoLocal.cs" />
      <Compile Include="Assets\Scripts\ResDownMgr\VersionInfoRemote.cs" />
      <Compile Include="Assets\Scripts\ResDownMgr\platform.cs" />
      <Compile Include="Assets\Scripts\UGUI\EventTriggerListener.cs" />
      <Compile Include="Assets\Scripts\UGUI\UICommon.cs" />
-     <Compile Include="Assets\StateMgr.cs" />
+     <Compile Include="Assets\Scripts\resdown.cs" />
+     <Compile Include="Assets\StreamingAssets\demo\UIMain.cs" />
      <Compile Include="Assets\StreamingAssets\test1\Script\mode1\IScripte.cs" />
      <Compile Include="Assets\StreamingAssets\test1\Script\mode1\State1.cs" />
      <Compile Include="Assets\StreamingAssets\test1\Script\mode1\State2.cs" />
      <Compile Include="Assets\StreamingAssets\test1\Script\mode1\State3.cs" />
      <Compile Include="Assets\StreamingAssets\test1\Script\mode2\scriptFun1.cs" />
      <Compile Include="Assets\StreamingAssets\test1\Script\mode2\scriptMain.cs" />
-     <Compile Include="Assets\TestButton.cs" />
-     <Compile Include="Assets\mode1.cs" />
-     <Compile Include="Assets\resdown.cs" />
      <None Include="Assets\StreamingAssets\test1.ver.txt" />
      <None Include="Assets\StreamingAssets\demo.ver.txt" />
      <None Include="Assets\StreamingAssets\test1_ios\readme.txt" />

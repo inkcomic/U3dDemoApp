@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System;
-
+using UnityEngine.UI;
 public class MyRegDebug : CSLE.RegHelper_Type
 {
     public MyRegDebug()//重载一个专门扩展Debug.Log的注册器
@@ -135,9 +135,9 @@ public class ScriptMgr
         env.RegType(CSLE.RegHelper_Type.MakeType(typeof(LocalVersion), "LocalVersion"));
         env.RegType(CSLE.RegHelper_Type.MakeType(typeof(System.Exception), "System.Exception"));
         env.RegType(CSLE.RegHelper_Type.MakeType(typeof(AssetBundle), "AssetBundle"));
+        env.RegType(CSLE.RegHelper_Type.MakeType(typeof(EventTriggerListener), "EventTriggerListener"));
+        env.RegType(CSLE.RegHelper_Type.MakeType(typeof(InputField), "InputField"));
         
- 
-
     }
 
     public bool projectLoaded

@@ -1,4 +1,4 @@
-﻿Ver:3|FileCount:6
+﻿Ver:11|FileCount:6
 Script/mode2/scriptFun1.cs|TaG+oJBdvQmrdolsw7uDIvFmDvM=@480
 Script/mode2/scriptMain.cs|kUDxcS4rQ1bcbYO0gd/t9BEEfDk=@3385
 Script/mode1/IScripte.cs|9A0+ycylN95vflsCyWhYwiWSZCE=@249

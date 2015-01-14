@@ -12,7 +12,7 @@ public class ExportAssetBundles {
     [MenuItem("Assets/Build AssetBundle From Selection - Track dependencies")]//(°üº¬ÒÀÄÍ¹ØÏµ)
     static void ExportResource () {
         // Bring up save panel
-        string path = EditorUtility.SaveFilePanel ("Save Resource", "", "New Resource", "assetbundle"/*"unity3d"*/);
+        string path = EditorUtility.SaveFilePanel("Save Resource", "", "New Resource", "assetbundle"/* "assetbundle"*//*"unity3d"*/);
         if (path.Length != 0) {
             // Build the resource file from the active selection.
             Object[] selection = Selection.GetFiltered(typeof(Object), SelectionMode.DeepAssets);

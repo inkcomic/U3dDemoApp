@@ -132,6 +132,7 @@ GameObject:
   - 222: {fileID: 22200014}
   - 114: {fileID: 11400020}
   - 114: {fileID: 11400018}
+  - 114: {fileID: 11400030}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -621,6 +622,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33a04c3767f198445bfc6e4b1f27c250, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &11400030
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b16e95e8f122e00439444a3788db99b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  delegates: []
 --- !u!222 &22200000
 CanvasRenderer:
   m_ObjectHideFlags: 1

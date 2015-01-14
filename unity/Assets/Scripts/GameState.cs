@@ -114,7 +114,7 @@ public class GameState{
             
         }
 
-        MyScriptMain.inst.Start();
+        MyScriptInterface.inst.Start();
 //         //try load GUI 
 //         foreach (var file in ResmgrNative.Instance.verLocal.groups["test1_ios"].listfiles.Values)
 //         {
@@ -132,7 +132,7 @@ public class GameState{
     {
         if (ResUpdateDone)
         {
-            MyScriptMain.inst.Update();
+            MyScriptInterface.inst.Update();
         }
     }
 
@@ -141,7 +141,7 @@ public class GameState{
     {
         if (ResUpdateDone)
         {
-            MyScriptMain.inst.OnGUI();
+            MyScriptInterface.inst.OnGUI();
         }
     }
 }

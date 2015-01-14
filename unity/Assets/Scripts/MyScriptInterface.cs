@@ -4,16 +4,16 @@ using System.Collections.Generic;
 using System;
 
 
-public class MyScriptMain {
+public class MyScriptInterface {
 
-    private static MyScriptMain _inst = null;
-    public static MyScriptMain inst
+    private static MyScriptInterface _inst = null;
+    public static MyScriptInterface inst
     {
         get
         {
             if (_inst == null)
             {
-                _inst = new MyScriptMain();
+                _inst = new MyScriptInterface();
             }
             return _inst;
         }
@@ -99,7 +99,7 @@ public class App
         }
     }
 
-    public static void LoadGameObjectFromAssetBundle(string _platform, string path,string objectName,string fatherNode = null)
+    public static void LoadGameObjectFromAssetBundle(string _platform, string path, string objectName, string fatherNode,Action action)
     {
         LocalVersion.ResInfo resInfo;
         if (ResmgrNative.Instance.verLocal.groups[_platform].listfiles.TryGetValue(path, out resInfo))
@@ -131,6 +131,7 @@ public class App
                     ret.transform.localPosition = Vector3.zero;
                     ret.transform.localScale = Vector3.one;
                 }
+                action();
             });
         }
     }

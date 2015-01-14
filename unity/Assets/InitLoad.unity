@@ -192,7 +192,6 @@ GameObject:
   - 224: {fileID: 1117333408}
   - 222: {fileID: 1117333411}
   - 114: {fileID: 1117333410}
-  - 114: {fileID: 1117333409}
   m_Layer: 5
   m_Name: Panel
   m_TagString: Untagged
@@ -217,17 +216,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: .5, y: .5}
---- !u!114 &1117333409
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1117333407}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5215cbca104ec4343871c0b30a807bec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1117333410
 MonoBehaviour:
   m_ObjectHideFlags: 0
