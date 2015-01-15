@@ -21,8 +21,8 @@ public class MyScriptInterface {
 
     public void Start () {
         ScriptMgr.Instance.LoadProject();
-       // ScriptMgr.Instance.Execute("ScriptMain.Run()");
-        ScriptMgr.Instance.Execute("UIMain.Start(\"" + "init" + "\");");
+        //ScriptMgr.Instance.Execute("ScriptMain.Run()");
+        //ScriptMgr.Instance.Execute("UIMain.Start(\"" + "init" + "\");");
 	}
     float timer = 0;
     public float ScriptUpdateFPS = 5.0f;
@@ -41,17 +41,17 @@ public class MyScriptInterface {
 
     public void OnGUI()
     {
-        GUI.TextArea(new Rect(0, 0, 600, 100), "这个模式演示脚本驱动模型\n"
-    + "脚本如何和程序协同工作\n"
-    + "把初始化权利交给脚本，只调用ScriptMain.Run\n"
-    + "然后程序就给脚本提供功能等脚本调用");
-        foreach(var b in App.btns)
-        {
-            if(GUI.Button(b.pos,b.text))
-            {
-                App.CallClick(b.tag);
-            }
-        }
+//         GUI.TextArea(new Rect(0, 0, 600, 100), "这个模式演示脚本驱动模型\n"
+//     + "脚本如何和程序协同工作\n"
+//     + "把初始化权利交给脚本，只调用ScriptMain.Run\n"
+//     + "然后程序就给脚本提供功能等脚本调用");
+//         foreach(var b in App.btns)
+//         {
+//             if(GUI.Button(b.pos,b.text))
+//             {
+//                 App.CallClick(b.tag);
+//             }
+//         }
     }
 }
 

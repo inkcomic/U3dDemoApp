@@ -61,16 +61,16 @@ public class resdown : MonoBehaviour
 
         GameState.inst.ResourceUpdateDone();
 
-        foreach (var file in ResmgrNative.Instance.verLocal.groups["test1_ios"].listfiles.Values)
-        {
-            if(file.FileName.Contains(".jpg"))
-            {
-                file.BeginLoadTexture2D((tex, tag) =>
-                    {
-                        loadedTexs.Add(tex);
-                    });
-            }
-        }
+//         foreach (var file in ResmgrNative.Instance.verLocal.groups["test1_ios"].listfiles.Values)
+//         {
+//             if(file.FileName.Contains(".jpg"))
+//             {
+//                 file.BeginLoadTexture2D((tex, tag) =>
+//                     {
+//                         loadedTexs.Add(tex);
+//                     });
+//             }
+//         }
        
         //加载打散场景例子
         /*Engine001.Instance.LoadLayout("test1/prefabs", "scene", (obj) =>
