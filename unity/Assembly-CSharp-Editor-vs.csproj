@@ -49,6 +49,7 @@
      <Compile Include="Assets\Scripts\Editor\ExportAssetBundles.cs" />
      <None Include="Assets\StreamingAssets\test1.ver.txt" />
      <None Include="Assets\StreamingAssets\demo.ver.txt" />
+     <None Include="Assets\Blade_girl\model\Materials\ProjectorShadowShader.shader" />
      <None Include="Assets\StreamingAssets\test1_ios\readme.txt" />
      <None Include="Assets\StreamingAssets\test1_ios.ver.txt" />
      <None Include="Assets\StreamingAssets\allver.ver.txt" />

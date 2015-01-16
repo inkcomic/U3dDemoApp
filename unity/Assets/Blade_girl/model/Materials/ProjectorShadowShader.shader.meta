@@ -1,0 +1,7 @@
+fileFormatVersion: 2
+guid: 959c8457bad208242839e1a1730cc09e
+ShaderImporter:
+  defaultTextures:
+  - _ShadowTex: {instanceID: 0}
+  - _FalloffTex: {instanceID: 0}
+  userData: 

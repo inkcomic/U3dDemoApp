@@ -53,6 +53,8 @@
      <Compile Include="Assets\Scripts\GameState.cs" />
      <Compile Include="Assets\Scripts\Helper\AnimationExtensions.cs" />
      <Compile Include="Assets\Scripts\Helper\AutoResizeCamera.cs" />
+     <Compile Include="Assets\Scripts\Helper\Controller\ThirdPersonCamera.cs" />
+     <Compile Include="Assets\Scripts\Helper\Controller\ThirdPersonController.cs" />
      <Compile Include="Assets\Scripts\Helper\LHelper.cs" />
      <Compile Include="Assets\Scripts\Helper\MPJoystick.cs" />
      <Compile Include="Assets\Scripts\MyScriptInterface.cs" />
@@ -72,6 +74,7 @@
      <Compile Include="Assets\StreamingAssets\test1\Script\mode2\scriptMain.cs" />
      <None Include="Assets\StreamingAssets\test1.ver.txt" />
      <None Include="Assets\StreamingAssets\demo.ver.txt" />
+     <None Include="Assets\Blade_girl\model\Materials\ProjectorShadowShader.shader" />
      <None Include="Assets\StreamingAssets\test1_ios\readme.txt" />
      <None Include="Assets\StreamingAssets\test1_ios.ver.txt" />
      <None Include="Assets\StreamingAssets\allver.ver.txt" />

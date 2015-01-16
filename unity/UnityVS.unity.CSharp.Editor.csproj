@@ -81,6 +81,7 @@
     <Compile Include="Assets\Scripts\Editor\ExportAssetBundles.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\Blade_girl\model\Materials\ProjectorShadowShader.shader" />
     <None Include="Assets\StreamingAssets\allver.ver.txt" />
     <None Include="Assets\StreamingAssets\demo.ver.txt" />
     <None Include="Assets\StreamingAssets\test1.ver.txt" />
