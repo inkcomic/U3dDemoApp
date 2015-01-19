@@ -203,16 +203,17 @@ void UpdateSmoothedMovementDirection ()
 		_characterState = CharacterState.Idle;
 
 		// Pick speed modifier
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButton(0))
         {
-            StartCoroutine(gameObject.animation.PlayWithOptions(
-            attack0Animation.name,
-            () =>
-            {
-                _characterState = CharacterState.Idle;
-            }
-            ));
             _characterState = CharacterState.Attack0;
+//             StartCoroutine(gameObject.animation.PlayWithOptions(
+//             attack0Animation.name,
+//             () =>
+//             {
+//                 _characterState = CharacterState.Idle;
+//             }
+//             ));
+//             _characterState = CharacterState.Attack0;
            
         }
 		else if (Input.GetKey (KeyCode.LeftShift) | Input.GetKey (KeyCode.RightShift) | isMoving)
