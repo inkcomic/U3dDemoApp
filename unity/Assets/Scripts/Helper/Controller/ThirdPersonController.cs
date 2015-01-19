@@ -103,7 +103,7 @@ void Awake ()
 {
 	moveDirection = transform.TransformDirection(Vector3.forward);
 
-	_animation = GetComponent<Animation>();
+	_animation = GetComponentInChildren<Animation>();
 	if(!_animation)
 		Debug.Log("The character you would like to control doesn't have animations. Moving her might look weird.");
 
@@ -202,21 +202,40 @@ void UpdateSmoothedMovementDirection ()
 
 		_characterState = CharacterState.Idle;
 
-		// Pick speed modifier
-        if (Input.GetMouseButton(0))
+//         if (Input.touchCount>0)
+//         {
+//             foreach (Touch touch in Input.touches)
+//             {
+//                 if (touch.phase == TouchPhase.Began)
+//                 {
+//                     _characterState = CharacterState.Attack0;
+//                 }
+//                 else if (touch.phase == TouchPhase.Moved)
+//                 {
+//                    
+//                 }
+//                 else if (touch.phase == TouchPhase.Ended)
+//                 {
+//                     _characterState = CharacterState.Idle;
+//                     _animation[attack0Animation.name].time = 0;
+//                     _animation.Play(idleAnimation.name, PlayMode.StopAll);
+//                     _animation.Sample();
+//                 }
+//             }
+//        
+        if (Input.GetKeyUp(KeyCode.C))
+        {
+            _characterState = CharacterState.Idle;
+            _animation[attack0Animation.name].time = 0;
+            _animation.Stop();
+            //_animation.Sample();
+        }
+        if (Input.GetKey (KeyCode.C))
         {
             _characterState = CharacterState.Attack0;
-//             StartCoroutine(gameObject.animation.PlayWithOptions(
-//             attack0Animation.name,
-//             () =>
-//             {
-//                 _characterState = CharacterState.Idle;
-//             }
-//             ));
-//             _characterState = CharacterState.Attack0;
-           
+ 
         }
-		else if (Input.GetKey (KeyCode.LeftShift) | Input.GetKey (KeyCode.RightShift) | isMoving)
+        else if (Input.GetKey (KeyCode.LeftShift) | Input.GetKey (KeyCode.RightShift) | isMoving)
 		{
 			targetSpeed *= runSpeed;
 			_characterState = CharacterState.Running;
