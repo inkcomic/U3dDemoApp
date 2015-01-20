@@ -135,6 +135,13 @@ public var jumpPoseAnimation : AnimationClip;
         _animation = null;
         Debug.Log("No attack animation found. Turning off animations.");
     }
+
+    {
+        AnimationEvent startEvent = new AnimationEvent();
+        startEvent.time = attack0Animation.length;
+        startEvent.functionName = "OnAttack0CallBack";
+        _animation.GetClip(attack0Animation.name).AddEvent(startEvent);
+    }
 }
 
 void UpdateSmoothedMovementDirection ()
@@ -166,108 +173,111 @@ void UpdateSmoothedMovementDirection ()
 	// Target direction relative to the camera
 	Vector3 targetDirection = h * right + v * forward;
 
-	// Grounded controls
-	if (grounded)
-	{
-		// Lock camera for short period when transitioning moving & standing still
-		lockCameraTimer += Time.deltaTime;
-		if (isMoving != wasMoving)
-			lockCameraTimer = 0.0f;
+    if (Input.GetKeyUp(KeyCode.C))
+    {
+        _characterState = CharacterState.Idle;
+        _animation[attack0Animation.name].time = 0;
+        _animation.Sample();
+    }
+    if (Input.GetKey(KeyCode.C))
+    {
+        _characterState = CharacterState.Attack0;
 
-		// We store speed and direction seperately,
-		// so that when the character stands still we still have a valid forward direction
-		// moveDirection is always normalized, and we only update it if there is user input.
-		if (targetDirection != Vector3.zero)
-		{
-			// If we are really slow, just snap to the target direction
-			if (moveSpeed < walkSpeed * 0.9f && grounded)
-			{
-				moveDirection = targetDirection.normalized;
-			}
-			// Otherwise smoothly turn towards it
-			else
-			{
-				moveDirection = Vector3.RotateTowards(moveDirection, targetDirection, rotateSpeed * Mathf.Deg2Rad * Time.deltaTime, 1000);
-
-				moveDirection = moveDirection.normalized;
-			}
-		}
-
-		// Smooth the speed based on the current target direction
-		float curSmooth = speedSmoothing * Time.deltaTime;
-
-		// Choose target speed
-		//* We want to support analog input but make sure you cant walk faster diagonally than just forward or sideways
-		float targetSpeed = Mathf.Min(targetDirection.magnitude, 1.0f);
-
-		_characterState = CharacterState.Idle;
-
-//         if (Input.touchCount>0)
-//         {
-//             foreach (Touch touch in Input.touches)
-//             {
-//                 if (touch.phase == TouchPhase.Began)
-//                 {
-//                     _characterState = CharacterState.Attack0;
-//                 }
-//                 else if (touch.phase == TouchPhase.Moved)
-//                 {
-//                    
-//                 }
-//                 else if (touch.phase == TouchPhase.Ended)
-//                 {
-//                     _characterState = CharacterState.Idle;
-//                     _animation[attack0Animation.name].time = 0;
-//                     _animation.Play(idleAnimation.name, PlayMode.StopAll);
-//                     _animation.Sample();
-//                 }
-//             }
-//        
-        if (Input.GetKeyUp(KeyCode.C))
+    }
+    else
+    {
+        // Grounded controls
+        if (grounded)
         {
+            // Lock camera for short period when transitioning moving & standing still
+            lockCameraTimer += Time.deltaTime;
+            if (isMoving != wasMoving)
+                lockCameraTimer = 0.0f;
+
+            // We store speed and direction seperately,
+            // so that when the character stands still we still have a valid forward direction
+            // moveDirection is always normalized, and we only update it if there is user input.
+            if (targetDirection != Vector3.zero)
+            {
+                // If we are really slow, just snap to the target direction
+                if (moveSpeed < walkSpeed * 0.9f && grounded)
+                {
+                    moveDirection = targetDirection.normalized;
+                }
+                // Otherwise smoothly turn towards it
+                else
+                {
+                    moveDirection = Vector3.RotateTowards(moveDirection, targetDirection, rotateSpeed * Mathf.Deg2Rad * Time.deltaTime, 1000);
+
+                    moveDirection = moveDirection.normalized;
+                }
+            }
+
+            // Smooth the speed based on the current target direction
+            float curSmooth = speedSmoothing * Time.deltaTime;
+
+            // Choose target speed
+            //* We want to support analog input but make sure you cant walk faster diagonally than just forward or sideways
+            float targetSpeed = Mathf.Min(targetDirection.magnitude, 1.0f);
+
             _characterState = CharacterState.Idle;
-            _animation[attack0Animation.name].time = 0;
-            _animation.Stop();
-            //_animation.Sample();
+
+            //         if (Input.touchCount>0)
+            //         {
+            //             foreach (Touch touch in Input.touches)
+            //             {
+            //                 if (touch.phase == TouchPhase.Began)
+            //                 {
+            //                     _characterState = CharacterState.Attack0;
+            //                 }
+            //                 else if (touch.phase == TouchPhase.Moved)
+            //                 {
+            //                    
+            //                 }
+            //                 else if (touch.phase == TouchPhase.Ended)
+            //                 {
+            //                     _characterState = CharacterState.Idle;
+            //                     _animation[attack0Animation.name].time = 0;
+            //                     _animation.Play(idleAnimation.name, PlayMode.StopAll);
+            //                     _animation.Sample();
+            //                 }
+            //             }
+            //        
+            if (Input.GetKey(KeyCode.LeftShift) | Input.GetKey(KeyCode.RightShift) | isMoving)
+            {
+                targetSpeed *= runSpeed;
+                _characterState = CharacterState.Running;
+            }
+            else if (Time.time - trotAfterSeconds > walkTimeStart)
+            {
+                targetSpeed *= trotSpeed;
+                _characterState = CharacterState.Trotting;
+            }
+            else
+            {
+                targetSpeed *= walkSpeed;
+                _characterState = CharacterState.Walking;
+            }
+
+            moveSpeed = Mathf.Lerp(moveSpeed, targetSpeed, curSmooth);
+
+            // Reset walk time start when we slow down
+            if (moveSpeed < walkSpeed * 0.3f)
+                walkTimeStart = Time.time;
         }
-        if (Input.GetKey (KeyCode.C))
+        // In air controls
+        else
         {
-            _characterState = CharacterState.Attack0;
- 
+            // Lock camera while in air
+            if (jumping)
+                lockCameraTimer = 0.0f;
+
+            if (isMoving)
+                inAirVelocity += targetDirection.normalized * Time.deltaTime * inAirControlAcceleration;
         }
-        else if (Input.GetKey (KeyCode.LeftShift) | Input.GetKey (KeyCode.RightShift) | isMoving)
-		{
-			targetSpeed *= runSpeed;
-			_characterState = CharacterState.Running;
-		}
-		else if (Time.time - trotAfterSeconds > walkTimeStart)
-		{
-			targetSpeed *= trotSpeed;
-			_characterState = CharacterState.Trotting;
-		}
-		else
-		{
-			targetSpeed *= walkSpeed;
-			_characterState = CharacterState.Walking;
-		}
 
-		moveSpeed = Mathf.Lerp(moveSpeed, targetSpeed, curSmooth);
-
-		// Reset walk time start when we slow down
-		if (moveSpeed < walkSpeed * 0.3f)
-			walkTimeStart = Time.time;
-	}
-	// In air controls
-	else
-	{
-		// Lock camera while in air
-		if (jumping)
-			lockCameraTimer = 0.0f;
-
-		if (isMoving)
-			inAirVelocity += targetDirection.normalized * Time.deltaTime * inAirControlAcceleration;
-	}
-
+    }
+	
 }
 
 void ApplyJumping ()
