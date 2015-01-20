@@ -91,8 +91,6 @@ public class resdown : MonoBehaviour
         {
             strState = "have downloaded:" + ResmgrNative.Instance.taskState.downloadcount + " /Total " + ResmgrNative.Instance.taskState.taskcount;
         }
-        
-        GameState.inst.Update();  
     }
     string strState = "";
     List<Texture2D> loadedTexs = new List<Texture2D>();
@@ -104,7 +102,6 @@ public class resdown : MonoBehaviour
             GUI.DrawTexture(new Rect(0, 50 + i * 50, 50, 50), loadedTexs[i]);
         }
 
-        GameState.inst.OnGUI();
     }
 
     public void StartChildCoroutine(IEnumerator coroutineMethod)

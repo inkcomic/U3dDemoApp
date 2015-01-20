@@ -14,5 +14,8 @@ public class AutoResizeCamera : MonoBehaviour {
 		Camera camera = GetComponent<Camera>();
 		float scale =System.Convert.ToSingle(manualHeight / 640f);
 		camera.fieldOfView*= scale;
+
+
+        GlobalDefine.inst.ViewportRatio = scale;
 	}
 }
