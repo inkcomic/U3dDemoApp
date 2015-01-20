@@ -3598,6 +3598,7 @@ GameObject:
   - 143: {fileID: 1525716158}
   - 114: {fileID: 1525716157}
   - 114: {fileID: 1525716159}
+  - 114: {fileID: 1525716160}
   m_Layer: 0
   m_Name: Monster
   m_TagString: Player
@@ -3668,6 +3669,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40f5dccb4d8073e4780b6d2f80809d9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1525716160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1525716155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e963dff86ec8f44cb1ef6c1659282e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blood_red: {fileID: 2800000, guid: 3af3c2d8847ba84478e7d81575fb5c65, type: 3}
+  blood_black: {fileID: 2800000, guid: c76464deef239e84b8f80e87c8eb32ac, type: 3}
 --- !u!1 &1537560895
 GameObject:
   m_ObjectHideFlags: 0

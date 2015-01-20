@@ -10,9 +10,9 @@ public class ThirdPersonCamera : MonoBehaviour {
 public Transform cameraTransform;
 private Transform _target;
 
-public float distance = 7.0f;
+public float distance = 3.8f;
 
-public float height = 3.0f;
+public float height = 2.2f;
 
 public float angularSmoothLag = 0.3f;
 public float angularMaxSpeed = 15.0f;

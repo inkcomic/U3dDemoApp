@@ -336,8 +336,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraTransform: {fileID: 0}
-  distance: 7
-  height: 3
+  distance: 3.79999995
+  height: 2.20000005
   angularSmoothLag: .300000012
   angularMaxSpeed: 15
   heightSmoothLag: .300000012
