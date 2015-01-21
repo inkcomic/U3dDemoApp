@@ -2027,6 +2027,7 @@ GameObject:
   - 4: {fileID: 400268}
   - 143: {fileID: 14300000}
   - 114: {fileID: 11400000}
+  - 114: {fileID: 11400002}
   m_Layer: 0
   m_Name: Monster
   m_TagString: Player
@@ -2385,7 +2386,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100054}
-  m_LocalRotation: {x: .032767415, y: .434032679, z: .0929625705, w: .89548862}
+  m_LocalRotation: {x: .0327674188, y: .434032708, z: .0929625779, w: .895488679}
   m_LocalPosition: {x: .072985135, y: -.0934125409, z: .279462427}
   m_LocalScale: {x: 1.00000012, y: .99999994, z: .99999994}
   m_Children:
@@ -2435,7 +2436,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100062}
-  m_LocalRotation: {x: -.0668304116, y: -.0743137151, z: .00302376924, w: .994988441}
+  m_LocalRotation: {x: -.066830419, y: -.0743137226, z: .00302376947, w: .994988501}
   m_LocalPosition: {x: .0143992649, y: -.0994075909, z: .280180365}
   m_LocalScale: {x: 1.00000012, y: .999999821, z: .999999762}
   m_Children:
@@ -3094,7 +3095,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100166}
-  m_LocalRotation: {x: -.00264244946, y: .0347829312, z: .00474743964, w: .999380112}
+  m_LocalRotation: {x: -.00264244969, y: .0347829349, z: .00474744011, w: .999380171}
   m_LocalPosition: {x: .0493402071, y: .00888916757, z: .00412551872}
   m_LocalScale: {x: 1, y: 1, z: .99999994}
   m_Children:
@@ -3438,7 +3439,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100218}
-  m_LocalRotation: {x: -.00264244876, y: -.0347831361, z: -.00474743266, w: .999380112}
+  m_LocalRotation: {x: -.00264244899, y: -.0347831398, z: -.00474743312, w: .999380171}
   m_LocalPosition: {x: -.0493399054, y: .00888914242, z: .00412490824}
   m_LocalScale: {x: 1.00000012, y: 1, z: 1}
   m_Children:
@@ -3838,6 +3839,17 @@ MonoBehaviour:
   landAnimationSpeed: 1
   targetDirection: {x: 1, y: 0, z: 0}
   needRun: 0
+--- !u!114 &11400002
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40f5dccb4d8073e4780b6d2f80809d9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!137 &13700000
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
