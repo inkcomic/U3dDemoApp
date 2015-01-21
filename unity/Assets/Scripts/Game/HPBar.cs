@@ -10,12 +10,18 @@ public class HPBar : MonoBehaviour {
     //黑色血条贴图
     public Texture2D blood_black;
     //默认NPC血值
-    public uint nMaxHP = 100;
-    public uint nHP = 100;
+    uint nHP = 100;
+    uint nMaxHP = 100;
 
     private float hpHeight = 1.0f;
+
+    GameActorStatus status = null;
 	// Use this for initialization
 	void Start () {
+        status = this.GetComponent<GameActorStatus>();
+        nHP = status.nHP;
+        nMaxHP = status.nMaxHP;
+
         //得到摄像机对象
         camera = Camera.main;
 
@@ -30,7 +36,8 @@ public class HPBar : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+        nHP = status.nHP;
+        nMaxHP = status.nMaxHP;
 	}
 
     void OnGUI()

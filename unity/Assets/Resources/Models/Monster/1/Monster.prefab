@@ -2028,6 +2028,8 @@ GameObject:
   - 143: {fileID: 14300000}
   - 114: {fileID: 11400000}
   - 114: {fileID: 11400002}
+  - 114: {fileID: 11400004}
+  - 114: {fileID: 11400006}
   m_Layer: 0
   m_Name: Monster
   m_TagString: Player
@@ -3850,6 +3852,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40f5dccb4d8073e4780b6d2f80809d9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &11400004
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e963dff86ec8f44cb1ef6c1659282e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blood_red: {fileID: 2800000, guid: 3af3c2d8847ba84478e7d81575fb5c65, type: 3}
+  blood_black: {fileID: 2800000, guid: c76464deef239e84b8f80e87c8eb32ac, type: 3}
+--- !u!114 &11400006
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15a5c0f89ea23ae4aa3c7f2dc19633aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actorType: 0
+  currentWeapon: {fileID: 0}
 --- !u!137 &13700000
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

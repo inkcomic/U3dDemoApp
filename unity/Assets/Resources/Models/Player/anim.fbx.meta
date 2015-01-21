@@ -10,6 +10,7 @@ ModelImporter:
     100008: pCube5
     100010: right_hand
     100012: weapon_locator
+    100014: left_hand
     400000: //RootNode
     400002: character
     400004: pCube1
@@ -17,18 +18,22 @@ ModelImporter:
     400008: pCube5
     400010: right_hand
     400012: weapon_locator
+    400014: left_hand
     2300000: pCube1
     2300002: pCube2
     2300004: pCube5
     2300006: right_hand
+    2300008: left_hand
     3300000: pCube1
     3300002: pCube2
     3300004: pCube5
     3300006: right_hand
+    3300008: left_hand
     4300000: pCube1
     4300002: pCube2
     4300004: pCube5
     4300006: right_hand
+    4300008: left_hand
     7400000: Run
     7400002: Punch
     7400004: Idle

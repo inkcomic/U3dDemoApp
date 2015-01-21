@@ -1,6 +1,24 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+public enum WeaponMode
+{
+    eMeleeWeapon=0,
+    eRangedWeapon
+};
+public enum ActorType
+{
+    eMonster=0,
+    eMainPlayer,
+    
+};
+public enum WeaponType
+{
+    eNone = 0,
+    eAex,
+    eGun,
+};
+
 public class GlobalDefine {
 
 	 private static GlobalDefine _inst = null;
@@ -20,4 +38,5 @@ public class GlobalDefine {
 
 
     public float ViewportRatio = 1.0f;
+   
 }
