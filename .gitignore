@@ -6,3 +6,7 @@ obj/
 UnityVS/
 UnityVS.meta
 UnityVS.unity.*
+
+unity.sln
+unity-csharp.sln
+Assembly-*.*
