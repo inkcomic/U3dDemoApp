@@ -4,11 +4,12 @@ using System.Collections;
 public class BaseWeapon : MonoBehaviour {
 
     Material clone_mat = null;
+
 	// Use this for initialization
-	void Start () {
+	protected virtual void Start () {
         clone_mat = renderer.material;
 	}
-	void Destroy()
+    protected virtual void Destroy()
     {
         Object.Destroy(clone_mat);
     }
@@ -26,17 +27,13 @@ public class BaseWeapon : MonoBehaviour {
         }
 	}
 
-    public enum WeaponMode
-    {
-        eMeleeWeapon=0,
-        eRangedWeapon
-    };
-
     GameObject my_owner = null;
-    public WeaponMode weapon_mode = WeaponMode.eMeleeWeapon;
-    bool is_firing = false;
 
-    public void Setup(GameObject owner)
+    [HideInInspector]
+    public WeaponMode weapon_mode = WeaponMode.eMeleeWeapon;
+    protected bool is_firing = false;
+
+    public virtual void Setup(GameObject owner)
     {
         if(my_owner)
         {
@@ -49,21 +46,9 @@ public class BaseWeapon : MonoBehaviour {
 
         my_owner = owner;
     }
-    public void SetInFire(bool bBegin)
+    public virtual void SetFire(bool bBegin)
     {
         is_firing = bBegin;
     }
  
-    void OnTriggerEnter( Collider other )
-    {
-        
-    }
-    void OnTriggerExit(Collider other)
-    {
-
-    }
-    void OnTriggerStay( Collider other )
-    {
-
-    }
 }

@@ -16,7 +16,7 @@ public class GameState:MonoBehaviour{
     {
         _inst = this;
     }
-
+    [HideInInspector]
     public bool ResUpdateDone = false;
 
    

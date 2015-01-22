@@ -15,13 +15,9 @@ public class HPBar : MonoBehaviour {
 
     private float hpHeight = 1.0f;
 
-    GameActorStatus status = null;
+   
 	// Use this for initialization
 	void Start () {
-        status = this.GetComponent<GameActorStatus>();
-        nHP = status.nHP;
-        nMaxHP = status.nMaxHP;
-
         //得到摄像机对象
         camera = Camera.main;
 
@@ -36,8 +32,7 @@ public class HPBar : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        nHP = status.nHP;
-        nMaxHP = status.nMaxHP;
+        
 	}
 
     void OnGUI()

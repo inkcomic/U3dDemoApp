@@ -32,7 +32,7 @@ private Vector3 centerOffset = Vector3.zero;
 private float heightVelocity = 0.0f;
 private float  angleVelocity = 0.0f;
 private bool snap = false;
-private ThirdPersonController controller;
+private ActorController controller;
 private float targetHeight = 100000.0f; 
 
 void Awake ()
@@ -47,7 +47,7 @@ void Awake ()
 	_target = transform;
 	if (_target)
 	{
-		controller = _target.GetComponent<ThirdPersonController>();
+        controller = _target.GetComponent<ActorController>();
 	}
 
 	if (controller)

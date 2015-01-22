@@ -14,8 +14,7 @@ public class ActorController : MonoBehaviour
     public AnimationClip walkAnimation ;
     public AnimationClip runAnimation ;
     public AnimationClip jumpPoseAnimation;
-
-    public AnimationClip attack0Animation;
+    public AnimationClip attack_meleeAnimation;
 
     public float walkMaxAnimationSpeed  = 0.75f;
     public float trotMaxAnimationSpeed  = 1.0f;
@@ -25,15 +24,15 @@ public class ActorController : MonoBehaviour
 
     private Animation _animation;
 
-    enum CharacterState 
+    public enum CharacterState 
     {
 	    Idle = 0,
 	    Walking = 1,
 	    Trotting = 2,
 	    Running = 3,
 	    Jumping = 4,
-        Attack0 = 5,
-
+        AttackMelee = 5,
+        AttackRange = 6,
     }
 
     private CharacterState _characterState;
@@ -100,11 +99,18 @@ public class ActorController : MonoBehaviour
 
     private bool isControllable = true;
 
-
+    private bool isMeleeAttacking = false;
 
     public Vector3 targetDirection;
 
     public bool needRun = false;
+
+    ///
+    //event delegate
+    public delegate void AnimDoneDelegate(CharacterState state);
+    public AnimDoneDelegate animDoneDelegate = null;  
+
+
     void Awake()
     {
         moveDirection = transform.TransformDirection(Vector3.forward);
@@ -140,18 +146,18 @@ public class ActorController : MonoBehaviour
             Debug.Log("No jump animation found and the character has canJump enabled. Turning off animations.");
         }
 
-        if (!attack0Animation)
+        if (!attack_meleeAnimation)
         {
             _animation = null;
             Debug.Log("No attack animation found. Turning off animations.");
         }
-
-        //     {
-        //         AnimationEvent startEvent = new AnimationEvent();
-        //         startEvent.time = attack0Animation.length;
-        //         startEvent.functionName = "OnAttack0CallBack";
-        //         _animation.GetClip(attack0Animation.name).AddEvent(startEvent);
-        //    }
+//         else
+//         {
+//             AnimationEvent startEvent = new AnimationEvent();
+//             startEvent.time = attack_meleeAnimation.length;
+//             startEvent.functionName = "OnAttack0CallBack";
+//             _animation.GetClip(attack_meleeAnimation.name).AddEvent(startEvent);
+//         }
 
     }
 
@@ -185,18 +191,18 @@ public class ActorController : MonoBehaviour
     // 	Vector3 targetDirection = h * right + v * forward;
 
 
-        if (Input.GetKeyUp(KeyCode.C))
-        {
-            _characterState = CharacterState.Idle;
-            _animation[attack0Animation.name].time = 0;
-            _animation.Sample();
-        }
-        if (Input.GetKey(KeyCode.C))
-        {
-            _characterState = CharacterState.Attack0;
-
-        }
-        else
+//         if (Input.GetKeyUp(KeyCode.C))
+//         {
+//             _characterState = CharacterState.Idle;
+//             _animation[attack_meleeAnimation.name].time = 0;
+//             _animation.Sample();
+//         }
+//         if (isMeleeAttacking)
+//         {
+//             _characterState = CharacterState.AttackMelee;
+// 
+//         }
+//         else
         {
             // Grounded controls
             if (grounded)
@@ -283,7 +289,8 @@ public class ActorController : MonoBehaviour
 		    // - With a timeout so you can press the button slightly before landing		
 		    if (canJump && Time.time < lastJumpButtonTime + jumpTimeout) {
 			    verticalSpeed = CalculateJumpVerticalSpeed (jumpHeight);
-			    SendMessage("DidJump", SendMessageOptions.DontRequireReceiver);
+			   // SendMessage("DidJump", SendMessageOptions.DontRequireReceiver);
+                DidJump();
 		    }
 	    }
     }
@@ -327,6 +334,20 @@ public class ActorController : MonoBehaviour
 	    _characterState = CharacterState.Jumping;
     }
 
+    public void DidMeleeAttack()
+    {
+        isMeleeAttacking = true;
+        _characterState = CharacterState.AttackMelee;
+    }
+
+    void DidMeleeAttackDone()
+    {
+        isMeleeAttacking = false;
+        _characterState = CharacterState.Idle;
+
+        if (animDoneDelegate != null) 
+            animDoneDelegate(_characterState);
+    }
     void  Update() {
 
 	    if (!isControllable)
@@ -335,12 +356,22 @@ public class ActorController : MonoBehaviour
 		    Input.ResetInputAxes();
 	    }
 
-	    if (Input.GetButtonDown ("Jump"))
-	    {
-		    lastJumpButtonTime = Time.time;
-	    }
+        if (Input.GetButtonDown("Jump"))
+        {
+            lastJumpButtonTime = Time.time;
+        }
 
-	    UpdateSmoothedMovementDirection();
+        if (isMeleeAttacking)
+        {
+            //reset anim
+            if(_animation[attack_meleeAnimation.name].time>=_animation[attack_meleeAnimation.name].length)
+            {
+                _animation[attack_meleeAnimation.name].time = 0;
+                DidMeleeAttackDone();
+            }
+        }
+        else
+	        UpdateSmoothedMovementDirection();
 
 	    // Apply gravity
 	    // - extra power jump modifies gravity
@@ -385,9 +416,9 @@ public class ActorController : MonoBehaviour
 
 	    // ANIMATION sector
 	    if(_animation) {
-            if (_characterState == CharacterState.Attack0)
+            if (_characterState == CharacterState.AttackMelee)
             {
-                _animation.CrossFade(attack0Animation.name);
+                _animation.CrossFade(attack_meleeAnimation.name);
             }
 		    else if(_characterState == CharacterState.Jumping) 
 		    {

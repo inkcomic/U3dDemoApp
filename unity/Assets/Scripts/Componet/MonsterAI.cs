@@ -16,9 +16,8 @@ public class MonsterAI : MonoBehaviour {
         if (actor_controller!=null)
         {
             {
-                GameObject go=LevelMgr.inst.GetPlayer();
-
-                Vector3 vec = go.transform.position - transform.position;
+                ActorMgr actor = LevelMgr.inst.GetPlayer();
+                Vector3 vec = actor.mGameObj.transform.position - transform.position;
 
                 if(vec.magnitude>2)
                 {
@@ -40,7 +39,6 @@ public class MonsterAI : MonoBehaviour {
             }
         }
 
-
-        LevelMgr.inst.DamageIt(LevelMgr.inst.GetPlayer(),10000);
+        LevelMgr.inst.GetPlayer().Damage(100);
 	}
 }
