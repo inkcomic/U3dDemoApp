@@ -5,11 +5,11 @@ using System.Collections.Generic;
 public class MeleeWeapon : BaseWeapon {
 
     //event delegate
-     public delegate void MeleeHitDelegate(Collider other);
+    public delegate void MeleeHitDelegate(GameObject other);
      public MeleeHitDelegate meleeHitDelegate = null;
 
 
-    HashSet<Collider> alreadySendMsg=new HashSet<Collider>();
+     HashSet<GameObject> alreadySendMsg = new HashSet<GameObject>();
 	// Use this for initialization
 	protected override void Start () {
         base.Start();
@@ -33,11 +33,11 @@ public class MeleeWeapon : BaseWeapon {
     {
         if (is_firing)
         {
-            if (alreadySendMsg.Add(other))
+            if (alreadySendMsg.Add(other.gameObject))
             {
                 if (meleeHitDelegate!=null)
                 {
-                    meleeHitDelegate(other);
+                    meleeHitDelegate(other.gameObject);
                 }
             }
         }

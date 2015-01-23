@@ -21,6 +21,8 @@ public class ActorController : MonoBehaviour
     public float runMaxAnimationSpeed  = 1.0f;
     public float jumpAnimationSpeed  = 1.15f;
     public float landAnimationSpeed  = 1.0f;
+    public float meleAttackAnimationSpeed = 1.0f;
+    
 
     private Animation _animation;
 
@@ -242,7 +244,12 @@ public class ActorController : MonoBehaviour
 
                 _characterState = CharacterState.Idle;
 
-                if (needRun/*Input.GetKey(KeyCode.LeftShift) | Input.GetKey(KeyCode.RightShift)*/ | isMoving)
+                if(isMeleeAttacking)
+                {
+                    _characterState = CharacterState.AttackMelee;
+                    targetSpeed *= runSpeed;
+                }
+                else if (needRun/*Input.GetKey(KeyCode.LeftShift) | Input.GetKey(KeyCode.RightShift)*/ | isMoving)
                 {
                     targetSpeed *= runSpeed;
                     _characterState = CharacterState.Running;
@@ -372,8 +379,8 @@ public class ActorController : MonoBehaviour
                 DidMeleeAttackDone();
             }
         }
-        else
-	        UpdateSmoothedMovementDirection();
+        
+	    UpdateSmoothedMovementDirection();
 
 	    // Apply gravity
 	    // - extra power jump modifies gravity
@@ -420,6 +427,7 @@ public class ActorController : MonoBehaviour
 	    if(_animation) {
             if (_characterState == CharacterState.AttackMelee)
             {
+                _animation[attack_meleeAnimation.name].speed = meleAttackAnimationSpeed;
                 _animation.CrossFade(attack_meleeAnimation.name);
             }
 		    else if(_characterState == CharacterState.Jumping) 

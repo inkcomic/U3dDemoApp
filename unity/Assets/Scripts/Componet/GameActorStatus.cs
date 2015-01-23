@@ -22,4 +22,6 @@ public class GameActorStatus : MonoBehaviour
 
     [HideInInspector]
     public GameObject currentWeapon = null;
+    [HideInInspector]
+    public ActorMgr myMgr = null;
 }

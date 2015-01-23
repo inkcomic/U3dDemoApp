@@ -39,6 +39,6 @@ public class MonsterAI : MonoBehaviour {
             }
         }
 
-        LevelMgr.inst.GetPlayer().Damage(100);
+        //LevelMgr.inst.GetPlayer().Damage(100);
 	}
 }

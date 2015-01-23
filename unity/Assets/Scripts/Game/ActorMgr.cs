@@ -6,6 +6,7 @@ public class ActorMgr {
     public GameObject mGameObj = null;
     public GameActorStatus mStatus = null;
     public ActorController mController = null;
+    public HPBar mHPBar = null;
     public void LoadObject(string strPath)
     {
         if(mGameObj!=null)
@@ -15,6 +16,9 @@ public class ActorMgr {
 
         mStatus = mGameObj.GetComponent<GameActorStatus>();
         mController = mGameObj.GetComponent<ActorController>();
+        mHPBar = mGameObj.GetComponent<HPBar>();
+
+        mStatus.myMgr = this;
 
         //register animDone event
         mController.animDoneDelegate += OnAnimDoneDelegate;
@@ -42,6 +46,15 @@ public class ActorMgr {
                 mStatus.nMaxHP = nMax;
 
             mStatus.nHP = nHP;
+        }
+
+        //temp call
+        {
+            if (mHPBar != null)
+            {
+                mHPBar.nHP = mStatus.nHP;
+                mHPBar.nMaxHP = mStatus.nMaxHP;
+            }
         }
     }
 
@@ -136,6 +149,14 @@ public class ActorMgr {
 
         }
 
+        //temp call
+        {
+            if (mHPBar != null)
+            {
+                mHPBar.nHP = mStatus.nHP;
+                mHPBar.nMaxHP = mStatus.nMaxHP;
+            }
+        }
         return bKilled;
     }
 
@@ -162,9 +183,19 @@ public class ActorMgr {
         SetWeaponFire(false);
     }
 
-    void OnMeleeHitDelegate(Collider other)
+    void OnMeleeHitDelegate(GameObject other)
     {
-        int i = 0;
-        i++;
+        GameActorStatus sat = other.GetComponent<GameActorStatus>();
+        if (sat != null && sat.myMgr!=null)
+        {
+            if (mGameObj != other)
+                sat.myMgr.Damage(100);
+        }
+    }
+
+
+    public virtual void Update()
+    {
+
     }
 }

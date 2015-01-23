@@ -1,18 +1,25 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class GameInputMgr : MonoBehaviour {
+public class PlayerMgr : ActorMgr{
 
 	// Use this for initialization
 	void Start () {
-	
+      
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	public override void Update () {
+        base.Update();
 
+        UpdateInput();
+	}
+
+
+    void UpdateInput()
+    {
         ActorMgr actMgr = LevelMgr.inst.GetPlayer();
-        if (actMgr!=null)
+        if (actMgr != null)
         {
             ActorController _act = actMgr.mController;
 
@@ -43,5 +50,10 @@ public class GameInputMgr : MonoBehaviour {
 
             _act.targetDirection = targetDirection;
         }
-	}
+
+        if (Input.GetKey(KeyCode.C))
+        {
+            ActorFire();
+        }
+    }
 }

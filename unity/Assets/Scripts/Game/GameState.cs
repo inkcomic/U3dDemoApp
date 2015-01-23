@@ -136,6 +136,7 @@ public class GameState:MonoBehaviour{
         {
             MyScriptInterface.inst.Update();
         }
+        LevelMgr.inst.Update();
     }
 
 

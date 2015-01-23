@@ -10,8 +10,10 @@ public class HPBar : MonoBehaviour {
     //黑色血条贴图
     public Texture2D blood_black;
     //默认NPC血值
-    uint nHP = 100;
-    uint nMaxHP = 100;
+    [HideInInspector]
+    public uint nHP = 100;
+    [HideInInspector]
+    public uint nMaxHP = 100;
 
     private float hpHeight = 1.0f;
 

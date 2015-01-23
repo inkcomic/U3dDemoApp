@@ -19,7 +19,9 @@ public class LevelMgr {
 
 
     GameObject CurrentLevel = null;
-    ActorMgr CurrentPlayer = new ActorMgr();
+    ActorMgr CurrentPlayer = new PlayerMgr();
+
+    ActorMgr testMonster = new ActorMgr();
     public void LoadLevel(int nId=1)
     {
         if (CurrentLevel != null)
@@ -33,6 +35,8 @@ public class LevelMgr {
         CurrentLevel = MyHelper.InstantiateFromResources(strFilePath);
 
         LoadPlayer();
+
+        LoadMonster();
     }
 
     void LoadPlayer()
@@ -58,7 +62,26 @@ public class LevelMgr {
         //CurrentPlayer.ChangeWeapon(WeaponType.eNone);
     }
 
-  
+    void LoadMonster()
+    {
+        if (CurrentLevel != null)
+        {
+        //    Transform ts = MyHelper.FindTransform(CurrentLevel.transform, "DummyPlayerPos");
+        //    if (ts != null)
+            {
+                string strFilePath = string.Format("Models/Monster/1/Monster");
+
+                testMonster.LoadObject(strFilePath);
+                testMonster.mGameObj.transform.position = new Vector3(0,1,0);
+
+            }
+        }
+
+        testMonster.SetHPBarStatus(10000000, 10000000);
+
+//         testMonster.ChangeWeapon(WeaponType.eNone);
+//         testMonster.ChangeWeapon(WeaponType.eAex);
+    }
 
 
     public ActorMgr GetPlayer()
@@ -67,4 +90,11 @@ public class LevelMgr {
     }
 
 
+    public void Update()
+    {
+        if (CurrentPlayer!=null)
+        {
+            CurrentPlayer.Update();
+        }
+    }
 }
