@@ -16,8 +16,8 @@ public class LevelMgr {
         }
     }
     private LevelMgr(){}
-
-
+    public Dictionary<GameObject, ActorMgr> dictLevelActor = new Dictionary<GameObject, ActorMgr>();
+    
     GameObject CurrentLevel = null;
     ActorMgr CurrentPlayer = new PlayerMgr();
 
@@ -36,7 +36,7 @@ public class LevelMgr {
 
         LoadPlayer();
 
-        LoadMonster();
+        AddMonster("Models/Monster/1/Monster");
     }
 
     void LoadPlayer()
@@ -62,27 +62,30 @@ public class LevelMgr {
         //CurrentPlayer.ChangeWeapon(WeaponType.eNone);
     }
 
-    void LoadMonster()
+    ActorMgr AddMonster(string modelPath)
     {
-        if (CurrentLevel != null)
+        ActorMgr newActor = new ActorMgr();
         {
-        //    Transform ts = MyHelper.FindTransform(CurrentLevel.transform, "DummyPlayerPos");
-        //    if (ts != null)
-            {
-                string strFilePath = string.Format("Models/Monster/1/Monster");
+            string strFilePath = string.Format(modelPath);
 
-                testMonster.LoadObject(strFilePath);
-                testMonster.mGameObj.transform.position = new Vector3(0,1,0);
-
-            }
+            newActor.LoadObject(strFilePath);
+            newActor.mGameObj.transform.position = new Vector3(0, 1, 0);
         }
 
-        testMonster.SetHPBarStatus(10000000, 10000000);
+        newActor.SetHPBarStatus(10000000, 10000000);
 
-//         testMonster.ChangeWeapon(WeaponType.eNone);
-//         testMonster.ChangeWeapon(WeaponType.eAex);
+        //keep in scene dictionary
+        dictLevelActor.Add(newActor.mGameObj, newActor);
+
+        return newActor;
     }
+    void DestroyActor(ActorMgr actor)
+    {
+        dictLevelActor.Remove(actor.mGameObj);
 
+
+        GameObject.Destroy(actor.mGameObj);
+    }
 
     public ActorMgr GetPlayer()
     {

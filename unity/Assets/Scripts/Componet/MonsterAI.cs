@@ -19,7 +19,7 @@ public class MonsterAI : MonoBehaviour {
                 ActorMgr actor = LevelMgr.inst.GetPlayer();
                 Vector3 vec = actor.mGameObj.transform.position - transform.position;
 
-                if(vec.magnitude>2)
+                if(vec.magnitude>1)
                 {
                     actor_controller.targetDirection=vec;
 

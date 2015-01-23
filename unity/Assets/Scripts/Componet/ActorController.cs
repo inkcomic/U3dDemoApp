@@ -109,6 +109,8 @@ public class ActorController : MonoBehaviour
 
     public bool needRun = false;
 
+    public Vector3 orientationVec = new Vector3(0,0,0);
+    public bool manulOrientation = false;
     ///
     //event delegate
     public delegate void AnimDoneDelegate(CharacterState state);
@@ -392,7 +394,8 @@ public class ActorController : MonoBehaviour
 
 	    if(IsMoving())
 	    {
-		    var newPos = transform.position + (transform.rotation * Vector3.forward * moveSpeed);
+		    //var newPos = transform.position + (transform.rotation * Vector3.forward * moveSpeed);
+            var newPos = transform.position + (moveDirection.normalized *  moveSpeed);
 
             var heropos = transform.position;
 
@@ -467,22 +470,29 @@ public class ActorController : MonoBehaviour
 	    }
 	    // ANIMATION sector
 
+        if (orientationVec==Vector3.zero)
+        {
+            orientationVec = moveDirection;
+        }
+
 	    // Set rotation to the move direction
-	    if (IsGrounded())
+	    //if (IsGrounded())
 	    {
+            if (!manulOrientation)
+                orientationVec = moveDirection;
 
-		    transform.rotation = Quaternion.LookRotation(moveDirection);
+            transform.rotation = Quaternion.LookRotation(orientationVec);
 
 	    }	
-	    else
-	    {
-		    Vector3 xzMove = movement;
-		    xzMove.y = 0;
-		    if (xzMove.sqrMagnitude > 0.001f)
-		    {
-			    transform.rotation = Quaternion.LookRotation(xzMove);
-		    }
-	    }	
+// 	    else
+// 	    {
+// 		    Vector3 xzMove = movement;
+// 		    xzMove.y = 0;
+// 		    if (xzMove.sqrMagnitude > 0.001f)
+// 		    {
+// 			    transform.rotation = Quaternion.LookRotation(xzMove);
+// 		    }
+// 	    }	
 
 	    // We are in jump mode but just became grounded
 	    if (IsGrounded())
