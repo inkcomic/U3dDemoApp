@@ -21,6 +21,7 @@ public class MonsterAI : MonoBehaviour {
 
                 if(vec.magnitude>1)
                 {
+					vec.y=0;
                     actor_controller.targetDirection=vec;
 
                     if(vec.magnitude>5)

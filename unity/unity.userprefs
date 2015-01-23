@@ -1,0 +1,17 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Componet/MonsterAI.cs">
+    <Files>
+      <File FileName="Assets/Scripts/Game/PlayerMgr.cs" Line="80" Column="25" />
+      <File FileName="Assets/Scripts/Componet/MonsterAI.cs" Line="11" Column="3" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/Users/developer/GitHub/U3dDemoApp/unity/Assets/Scripts/Game/PlayerMgr.cs" line="113" />
+      <Breakpoint file="/Users/developer/GitHub/U3dDemoApp/unity/Assets/Scripts/Game/PlayerMgr.cs" line="110" />
+      <Breakpoint file="/Users/developer/GitHub/U3dDemoApp/unity/Assets/Scripts/Game/PlayerMgr.cs" line="74" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

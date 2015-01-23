@@ -72,6 +72,7 @@ public class PlayerMgr : ActorMgr{
                     if (Input.GetButton("Fire1"))
                     {
                         _act.orientationVec = nearestGO.gameObject.transform.position- mGameObj.transform.position;
+						_act.orientationVec.y=0;
                         _act.manulOrientation = true;
 
                         ActorFire();
@@ -110,7 +111,8 @@ public class PlayerMgr : ActorMgr{
                 {
                     // Target direction relative to the camera
                     Vector3 orientation = h1 * right + v1 * forward;
-
+		
+					orientation.y=0;
                     _act.orientationVec = orientation;
                     _act.manulOrientation = true;
                 }
