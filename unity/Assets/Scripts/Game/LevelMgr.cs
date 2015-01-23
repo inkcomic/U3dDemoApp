@@ -54,8 +54,8 @@ public class LevelMgr {
 
         CurrentPlayer.ChangeWeapon(WeaponType.eNone);
         CurrentPlayer.ChangeWeapon(WeaponType.eAex);
-        CurrentPlayer.ChangeWeapon(WeaponType.eGun);
-        CurrentPlayer.ChangeWeapon(WeaponType.eNone);
+ //       CurrentPlayer.ChangeWeapon(WeaponType.eGun);
+        //CurrentPlayer.ChangeWeapon(WeaponType.eNone);
     }
 
   

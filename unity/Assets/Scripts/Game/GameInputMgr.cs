@@ -11,7 +11,11 @@ public class GameInputMgr : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+        ActorMgr actMgr = LevelMgr.inst.GetPlayer();
+        if (actMgr!=null)
         {
+            ActorController _act = actMgr.mController;
+
             Transform cameraTransform = Camera.main.transform;
             // Forward vector relative to the camera along the x-z plane	
             Vector3 forward = cameraTransform.TransformDirection(Vector3.forward);
@@ -25,12 +29,19 @@ public class GameInputMgr : MonoBehaviour {
             float v = Input.GetAxisRaw("Vertical");
             float h = Input.GetAxisRaw("Horizontal");
 
+            // Are we moving backwards or looking backwards
+            if (v < -0.2f)
+                _act.movingBack = true;
+            else
+                _act.movingBack = false;
+
+            bool wasMoving = _act.isMoving;
+            _act.isMoving = Mathf.Abs(h) > 0.1f || Mathf.Abs(v) > 0.1f;
+
             // Target direction relative to the camera
             Vector3 targetDirection = h * right + v * forward;
 
-            LevelMgr.inst.GetPlayer().mController.targetDirection = targetDirection;
-
-
+            _act.targetDirection = targetDirection;
         }
 	}
 }

@@ -79,10 +79,12 @@ public class ActorController : MonoBehaviour
     private bool jumping = false;
     private bool jumpingReachedApex = false;
 
+    [HideInInspector]
     // Are we moving backwards (This locks the camera to not do a 180 degree spin)
-    private bool movingBack = false;
+    public  bool movingBack = false;
+    [HideInInspector]
     // Is the user pressing any keys?
-    private bool isMoving = false;
+    public bool isMoving = false;
     // When did the user start walking (Used for going into trot after a while)
     private float walkTimeStart = 0.0f;
     // Last time the jump button was clicked down
@@ -175,17 +177,17 @@ public class ActorController : MonoBehaviour
     // 	// Always orthogonal to the forward vector
     // 	Vector3 right = new Vector3(forward.z, 0, -forward.x);
     // 
-    // 	float v = Input.GetAxisRaw("Vertical");
-    // 	float h = Input.GetAxisRaw("Horizontal");
-    // 
-    // 	// Are we moving backwards or looking backwards
-    // 	if (v < -0.2f)
-    // 		movingBack = true;
-    // 	else
-    // 		movingBack = false;
-    // 
-    // 	bool wasMoving = isMoving;
-    // 	isMoving = Mathf.Abs (h) > 0.1f || Mathf.Abs (v) > 0.1f;
+    //      	float v = Input.GetAxisRaw("Vertical");
+    //      	float h = Input.GetAxisRaw("Horizontal");
+    //      
+    //      	// Are we moving backwards or looking backwards
+    //      	if (v < -0.2f)
+    //      		movingBack = true;
+    //     	else
+    //      		movingBack = false;
+    //      
+    //      	bool wasMoving = isMoving;
+    //      	isMoving = Mathf.Abs (h) > 0.1f || Mathf.Abs (v) > 0.1f;
     // 
     // 	// Target direction relative to the camera
     // 	Vector3 targetDirection = h * right + v * forward;
@@ -209,8 +211,8 @@ public class ActorController : MonoBehaviour
             {
                 // Lock camera for short period when transitioning moving & standing still
                 lockCameraTimer += Time.deltaTime;
-    //             if (isMoving != wasMoving)
-    //                 lockCameraTimer = 0.0f;
+//                  if (isMoving != wasMoving)
+//                      lockCameraTimer = 0.0f;
 
                 // We store speed and direction seperately,
                 // so that when the character stands still we still have a valid forward direction

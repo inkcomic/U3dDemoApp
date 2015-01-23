@@ -67,11 +67,11 @@ public class ActorMgr {
             Transform ts = MyHelper.FindTransform(mGameObj.transform, "weapon_locator");
 
             //destroy all weapon under hand
-            List<Transform> old_ilst = new List<Transform>();
+            List<GameObject> old_ilst = new List<GameObject>();
 
             for (int i = 0; i < ts.childCount; i++)
             {
-                old_ilst.Add(ts.GetChild(i));
+                old_ilst.Add(ts.GetChild(i).gameObject);
             }
             //ts.DetachChildren();
             foreach (var o in old_ilst)
@@ -95,7 +95,8 @@ public class ActorMgr {
                     wp.transform.parent = ts.transform;
 
                     BaseWeapon w = wp.GetComponent<BaseWeapon>();
-                    w.Setup(mGameObj);
+                    if(w!=null)
+                        w.Setup(mGameObj);
                 }
 
                 //register event
