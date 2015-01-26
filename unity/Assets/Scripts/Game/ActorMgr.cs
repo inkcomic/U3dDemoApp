@@ -128,7 +128,7 @@ public class ActorMgr {
         }
     }
 
-    public bool Damage(uint nDamage)
+    public bool OnDamage(uint nDamage)
     {
         bool bKilled = false;
         if (mGameObj != null)
@@ -149,6 +149,12 @@ public class ActorMgr {
 
         }
 
+
+        //do effect
+        {
+            GameObject go = ParticleMgr.inst.PlayParticle("Effect/Prefab/1");
+            go.transform.position = this.mGameObj.transform.position;
+        }
         //temp call
         {
             if (mHPBar != null)
@@ -189,7 +195,7 @@ public class ActorMgr {
         if (sat != null && sat.myMgr!=null)
         {
             if (mGameObj != other)
-                sat.myMgr.Damage(100);
+                sat.myMgr.OnDamage(100);
         }
     }
 
