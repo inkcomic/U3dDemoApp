@@ -3,6 +3,8 @@ using System.Collections;
 
 public class PlayerMgr : ActorMgr{
 
+
+    bool isAttackPressing = false;
     bool isAutoAtkMode = true;
 	// Use this for initialization
 	void Start () {
@@ -121,6 +123,9 @@ public class PlayerMgr : ActorMgr{
                     _act.manulOrientation = false;
                 }
             }
+
+
+            _act.forceWalking = _act.manulOrientation;
         }
     }
 }

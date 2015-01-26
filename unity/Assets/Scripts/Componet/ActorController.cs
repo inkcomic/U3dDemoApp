@@ -111,6 +111,8 @@ public class ActorController : MonoBehaviour
 
     public Vector3 orientationVec = new Vector3(0,0,0);
     public bool manulOrientation = false;
+
+    public bool forceWalking = false;
     ///
     //event delegate
     public delegate void AnimDoneDelegate(CharacterState state);
@@ -169,46 +171,7 @@ public class ActorController : MonoBehaviour
 
     void UpdateSmoothedMovementDirection ()
     {
-    // 	Transform cameraTransform = Camera.main.transform;
  	    bool grounded = IsGrounded();
-    // 
-    // 	// Forward vector relative to the camera along the x-z plane	
-    // 	Vector3 forward = cameraTransform.TransformDirection(Vector3.forward);
-    // 	forward.y = 0;
-    // 	forward = forward.normalized;
-    // 
-    // 	// Right vector relative to the camera
-    // 	// Always orthogonal to the forward vector
-    // 	Vector3 right = new Vector3(forward.z, 0, -forward.x);
-    // 
-    //      	float v = Input.GetAxisRaw("Vertical");
-    //      	float h = Input.GetAxisRaw("Horizontal");
-    //      
-    //      	// Are we moving backwards or looking backwards
-    //      	if (v < -0.2f)
-    //      		movingBack = true;
-    //     	else
-    //      		movingBack = false;
-    //      
-    //      	bool wasMoving = isMoving;
-    //      	isMoving = Mathf.Abs (h) > 0.1f || Mathf.Abs (v) > 0.1f;
-    // 
-    // 	// Target direction relative to the camera
-    // 	Vector3 targetDirection = h * right + v * forward;
-
-
-//         if (Input.GetKeyUp(KeyCode.C))
-//         {
-//             _characterState = CharacterState.Idle;
-//             _animation[attack_meleeAnimation.name].time = 0;
-//             _animation.Sample();
-//         }
-//         if (isMeleeAttacking)
-//         {
-//             _characterState = CharacterState.AttackMelee;
-// 
-//         }
-//         else
         {
             // Grounded controls
             if (grounded)
@@ -246,7 +209,7 @@ public class ActorController : MonoBehaviour
 
                 _characterState = CharacterState.Idle;
 
-                if(isMeleeAttacking)
+                if (isMeleeAttacking )
                 {
                     _characterState = CharacterState.AttackMelee;
                     targetSpeed *= runSpeed;
@@ -267,6 +230,10 @@ public class ActorController : MonoBehaviour
                     _characterState = CharacterState.Walking;
                 }
 
+                if (forceWalking)
+                {
+                    targetSpeed /= 2;
+                }
                 moveSpeed = Mathf.Lerp(moveSpeed, targetSpeed, curSmooth);
 
                 // Reset walk time start when we slow down

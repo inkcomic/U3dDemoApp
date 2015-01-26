@@ -54,7 +54,7 @@ public class LevelMgr {
             }
         }
 
-        CurrentPlayer.SetHPBarStatus(10000000, 10000000);
+        CurrentPlayer.SetHPBarStatus(1000, 1000);
 
         CurrentPlayer.ChangeWeapon(WeaponType.eNone);
         CurrentPlayer.ChangeWeapon(WeaponType.eAex);
@@ -72,7 +72,7 @@ public class LevelMgr {
             newActor.mGameObj.transform.position = new Vector3(0, 1, 0);
         }
 
-        newActor.SetHPBarStatus(10000000, 10000000);
+        newActor.SetHPBarStatus(1000, 1000);
 
         //keep in scene dictionary
         dictLevelActor.Add(newActor.mGameObj, newActor);
@@ -99,5 +99,24 @@ public class LevelMgr {
         {
             CurrentPlayer.Update();
         }
+    }
+    int n = 1;
+    public void OnPlayerDead(ActorMgr actor)
+    {
+        DestroyActor(actor);
+
+
+
+        
+        for(int i=0;i<n;i++)
+        {
+            ActorMgr newAct = AddMonster("Models/Monster/1/Monster");
+            Vector3 vec = newAct.mGameObj.transform.position;
+            vec.x = i * 2;
+
+            newAct.mGameObj.transform.position = vec;
+        }
+        
+        n++;
     }
 }

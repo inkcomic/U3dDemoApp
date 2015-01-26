@@ -128,7 +128,7 @@ public class ActorMgr {
         }
     }
 
-    public bool OnDamage(uint nDamage)
+    public bool OnDamage(uint nDamage,GameObject other)
     {
         bool bKilled = false;
         if (mGameObj != null)
@@ -154,6 +154,8 @@ public class ActorMgr {
         {
             GameObject go = ParticleMgr.inst.PlayParticle("Effect/Prefab/1");
             go.transform.position = this.mGameObj.transform.position;
+            go.transform.rotation = this.mGameObj.transform.rotation;
+            //ParticleSystem ps = go.GetComponent<ParticleSystem>();
         }
         //temp call
         {
@@ -195,7 +197,12 @@ public class ActorMgr {
         if (sat != null && sat.myMgr!=null)
         {
             if (mGameObj != other)
-                sat.myMgr.OnDamage(100);
+            {
+                if(sat.myMgr.OnDamage(100, this.mGameObj))
+                {
+                    LevelMgr.inst.OnPlayerDead(sat.myMgr);
+                }
+            }
         }
     }
 

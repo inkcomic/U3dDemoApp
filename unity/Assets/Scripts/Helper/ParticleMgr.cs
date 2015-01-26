@@ -141,7 +141,7 @@ public class ParticleMgr {
     {
         GameObject createObj = CreateEffect(filePath,parentNode);
 
-        ParticleController pc = createObj.GetComponent<ParticleController>();
+        ParticleController pc = createObj.GetComponentInChildren<ParticleController>();
 
         pc.Play();
         return createObj;
