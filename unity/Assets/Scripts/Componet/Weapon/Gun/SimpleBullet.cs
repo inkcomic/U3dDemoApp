@@ -25,7 +25,7 @@ public class SimpleBullet : MonoBehaviour
 	void Start () {
         
 	}
-    public void Setup(Vector3 dir,float speed  = 10.0f)
+    public void Setup(Vector3 dir,float speed  = 5.0f)
     {
         this.gameObject.SetActive(true);
         isSleep = false;
@@ -47,16 +47,7 @@ public class SimpleBullet : MonoBehaviour
                 break;
         }
 	}
-    void OnCollisionEnter(Collision other)
-    {
-        WeaponHitable hitable = other.collider.GetComponent<WeaponHitable>();
-        bool deleteMe = false;
-        if (hitable)
-            deleteMe = hitable.OnWeaponHit(other.collider, bulletOwner);
-
-        if (deleteMe)
-            Disappear();
-    }
+   
     void OnTriggerEnter(Collider other)
     {
         WeaponHitable hitable = other.GetComponent<WeaponHitable>();

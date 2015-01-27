@@ -8,7 +8,7 @@ public class WeaponHitable : MonoBehaviour {
  
     public bool OnWeaponHit(Collider other, ActorMgr owner)
     {
-        bool wantDelete = false;
+        bool wantDelete = true;
         if (delegateWeaponHit != null)
             wantDelete = delegateWeaponHit(other, owner);
 

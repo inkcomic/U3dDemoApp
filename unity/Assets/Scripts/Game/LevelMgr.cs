@@ -57,8 +57,8 @@ public class LevelMgr {
         CurrentPlayer.SetHPBarStatus(1000, 1000);
 
         CurrentPlayer.ChangeWeapon(WeaponType.eNone);
-        CurrentPlayer.ChangeWeapon(WeaponType.eAex);
- //       CurrentPlayer.ChangeWeapon(WeaponType.eGun);
+      //  CurrentPlayer.ChangeWeapon(WeaponType.eAex);
+        CurrentPlayer.ChangeWeapon(WeaponType.ePistol);
         //CurrentPlayer.ChangeWeapon(WeaponType.eNone);
     }
 

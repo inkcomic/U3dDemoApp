@@ -78,7 +78,7 @@ public class ActorMgr {
                     break;
                 case WeaponType.ePistol:
                     {
-                        strFilePath = string.Format("Models/Weapon/Prefab/gun");
+                        strFilePath = string.Format("Models/Weapon/Ranged/Prefab/pistol");
                     }
                     break;
             }
@@ -125,7 +125,7 @@ public class ActorMgr {
                         BaseWeapon w = mStatus.currentWeapon.GetComponent<BaseWeapon>();
                         if (w.weapon_mode == WeaponMode.eMeleeWeapon)
                         {
-                            ((MeleeWeapon)(w)).meleeHitDelegate += OnMeleeHitDelegate;
+       //                     ((MeleeWeapon)(w)).meleeHitDelegate += OnMeleeHitDelegate;
                         }
                         
                     }

@@ -4,13 +4,13 @@ using System.Collections;
 public class Billboard : MonoBehaviour
 {
 
-    public Camera my_camera;
+    public Camera camera;
     Quaternion direction = new Quaternion();
 
     // Use this for initialization
     void Start()
     {
-        my_camera = Camera.main;
+        camera = Camera.main;
 
         direction.x = transform.localRotation.x;
         direction.y = transform.localRotation.y;
@@ -24,7 +24,7 @@ public class Billboard : MonoBehaviour
         Camera cam = null;
         if (camera != null)
         {
-            cam = my_camera;
+            cam = camera;
         }
         else
         {
