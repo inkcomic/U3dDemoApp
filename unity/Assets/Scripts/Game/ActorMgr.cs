@@ -7,6 +7,8 @@ public class ActorMgr {
     public GameActorStatus mStatus = null;
     public ActorController mController = null;
     public HPBar mHPBar = null;
+
+    public WeaponHitable mWeaponHitable = null;
     public void LoadObject(string strPath)
     {
         if(mGameObj!=null)
@@ -20,6 +22,10 @@ public class ActorMgr {
 
         mStatus.myMgr = this;
 
+        mWeaponHitable = mGameObj.GetComponent<WeaponHitable>();
+        //register weapon hit event
+        mWeaponHitable.delegateWeaponHit += OnWeaponHit;
+        
         //register animDone event
         mController.animDoneDelegate += OnAnimDoneDelegate;
     }
@@ -70,7 +76,7 @@ public class ActorMgr {
                         strFilePath = string.Format("Models/Weapon/Prefab/aex");
                     }
                     break;
-                case WeaponType.eGun:
+                case WeaponType.ePistol:
                     {
                         strFilePath = string.Format("Models/Weapon/Prefab/gun");
                     }
@@ -210,5 +216,12 @@ public class ActorMgr {
     public virtual void Update()
     {
 
+    }
+
+
+
+    public virtual bool OnWeaponHit(Collider other, ActorMgr owner)
+    {
+        return true;
     }
 }

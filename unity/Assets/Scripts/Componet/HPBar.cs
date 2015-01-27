@@ -4,7 +4,7 @@ using System.Collections;
 public class HPBar : MonoBehaviour {
 
     //主摄像机对象
-    private Camera camera;
+    private Camera  my_camera;
     //红色血条贴图
     public Texture2D blood_red;
     //黑色血条贴图
@@ -21,7 +21,7 @@ public class HPBar : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         //得到摄像机对象
-        camera = Camera.main;
+        my_camera = Camera.main;
 
         //注解1
         //得到模型原始高度
@@ -43,7 +43,7 @@ public class HPBar : MonoBehaviour {
         //默认NPC坐标点在脚底下，所以这里加上npcHeight它模型的高度即可
         Vector3 worldPosition = new Vector3(transform.position.x, transform.position.y + hpHeight, transform.position.z);
         //根据NPC头顶的3D坐标换算成它在2D屏幕中的坐标
-        Vector2 position = camera.WorldToScreenPoint(worldPosition);
+        Vector2 position = my_camera.WorldToScreenPoint(worldPosition);
         
         //得到真实NPC头顶的2D坐标
         position = new Vector2(position.x, Screen.height - position.y);

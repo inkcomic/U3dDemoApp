@@ -9,7 +9,7 @@ public class MeleeWeapon : BaseWeapon {
      public MeleeHitDelegate meleeHitDelegate = null;
 
 
-     HashSet<GameObject> alreadySendMsg = new HashSet<GameObject>();
+    HashSet<GameObject> alreadySendMsg = new HashSet<GameObject>();
 	// Use this for initialization
 	protected override void Start () {
         base.Start();

@@ -4,7 +4,7 @@ using System.Collections;
 public class PlayerMgr : ActorMgr{
 
 
-    bool isAttackPressing = false;
+   // bool isAttackPressing = false;
     bool isAutoAtkMode = true;
 	// Use this for initialization
 	void Start () {

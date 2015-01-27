@@ -15,8 +15,11 @@ public enum ActorType
 public enum WeaponType
 {
     eNone = 0,
+    //melee weapon
     eAex,
-    eGun,
+
+    //ranged weapon
+    ePistol,
 };
 
 public class GlobalDefine {

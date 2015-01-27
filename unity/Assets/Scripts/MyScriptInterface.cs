@@ -24,7 +24,7 @@ public class MyScriptInterface {
         //ScriptMgr.Instance.Execute("ScriptMain.Run()");
         //ScriptMgr.Instance.Execute("UIMain.Start(\"" + "init" + "\");");
 	}
-    float timer = 0;
+    //float timer = 0;
     public float ScriptUpdateFPS = 5.0f;
 
 	// Update is called once per frame

@@ -6,9 +6,9 @@ using UnityEngine.UI;
 public class UIMain
 {
 
-    static GameObject button;
+    static GameObject button = null;
 
-    static GameObject button1;
+    static GameObject button1=null;
 
     //UICommon里面调用脚本的Start方法，并且传入了名子的字符串
     static void Start(string root)

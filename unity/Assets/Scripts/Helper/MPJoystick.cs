@@ -46,7 +46,7 @@ private static MPJoystick[] joysticks;	 // A static collection of all joysticks
 
 private static bool enumeratedJoysticks = false;
 
-private static float tapTimeDelta = 0.3f;	 // Time allowed between taps
+//private static float tapTimeDelta = 0.3f;	 // Time allowed between taps
 public bool touchPad;
 
 public Vector2 position = Vector2.zero;
@@ -61,7 +61,7 @@ public int tapCount;
 
 private int lastFingerId = -1;	 // Finger last used for this joystick
 
-private float tapTimeWindow;	 // How much time there is left for a tap to occur
+//private float tapTimeWindow;	 // How much time there is left for a tap to occur
 
 private Vector2 fingerDownPos;
 
