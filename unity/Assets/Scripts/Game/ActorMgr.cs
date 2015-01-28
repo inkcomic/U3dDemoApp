@@ -24,7 +24,7 @@ public class ActorMgr {
 
         mWeaponHitable = mGameObj.GetComponent<WeaponHitable>();
         //register weapon hit event
-        mWeaponHitable.delegateWeaponHit += OnWeaponHit;
+        mWeaponHitable.delegateWeaponHit += OnWeaponHitDamage;
         
         //register animDone event
         mController.animDoneDelegate += OnAnimDoneDelegate;
@@ -111,6 +111,7 @@ public class ActorMgr {
                     GameObject wp = MyHelper.InstantiateFromResources(strFilePath);
 
                     wp.transform.position = ts.position;
+                    wp.transform.rotation = ts.rotation;
                     wp.transform.parent = ts.transform;
 
                     BaseWeapon w = wp.GetComponent<BaseWeapon>();
@@ -197,19 +198,23 @@ public class ActorMgr {
         SetWeaponFire(false);
     }
 
-    void OnMeleeHitDelegate(GameObject other)
+    bool OnWeaponHitDamage(GameObject other, ActorMgr owner)
     {
-        GameActorStatus sat = other.GetComponent<GameActorStatus>();
-        if (sat != null && sat.myMgr!=null)
+        //GameActorStatus sat = other.GetComponent<GameActorStatus>();
+        //if (sat != null && sat.myMgr!=null)
         {
             if (mGameObj != other)
             {
-                if(sat.myMgr.OnDamage(100, this.mGameObj))
+                if(OnDamage(100, this.mGameObj))
                 {
-                    LevelMgr.inst.OnPlayerDead(sat.myMgr);
+                   LevelMgr.inst.OnPlayerDead(this);
+
+                   return true;
                 }
             }
         }
+
+        return false;
     }
 
 
@@ -220,8 +225,8 @@ public class ActorMgr {
 
 
 
-    public virtual bool OnWeaponHit(Collider other, ActorMgr owner)
+    public virtual bool OnWeaponHit(GameObject other, ActorMgr owner)
     {
-        return true;
+        return OnWeaponHitDamage(other, owner);
     }
 }

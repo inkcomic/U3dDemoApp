@@ -21,20 +21,26 @@ public class RangedWeapon : BaseWeapon
     float lastFire = 0.0f;
     float timeCounter = 0.0f;
 	void Update () {
-        if (timeCounter - lastFire>1.0f)
-        {
-            SetFire(true);
-
-            lastFire = timeCounter;
-        }
-        timeCounter += Time.deltaTime;
 
 
 	}
 
+    bool CanFire()
+    {
+        if (timeCounter - lastFire>0.2f)
+        {
+            lastFire = timeCounter;
+            return true;
+        }
+        timeCounter = Time.time;
 
+        return false;
+    }
     public override void SetFire(bool bBegin)
     {
+        if (!CanFire())
+            return;
+
         base.SetFire(bBegin);
 
         bBegin = false;
@@ -48,8 +54,7 @@ public class RangedWeapon : BaseWeapon
                 SimpleBullet newBullete = newObj.GetComponent<SimpleBullet>();
                 if (newBullete)
                 {
-
-                    newBullete.Setup(gameObject.transform.forward);
+                    newBullete.Setup(ownerStatus.myMgr, gameObject.transform.forward);
                 }
                 else
                 {

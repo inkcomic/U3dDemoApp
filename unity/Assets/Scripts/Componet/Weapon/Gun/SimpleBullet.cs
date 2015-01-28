@@ -25,8 +25,9 @@ public class SimpleBullet : MonoBehaviour
 	void Start () {
         
 	}
-    public void Setup(Vector3 dir,float speed  = 5.0f)
+    public void Setup(ActorMgr owner,Vector3 dir,float speed  = 20.0f)
     {
+        bulletOwner = owner;
         this.gameObject.SetActive(true);
         isSleep = false;
 
@@ -53,7 +54,7 @@ public class SimpleBullet : MonoBehaviour
         WeaponHitable hitable = other.GetComponent<WeaponHitable>();
         bool deleteMe = false;
         if (hitable)
-            deleteMe = hitable.OnWeaponHit(other, bulletOwner);
+            deleteMe = hitable.OnWeaponHit(bulletOwner.mGameObj, bulletOwner);
 
         if (deleteMe)
             Disappear();

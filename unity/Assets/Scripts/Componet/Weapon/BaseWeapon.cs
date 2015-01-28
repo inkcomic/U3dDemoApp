@@ -5,6 +5,8 @@ public class BaseWeapon : MonoBehaviour {
 
     Material clone_mat = null;
 
+    protected GameActorStatus ownerStatus = null;
+
 	// Use this for initialization
 	protected virtual void Start () {
         clone_mat = renderer.material;
@@ -27,7 +29,7 @@ public class BaseWeapon : MonoBehaviour {
         }
 	}
 
-    GameObject my_owner = null;
+    //GameObject my_owner = null;
 
     [HideInInspector]
     public WeaponMode weapon_mode = WeaponMode.eMeleeWeapon;
@@ -35,16 +37,16 @@ public class BaseWeapon : MonoBehaviour {
 
     public virtual void Setup(GameObject owner)
     {
-        if(my_owner)
+        if (ownerStatus)
         {
-            GameActorStatus oldS = my_owner.GetComponent<GameActorStatus>();
-            oldS.currentWeapon = null;
+           // GameActorStatus oldS = my_owner.GetComponent<GameActorStatus>();
+            ownerStatus.currentWeapon = null;
         }
-       
-        GameActorStatus newS = owner.GetComponent<GameActorStatus>();
-        newS.currentWeapon = this.gameObject;
 
-        my_owner = owner;
+        ownerStatus = owner.GetComponent<GameActorStatus>();
+        ownerStatus.currentWeapon = this.gameObject;
+
+        //my_owner = owner;
     }
     public virtual void SetFire(bool bBegin)
     {

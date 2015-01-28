@@ -57,9 +57,9 @@ public class LevelMgr {
         CurrentPlayer.SetHPBarStatus(1000, 1000);
 
         CurrentPlayer.ChangeWeapon(WeaponType.eNone);
-      //  CurrentPlayer.ChangeWeapon(WeaponType.eAex);
+        //CurrentPlayer.ChangeWeapon(WeaponType.eAex);
         CurrentPlayer.ChangeWeapon(WeaponType.ePistol);
-        //CurrentPlayer.ChangeWeapon(WeaponType.eNone);
+       
     }
 
     ActorMgr AddMonster(string modelPath)
@@ -108,7 +108,7 @@ public class LevelMgr {
 
 
         
-        for(int i=0;i<n;i++)
+        for(int i=0;i<1;i++)
         {
             ActorMgr newAct = AddMonster("Models/Monster/1/Monster");
             Vector3 vec = newAct.mGameObj.transform.position;

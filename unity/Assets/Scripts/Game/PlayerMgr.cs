@@ -126,6 +126,17 @@ public class PlayerMgr : ActorMgr{
 
 
             _act.forceWalking = _act.manulOrientation;
+
+
+
+            if (Input.GetKey(KeyCode.Alpha1))
+            {
+                LevelMgr.inst.GetPlayer().ChangeWeapon(WeaponType.eAex);
+            }
+            else if (Input.GetKey(KeyCode.Alpha2))
+            {
+                LevelMgr.inst.GetPlayer().ChangeWeapon(WeaponType.ePistol);
+            }
         }
     }
 }
