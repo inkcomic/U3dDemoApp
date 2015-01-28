@@ -116,9 +116,10 @@ public class ActorController : MonoBehaviour
     ///
     //event delegate
     public delegate void AnimDoneDelegate(CharacterState state);
-    public AnimDoneDelegate animDoneDelegate = null;  
+    public AnimDoneDelegate animDoneDelegate = null;
 
-
+    public delegate void CollisionEnterDelegate(Collision col);
+    public CollisionEnterDelegate collisionEnterDelegate = null;
     void Awake()
     {
         moveDirection = transform.TransformDirection(Vector3.forward);
@@ -526,4 +527,13 @@ public class ActorController : MonoBehaviour
 	    gameObject.tag = "Player";
     }
 
+    void OnCollisionEnter (Collision collision)
+    {
+        if (collisionEnterDelegate != null)
+        {
+            collisionEnterDelegate(collision);
+        }
+        
+
+    }
 }

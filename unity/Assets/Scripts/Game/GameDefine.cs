@@ -21,7 +21,11 @@ public enum WeaponType
     //ranged weapon
     ePistol,
 };
-
+public enum PickItemType
+{
+    eAex = WeaponType.eAex,
+    ePistol = WeaponType.ePistol,
+};
 public class GlobalDefine {
 
 	 private static GlobalDefine _inst = null;

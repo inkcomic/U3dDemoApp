@@ -26,8 +26,10 @@ public class ActorMgr {
         //register weapon hit event
         mWeaponHitable.delegateWeaponHit += OnWeaponHitDamage;
         
-        //register animDone event
+        //register event
         mController.animDoneDelegate += OnAnimDoneDelegate;
+        mController.collisionEnterDelegate += OnCollisionEnter;
+
     }
     public bool GetHPBarStatus(out uint nHP, out uint nMax)
     {
@@ -209,8 +211,8 @@ public class ActorMgr {
                 {
                    LevelMgr.inst.OnPlayerDead(this);
 
-                   return true;
                 }
+                return true;
             }
         }
 
@@ -228,5 +230,12 @@ public class ActorMgr {
     public virtual bool OnWeaponHit(GameObject other, ActorMgr owner)
     {
         return OnWeaponHitDamage(other, owner);
+    }
+
+
+
+    public virtual void OnCollisionEnter(Collision col)
+    {
+
     }
 }

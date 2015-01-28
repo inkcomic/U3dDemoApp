@@ -48,7 +48,7 @@ public class SimpleBullet : MonoBehaviour
                 break;
         }
 	}
-   
+
     void OnTriggerEnter(Collider other)
     {
         WeaponHitable hitable = other.GetComponent<WeaponHitable>();
@@ -61,7 +61,7 @@ public class SimpleBullet : MonoBehaviour
     }
     void Disappear()
     {
-        GameObject.Destroy(this.gameObject);
+        Destroy(this.gameObject);
     }
     void SimulatePistol()
     {

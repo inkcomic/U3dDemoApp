@@ -139,4 +139,31 @@ public class PlayerMgr : ActorMgr{
             }
         }
     }
+
+
+    public override void OnCollisionEnter(Collision col)
+    {
+        base.OnCollisionEnter(col);
+
+        //check item
+        PickableItem item = col.collider.GetComponent<PickableItem>();
+        if (item)
+        {
+            switch (item.mItemType)
+            {
+                case PickItemType.eAex:
+                    {
+                        ChangeWeapon((WeaponType)item.mItemType);
+                    }
+                    break;
+                case PickItemType.ePistol:
+                    {
+                        ChangeWeapon((WeaponType)item.mItemType);
+                    }
+                    break;
+            }
+
+            GameObject.Destroy(item.gameObject);
+        }
+    }
 }
