@@ -1,15 +1,18 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Game/ActorMgr.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Helper/MyHelper.cs">
     <Files>
-      <File FileName="Assets/Scripts/Helper/Billboard.cs" Line="27" Column="19" />
-      <File FileName="Assets/Scripts/Game/PlayerMgr.cs" Line="80" Column="25" />
-      <File FileName="Assets/Scripts/Componet/MonsterAI.cs" Line="11" Column="3" />
-      <File FileName="Assets/Scripts/Componet/Weapon/Gun/SimpleBullet.cs" Line="28" Column="51" />
-      <File FileName="Assets/Scripts/Componet/Weapon/WeaponHitable.cs" Line="13" Column="16" />
-      <File FileName="Assets/Scripts/Componet/Weapon/Gun/RangedWeapon.cs" Line="52" Column="1" />
-      <File FileName="Assets/Scripts/Game/ActorMgr.cs" Line="128" Column="10" />
-      <File FileName="Assets/Scripts/Game/LevelMgr.cs" Line="61" Column="31" />
+      <File FileName="Assets/Scripts/Helper/MyHelper.cs" Line="472" Column="1" />
+      <File FileName="Assets/Scripts/Helper/Billboard.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Game/PlayerMgr.cs" Line="66" Column="1" />
+      <File FileName="Assets/Scripts/Componet/MonsterAI.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Componet/Weapon/Gun/SimpleBullet.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Componet/Weapon/WeaponHitable.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Componet/Weapon/Gun/RangedWeapon.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Game/ActorMgr.cs" Line="68" Column="10" />
+      <File FileName="Assets/Scripts/Game/LevelMgr.cs" Line="139" Column="31" />
+      <File FileName="Assets/Scripts/Componet/PickableItemController.cs" Line="18" Column="2" />
+      <File FileName="Assets/Scripts/Game/PickItemMgr.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
@@ -17,6 +20,7 @@
       <Breakpoint file="/Users/developer/GitHub/U3dDemoApp/unity/Assets/Scripts/Game/PlayerMgr.cs" line="113" />
       <Breakpoint file="/Users/developer/GitHub/U3dDemoApp/unity/Assets/Scripts/Game/PlayerMgr.cs" line="110" />
       <Breakpoint file="/Users/developer/GitHub/U3dDemoApp/unity/Assets/Scripts/Componet/Weapon/Gun/SimpleBullet.cs" line="55" />
+      <Breakpoint file="/Users/developer/GitHub/U3dDemoApp/unity/Assets/Scripts/Game/LevelMgr.cs" line="139" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

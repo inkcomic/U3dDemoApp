@@ -71,7 +71,7 @@ public class ActorMgr :LevelObject{
             {
                 case WeaponType.eAex:
                     {
-                        strFilePath = string.Format("Models/Weapon/Prefab/aex");
+                        strFilePath = string.Format("Models/Weapon/Melee/Prefab/aex");
                     }
                     break;
                 case WeaponType.ePistol:
