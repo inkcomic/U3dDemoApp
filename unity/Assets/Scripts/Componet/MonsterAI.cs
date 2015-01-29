@@ -7,7 +7,6 @@ public class MonsterAI : MonoBehaviour {
     // Use this for initialization
 	void Start () {
         actor_controller = GetComponent<ActorController>();
-
 	}
 	
 	// Update is called once per frame

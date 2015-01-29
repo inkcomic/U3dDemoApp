@@ -2,8 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class ActorMgr {
-    public GameObject mGameObj = null;
+public class ActorMgr :LevelObject{
     public GameActorStatus mStatus = null;
     public ActorController mController = null;
     public HPBar mHPBar = null;
@@ -11,10 +10,7 @@ public class ActorMgr {
     public WeaponHitable mWeaponHitable = null;
     public void LoadObject(string strPath)
     {
-        if(mGameObj!=null)
-            GameObject.Destroy(mGameObj);
-
-        mGameObj = MyHelper.InstantiateFromResources(strPath);
+        LoadGameObjectFromPrefab(strPath);
 
         mStatus = mGameObj.GetComponent<GameActorStatus>();
         mController = mGameObj.GetComponent<ActorController>();
@@ -28,7 +24,7 @@ public class ActorMgr {
         
         //register event
         mController.animDoneDelegate += OnAnimDoneDelegate;
-        mController.collisionEnterDelegate += OnCollisionEnter;
+        mController.triggerEnterDelegate += OnTriggerEnter;
 
     }
     public bool GetHPBarStatus(out uint nHP, out uint nMax)
@@ -220,8 +216,9 @@ public class ActorMgr {
     }
 
 
-    public virtual void Update()
+    public override void Update()
     {
+        base.Update();
 
     }
 
@@ -235,6 +232,10 @@ public class ActorMgr {
 
 
     public virtual void OnCollisionEnter(Collision col)
+    {
+
+    }
+    public virtual void OnTriggerEnter(Collider cd)
     {
 
     }

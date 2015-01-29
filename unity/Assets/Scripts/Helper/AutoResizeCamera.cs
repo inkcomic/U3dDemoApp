@@ -16,6 +16,6 @@ public class AutoResizeCamera : MonoBehaviour {
 		camera.fieldOfView*= scale;
 
 
-        GlobalDefine.inst.ViewportRatio = scale;
+        GlobalDefine.ViewportRatio = scale;
 	}
 }

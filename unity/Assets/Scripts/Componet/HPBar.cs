@@ -55,7 +55,7 @@ public class HPBar : MonoBehaviour {
         //position *= GlobalDefine.inst.ViewportRatio;
         
         //根据实际分辨率调整
-        bloodSize /=( GlobalDefine.inst.ViewportRatio*2);
+        bloodSize /=( GlobalDefine.ViewportRatio*2);
         
         //通过血值计算红色血条显示区域
         int blood_width = (int)(bloodSize.x * nHP / nMaxHP);
@@ -75,7 +75,7 @@ public class HPBar : MonoBehaviour {
             //计算NPC名称的宽高
             Vector2 strHPSize = GUI.skin.label.CalcSize(new GUIContent(strHP));
             //根据实际分辨率调整
-            strHPSize *= GlobalDefine.inst.ViewportRatio;
+            strHPSize *= GlobalDefine.ViewportRatio;
 
             //设置显示颜色为黄色
             GUI.color = Color.blue;

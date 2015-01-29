@@ -42,8 +42,7 @@ public class GlobalDefine {
     }
     private GlobalDefine() { }
 
+    static public float ViewportRatio = 1.0f;
 
-
-    public float ViewportRatio = 1.0f;
-   
+    static public Vector3 FakeGravity = Vector3.down*0.1f;
 }

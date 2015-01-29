@@ -16,12 +16,15 @@ public class LevelMgr {
         }
     }
     private LevelMgr(){}
-    public Dictionary<GameObject, ActorMgr> dictLevelActor = new Dictionary<GameObject, ActorMgr>();
+    //public Dictionary<GameObject, ActorMgr> dictLevelActor = new Dictionary<GameObject, ActorMgr>();
     
     GameObject CurrentLevel = null;
     ActorMgr CurrentPlayer = new PlayerMgr();
 
     ActorMgr testMonster = new ActorMgr();
+
+    public HashSet<LevelObject> setLevelObject = new HashSet<LevelObject>();
+    public List<LevelObject> listWantDestroyLevelObject = new List<LevelObject>();
     public void LoadLevel(int nId=1)
     {
         if (CurrentLevel != null)
@@ -59,7 +62,8 @@ public class LevelMgr {
         CurrentPlayer.ChangeWeapon(WeaponType.eNone);
         //CurrentPlayer.ChangeWeapon(WeaponType.eAex);
         CurrentPlayer.ChangeWeapon(WeaponType.ePistol);
-       
+
+        AddLevelObject(CurrentPlayer);
     }
 
     ActorMgr AddMonster(string modelPath)
@@ -75,16 +79,41 @@ public class LevelMgr {
         newActor.SetHPBarStatus(1000, 1000);
 
         //keep in scene dictionary
-        dictLevelActor.Add(newActor.mGameObj, newActor);
-
+        //dictLevelActor.Add(newActor.mGameObj, newActor);
+        AddLevelObject(newActor);
         return newActor;
     }
+    public PickItemMgr AddItemMgr(PickItemType t)
+    {
+        PickItemMgr newActor = new PickItemMgr();
+        newActor.Load(t);
+        AddLevelObject(newActor);
+        return newActor;
+    }
+//     ActorMgr AddPickItem(PickItemType t)
+//     {
+//         ActorMgr newActor = new ActorMgr();
+//         {
+//             string strFilePath = string.Format(modelPath);
+// 
+//             newActor.LoadObject(strFilePath);
+//             newActor.mGameObj.transform.position = new Vector3(0, 1, 0);
+//         }
+// 
+//         newActor.SetHPBarStatus(1000, 1000);
+// 
+//         //keep in scene dictionary
+//         dictLevelActor.Add(newActor.mGameObj, newActor);
+// 
+//         return newActor;
+//     }
+
     void DestroyActor(ActorMgr actor)
     {
-        dictLevelActor.Remove(actor.mGameObj);
+        //dictLevelActor.Remove(actor.mGameObj);
 
-
-        GameObject.Destroy(actor.mGameObj);
+        WantDestroyLevelObject(actor);
+        /*GameObject.Destroy(actor.mGameObj);*/
     }
 
     public ActorMgr GetPlayer()
@@ -95,12 +124,36 @@ public class LevelMgr {
 
     public void Update()
     {
-        if (CurrentPlayer!=null)
+//         if (CurrentPlayer!=null)
+//         {
+//             CurrentPlayer.Update();
+//         }
+
+        foreach(LevelObject o in setLevelObject)
         {
-            CurrentPlayer.Update();
+            o.Update();
         }
+
+        for (int i = 0; i < listWantDestroyLevelObject.Count;i++ )
+        {
+            DestroyLevelObject(listWantDestroyLevelObject[i]);
+        }
+        listWantDestroyLevelObject.Clear();
     }
-    int n = 1;
+
+    void AddLevelObject(LevelObject lo)
+    {
+        setLevelObject.Add(lo);
+    }
+    void WantDestroyLevelObject(LevelObject lo)
+    {
+        listWantDestroyLevelObject.Add(lo);
+    }
+    void DestroyLevelObject(LevelObject lo)
+    {
+        lo.Destroy();
+        setLevelObject.Remove(lo);
+    }
     public void OnPlayerDead(ActorMgr actor)
     {
         DestroyActor(actor);
@@ -117,6 +170,6 @@ public class LevelMgr {
             newAct.mGameObj.transform.position = vec;
         }
         
-        n++;
+       // n++;
     }
 }

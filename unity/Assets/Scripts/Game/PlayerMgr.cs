@@ -55,35 +55,44 @@ public class PlayerMgr : ActorMgr{
 
             if (isAutoAtkMode)
             {
-                GameObject nearestGO = null;
-                float lastSqrMag=-1;
-                foreach(var o in LevelMgr.inst.dictLevelActor)
+                if (Input.GetButton("Fire1"))
                 {
-                    Vector3 vec = o.Key.transform.position - mGameObj.transform.position;
-                    float _sqrMag = vec.sqrMagnitude;
 
-                    if (nearestGO == null || _sqrMag < lastSqrMag)
+                    GameObject nearestGO = null;
+                    float lastSqrMag = -1;
+                    //foreach(var o in LevelMgr.inst.dictLevelActor)
+                    foreach (var o in LevelMgr.inst.setLevelObject)
                     {
-                        nearestGO = o.Key;
-                        lastSqrMag = _sqrMag;
+                        if (o.mGameObj.layer == 11)
+                        {
+                            Vector3 vec = o.mGameObj.transform.position - mGameObj.transform.position;
+                            float _sqrMag = vec.sqrMagnitude;
+
+                            if (nearestGO == null || _sqrMag < lastSqrMag)
+                            {
+                                nearestGO = o.mGameObj;
+                                lastSqrMag = _sqrMag;
+                            }
+                        }
+
                     }
-                }
 
-                if (nearestGO!=null)
-                {
-                    if (Input.GetButton("Fire1"))
+                    if (nearestGO != null)
                     {
-                        _act.orientationVec = nearestGO.gameObject.transform.position- mGameObj.transform.position;
-						_act.orientationVec.y=0;
+                        _act.orientationVec = nearestGO.gameObject.transform.position - mGameObj.transform.position;
+                        _act.orientationVec.y = 0;
                         _act.manulOrientation = true;
 
                         ActorFire();
                     }
-                    else
-                    {
-                        _act.manulOrientation = false;
-                    }
+
+                   
                 }
+                else
+                {
+                    _act.manulOrientation = false;
+                }
+
             }
             else
              //build orientation pad
@@ -146,7 +155,7 @@ public class PlayerMgr : ActorMgr{
         base.OnCollisionEnter(col);
 
         //check item
-        PickableItem item = col.collider.GetComponent<PickableItem>();
+        PickableItemController item = col.collider.GetComponent<PickableItemController>();
         if (item)
         {
             switch (item.mItemType)
@@ -164,6 +173,50 @@ public class PlayerMgr : ActorMgr{
             }
 
             GameObject.Destroy(item.gameObject);
+        }
+    }
+
+    public override void OnTriggerEnter(Collider cd)
+    {
+        base.OnTriggerEnter(cd);
+
+        //check item
+        PickableItemController item = cd.GetComponent<PickableItemController>();
+        if (item && item.IsUseable())
+        {
+            switch (item.mItemType)
+            {
+                case PickItemType.eAex:
+                    {
+                        ChangeWeapon((WeaponType)item.mItemType);
+                    }
+                    break;
+                case PickItemType.ePistol:
+                    {
+                        ChangeWeapon((WeaponType)item.mItemType);
+                    }
+                    break;
+            }
+
+            GameObject.Destroy(item.gameObject);
+
+            //throw old weapon
+            if (mStatus.currentWeapon != null)
+            {
+                BaseWeapon w = mStatus.currentWeapon.GetComponent<BaseWeapon>();
+                if (w.weapon_mode == WeaponMode.eMeleeWeapon)
+                {
+                   PickItemMgr it= LevelMgr.inst.AddItemMgr(PickItemType.eAex);
+                   it.ThrowIt(mGameObj.transform.transform.forward + new Vector3(0,1.0f,0));
+                }
+                else
+                {
+                    PickItemMgr it = LevelMgr.inst.AddItemMgr(PickItemType.ePistol);
+                    it.ThrowIt(mGameObj.transform.transform.forward + new Vector3(0, 1.0f, 0));
+                }
+                
+            }
+            
         }
     }
 }
