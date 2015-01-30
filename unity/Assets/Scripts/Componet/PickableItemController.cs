@@ -15,7 +15,10 @@ public class PickableItemController : FakePhysic{
         base.Update();
         
 	}
-
+    public override void FixedUpdate()
+    {
+        base.FixedUpdate();
+    }
    
 
 }

@@ -44,5 +44,5 @@ public class GlobalDefine {
 
     static public float ViewportRatio = 1.0f;
 
-    static public Vector3 FakeGravity = Vector3.down*0.1f;
+    static public Vector3 FakeGravity = Vector3.down*5.0f;
 }

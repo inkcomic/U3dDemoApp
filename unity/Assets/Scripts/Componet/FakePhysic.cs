@@ -3,9 +3,8 @@ using System.Collections;
 
 public class FakePhysic : MonoBehaviour {
     bool mIsSleep = false;
-    Vector3 mTargetDirection = Vector3.zero;
-    float mMoveSpeed = 0.0f;
-
+    Vector3 mTargetVelocity = Vector3.zero;
+   
     public bool mIsGraviry=true;
     public bool IsUseable()
     {
@@ -19,23 +18,32 @@ public class FakePhysic : MonoBehaviour {
 	
 	// Update is called once per frame
 	public virtual void Update () {
+        
+	}
+    public virtual void FixedUpdate()
+    {
         if (!mIsSleep)
         {
-            if (mMoveSpeed>0.0f)
-            {
-                transform.position += mTargetDirection * mMoveSpeed;
-                transform.rotation.SetLookRotation(mTargetDirection);
-            }
+
             if (mIsGraviry)
-                transform.position += GlobalDefine.FakeGravity;
+            {
+                mTargetVelocity += GlobalDefine.FakeGravity * Time.fixedDeltaTime;
+            }
+            if (mTargetVelocity.magnitude > 0.0f)
+            {
+                transform.rotation.SetLookRotation(mTargetVelocity.normalized);
+                transform.position += mTargetVelocity * Time.fixedDeltaTime;
+            }
 
             UpdateDropGround();
 
         }
-	}
+    }
     public void SetSleep()
     {
         mIsSleep = true;
+
+        mTargetVelocity = Vector3.zero;
     }
     void UpdateDropGround()
     {
@@ -45,7 +53,9 @@ public class FakePhysic : MonoBehaviour {
             float fHalf = cder.size.y * 0.5f;
 
             RaycastHit hitInfo;
-            bool findObj = Physics.Raycast(transform.position, GlobalDefine.FakeGravity, out hitInfo, fHalf);
+
+            Vector3 nextS = GlobalDefine.FakeGravity * Time.fixedDeltaTime * Time.fixedDeltaTime * 100.0f;
+            bool findObj = Physics.Raycast(transform.position, nextS, out hitInfo, nextS.magnitude);
 
             if (findObj)
             {
@@ -58,9 +68,7 @@ public class FakePhysic : MonoBehaviour {
 
     public void SetInitVelocity(Vector3 targetDirection,float moveSpeed)
     {
-        mTargetDirection = targetDirection;
-        mMoveSpeed = moveSpeed;
-
+        mTargetVelocity = targetDirection * moveSpeed;
         mIsSleep = false;
     }
 }

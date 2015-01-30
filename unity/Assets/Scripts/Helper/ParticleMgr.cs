@@ -157,6 +157,6 @@ public class ParticleMgr {
    
         createdParticles.Remove(go);
 
-        GameObject.Destroy(go);
+        LevelMgr.inst.DestroyLevelObject(go);
     }
 }

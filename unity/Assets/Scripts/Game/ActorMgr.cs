@@ -93,7 +93,7 @@ public class ActorMgr :LevelObject{
             //ts.DetachChildren();
             foreach (var o in old_ilst)
             {
-                GameObject.Destroy(o);
+                LevelMgr.inst.DestroyLevelObject(o);
             }
 
             if (mStatus!=null)

@@ -57,20 +57,19 @@ public class PlayerMgr : ActorMgr{
             {
                 if (Input.GetButton("Fire1"))
                 {
-
                     GameObject nearestGO = null;
                     float lastSqrMag = -1;
                     //foreach(var o in LevelMgr.inst.dictLevelActor)
-                    foreach (var o in LevelMgr.inst.setLevelObject)
+                    foreach (var o in LevelMgr.inst.dictLevelObject.Keys)
                     {
-                        if (o.mGameObj.layer == 11)
+                        if (o.layer == 11)
                         {
-                            Vector3 vec = o.mGameObj.transform.position - mGameObj.transform.position;
+                            Vector3 vec = o.transform.position - mGameObj.transform.position;
                             float _sqrMag = vec.sqrMagnitude;
 
                             if (nearestGO == null || _sqrMag < lastSqrMag)
                             {
-                                nearestGO = o.mGameObj;
+                                nearestGO = o;
                                 lastSqrMag = _sqrMag;
                             }
                         }
@@ -172,7 +171,8 @@ public class PlayerMgr : ActorMgr{
                     break;
             }
 
-            GameObject.Destroy(item.gameObject);
+            LevelMgr.inst.DestroyLevelObject(item.gameObject);
+            /*GameObject.Destroy(item.gameObject);*/
         }
     }
 
@@ -184,6 +184,26 @@ public class PlayerMgr : ActorMgr{
         PickableItemController item = cd.GetComponent<PickableItemController>();
         if (item && item.IsUseable())
         {
+            //throw old weapon (create a fake one)
+            if (mStatus.currentWeapon != null)
+            {
+                BaseWeapon w = mStatus.currentWeapon.GetComponent<BaseWeapon>();
+                if (w.weapon_mode == WeaponMode.eMeleeWeapon)
+                {
+                    PickItemMgr it = LevelMgr.inst.AddItemMgr(PickItemType.eAex);
+                    it.mGameObj.transform.position = mGameObj.transform.position + new Vector3(0, 0.8f, 0);
+                    it.ThrowIt(mGameObj.transform.transform.forward + new Vector3(0, 1.0f, 0));
+                }
+                else
+                {
+                    PickItemMgr it = LevelMgr.inst.AddItemMgr(PickItemType.ePistol);
+                    it.mGameObj.transform.position = mGameObj.transform.position + new Vector3(0, 0.8f, 0);
+                    it.ThrowIt(mGameObj.transform.transform.forward + new Vector3(0, 1.0f, 0));
+                }
+
+            }
+
+
             switch (item.mItemType)
             {
                 case PickItemType.eAex:
@@ -198,24 +218,9 @@ public class PlayerMgr : ActorMgr{
                     break;
             }
 
-            GameObject.Destroy(item.gameObject);
+            LevelMgr.inst.DestroyLevelObject(item.gameObject);
 
-            //throw old weapon
-            if (mStatus.currentWeapon != null)
-            {
-                BaseWeapon w = mStatus.currentWeapon.GetComponent<BaseWeapon>();
-                if (w.weapon_mode == WeaponMode.eMeleeWeapon)
-                {
-                   PickItemMgr it= LevelMgr.inst.AddItemMgr(PickItemType.eAex);
-                   it.ThrowIt(mGameObj.transform.transform.forward + new Vector3(0,1.0f,0));
-                }
-                else
-                {
-                    PickItemMgr it = LevelMgr.inst.AddItemMgr(PickItemType.ePistol);
-                    it.ThrowIt(mGameObj.transform.transform.forward + new Vector3(0, 1.0f, 0));
-                }
-                
-            }
+            
             
         }
     }

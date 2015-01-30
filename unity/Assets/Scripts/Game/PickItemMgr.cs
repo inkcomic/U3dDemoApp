@@ -28,7 +28,7 @@ public class PickItemMgr:LevelObject{
     {
         if(controller)
         {
-            controller.SetInitVelocity(_dir,0.1f);
+            controller.SetInitVelocity(_dir,2.0f);
         }
     }
 }

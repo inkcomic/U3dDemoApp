@@ -16,14 +16,13 @@ public class LevelMgr {
         }
     }
     private LevelMgr(){}
-    //public Dictionary<GameObject, ActorMgr> dictLevelActor = new Dictionary<GameObject, ActorMgr>();
+    public Dictionary<GameObject, LevelObject> dictLevelObject = new Dictionary<GameObject, LevelObject>();
     
     GameObject CurrentLevel = null;
     ActorMgr CurrentPlayer = new PlayerMgr();
 
     ActorMgr testMonster = new ActorMgr();
 
-    public HashSet<LevelObject> setLevelObject = new HashSet<LevelObject>();
     public List<LevelObject> listWantDestroyLevelObject = new List<LevelObject>();
     public void LoadLevel(int nId=1)
     {
@@ -129,7 +128,7 @@ public class LevelMgr {
 //             CurrentPlayer.Update();
 //         }
 
-        foreach(LevelObject o in setLevelObject)
+        foreach (LevelObject o in dictLevelObject.Values)
         {
             o.Update();
         }
@@ -141,18 +140,35 @@ public class LevelMgr {
         listWantDestroyLevelObject.Clear();
     }
 
-    void AddLevelObject(LevelObject lo)
+    public void AddLevelObject(LevelObject lo)
     {
-        setLevelObject.Add(lo);
+        if(dictLevelObject.ContainsKey(lo.mGameObj))
+        {
+            DestroyLevelObject(lo);
+        }
+        dictLevelObject.Add(lo.mGameObj,lo);
     }
     void WantDestroyLevelObject(LevelObject lo)
     {
         listWantDestroyLevelObject.Add(lo);
     }
-    void DestroyLevelObject(LevelObject lo)
+    public void DestroyLevelObject(LevelObject lo)
     {
+        dictLevelObject.Remove(lo.mGameObj);
         lo.Destroy();
-        setLevelObject.Remove(lo);
+    }
+    public void DestroyLevelObject(GameObject go)
+    {
+        LevelObject lo;
+        if(dictLevelObject.TryGetValue(go,out lo))
+        {
+            DestroyLevelObject(lo);
+        }
+        else
+        {
+            GameObject.Destroy(go);
+        }
+        
     }
     public void OnPlayerDead(ActorMgr actor)
     {
