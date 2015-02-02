@@ -14,8 +14,10 @@ public class MonsterAI : MonoBehaviour {
 
         if (actor_controller!=null)
         {
+            ActorMgr actor = LevelMgr.inst.GetPlayer();
+            if (actor!=null)
             {
-                ActorMgr actor = LevelMgr.inst.GetPlayer();
+               
                 Vector3 vec = actor.mGameObj.transform.position - transform.position;
 
                 if(vec.magnitude>1)

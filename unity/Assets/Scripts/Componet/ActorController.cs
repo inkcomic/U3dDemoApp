@@ -207,7 +207,7 @@ public class ActorController : MonoBehaviour
                 // Choose target speed
                 //* We want to support analog input but make sure you cant walk faster diagonally than just forward or sideways
                 float targetSpeed = Mathf.Min(targetDirection.magnitude, 1.0f);
-
+                Debug.Log(targetSpeed);
                 _characterState = CharacterState.Idle;
 
                 if (isMeleeAttacking )
@@ -390,6 +390,7 @@ public class ActorController : MonoBehaviour
 	    Vector3 movement = moveDirection * moveSpeed + new Vector3 (0, verticalSpeed, 0) + inAirVelocity;
 	    movement *= Time.deltaTime;
 
+       
 	    // Move the controller
 	    CharacterController controller = GetComponent<CharacterController>();
 	    collisionFlags = controller.Move(movement);
