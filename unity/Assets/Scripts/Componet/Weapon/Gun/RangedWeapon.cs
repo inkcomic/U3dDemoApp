@@ -5,7 +5,7 @@ public class RangedWeapon : BaseWeapon
 {
     public WeaponType gunShooterType = WeaponType.ePistol;
 
-    public GameObject bulletGameObject = null;
+    //public GameObject bulletGameObject = null;
 
     protected override void Start()
     {
@@ -45,12 +45,23 @@ public class RangedWeapon : BaseWeapon
 
         bBegin = false;
 
-        if(bulletGameObject)
+        Transform newObj = null;
+        //find pool object 
+        switch (gunShooterType)
         {
-            GameObject newObj = GameObject.Instantiate(bulletGameObject, gameObject.transform.position, gameObject.transform.rotation) as GameObject;
+            case WeaponType.ePistol:
+                {
+                    newObj = LevelMgr.inst.SpawnPoolObject("pistol_bullet");
+                }
+                break;
+        }
 
+        if (newObj)
+        {
             if (newObj)
             {
+                newObj.transform.position = gameObject.transform.position;
+                newObj.transform.rotation = gameObject.transform.rotation;
                 SimpleBullet newBullete = newObj.GetComponent<SimpleBullet>();
                 if (newBullete)
                 {
@@ -58,10 +69,11 @@ public class RangedWeapon : BaseWeapon
                 }
                 else
                 {
-                    Destroy(newObj);
+                 //   Destroy(newObj);
                 }
             }
         }
+       
         
     }
 

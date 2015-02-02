@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using PathologicalGames;
+
 public class LevelMgr {
 
     private static LevelMgr _inst = null;
@@ -187,5 +189,47 @@ public class LevelMgr {
         }
         
        // n++;
+    }
+
+    public Transform SpawnPoolObject(string preloadPrefabName, string poolName = "Default", string prefabLoadName = "")
+    {
+        SpawnPool shapesPool = PoolManager.Pools[poolName];
+        Transform instPrefab = null;
+        Transform instSpawn =null;
+        if (shapesPool)
+        {
+            //try find preload prefab object
+            if (shapesPool.prefabs.ContainsKey(preloadPrefabName))
+            {
+                instPrefab = shapesPool.prefabs[preloadPrefabName];
+            }
+            else
+            {
+                if (prefabLoadName != "")
+                {
+                    GameObject go = MyHelper.InstantiateFromResources(prefabLoadName);
+                    if(go)
+                        instPrefab = go.transform;
+                }
+            }
+            
+        }
+
+        if (instPrefab)
+        {
+            instSpawn = shapesPool.Spawn(instPrefab);
+        }
+        return instSpawn;
+    }
+
+
+
+    public void DespawnPoolObject(Transform instPrefab, string poolName = "Default")
+    {
+        SpawnPool shapesPool = PoolManager.Pools[poolName];
+        if (shapesPool)
+        {
+            shapesPool.Despawn(instPrefab); 
+        }
     }
 }

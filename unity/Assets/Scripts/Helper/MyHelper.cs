@@ -470,6 +470,7 @@ public class   MyHelper
         GameObject go = null;
 
         UnityEngine.Object res = Resources.Load(pathName, typeof(GameObject)) as GameObject;
+        if (res)
         {
             go = (GameObject)GameObject.Instantiate(res);
             go.transform.localPosition = Vector3.zero;

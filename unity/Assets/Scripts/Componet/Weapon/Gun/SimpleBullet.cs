@@ -14,7 +14,7 @@ public class SimpleBullet : MonoBehaviour
     [HideInInspector]
     public Vector3 vecDirection;
     [HideInInspector]
-    public float vecSpeed = 0.1f;
+    public float vecSpeed = 0.2f;
 
     [HideInInspector]
     bool isSleep = true;
@@ -61,7 +61,7 @@ public class SimpleBullet : MonoBehaviour
     }
     void Disappear()
     {
-        Destroy(this.gameObject);
+        LevelMgr.inst.DespawnPoolObject(this.transform);
     }
     void SimulatePistol()
     {
