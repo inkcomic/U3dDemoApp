@@ -36,7 +36,7 @@ public class AttackModeSwitcher : MonoBehaviour {
             }
 
             PlayerMgr player = LevelMgr.inst.GetPlayer() as PlayerMgr;
-            if (player)
+            if (player!=null)
             {
                 player.SwitchAtkMode(isAutoAtkMode);
             }

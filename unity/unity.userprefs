@@ -1,18 +1,20 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Helper/MyHelper.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Componet/AttackModeSwitcher.cs">
     <Files>
+      <File FileName="Assets/Scripts/Componet/AttackModeSwitcher.cs" Line="39" Column="29" />
       <File FileName="Assets/Scripts/Helper/MyHelper.cs" Line="472" Column="1" />
       <File FileName="Assets/Scripts/Helper/Billboard.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Game/PlayerMgr.cs" Line="66" Column="1" />
+      <File FileName="Assets/Scripts/Game/PlayerMgr.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/Componet/MonsterAI.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/Componet/Weapon/Gun/SimpleBullet.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/Componet/Weapon/WeaponHitable.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/Componet/Weapon/Gun/RangedWeapon.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Game/ActorMgr.cs" Line="68" Column="10" />
-      <File FileName="Assets/Scripts/Game/LevelMgr.cs" Line="139" Column="31" />
-      <File FileName="Assets/Scripts/Componet/PickableItemController.cs" Line="18" Column="2" />
+      <File FileName="Assets/Scripts/Game/ActorMgr.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Game/LevelMgr.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Componet/PickableItemController.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/Game/PickItemMgr.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/CsLight/ScriptMgr.cs" Line="9" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
