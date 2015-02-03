@@ -113,8 +113,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_Father: {fileID: 339917024}
+  m_RootOrder: 5
 --- !u!1 &246941195
 GameObject:
   m_ObjectHideFlags: 0
@@ -231,8 +231,11 @@ Transform:
   - {fileID: 1997245314}
   - {fileID: 1139533724}
   - {fileID: 1190576914}
+  - {fileID: 1231778972}
+  - {fileID: 1312391103}
+  - {fileID: 7689248}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 5
 --- !u!114 &339917025
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -964,8 +967,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_Father: {fileID: 339917024}
+  m_RootOrder: 3
 --- !u!1 &1244152101
 GameObject:
   m_ObjectHideFlags: 0
@@ -1208,8 +1211,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_Father: {fileID: 339917024}
+  m_RootOrder: 4
 --- !u!1 &1504198646
 GameObject:
   m_ObjectHideFlags: 0
@@ -1674,7 +1677,7 @@ MonoBehaviour:
   enable: 1
   isActivated: 1
   showDebugArea: 1
-  selected: 0
+  selected: 1
   isUseGuiLayout: 1
   buttonState: 3
   anchor: 8

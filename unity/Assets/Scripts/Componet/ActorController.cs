@@ -450,11 +450,11 @@ public class ActorController : MonoBehaviour
             if (!manulOrientation)
             {
                 orientationVec = moveDirection;
-                Debug.Log("manulOrientation false");
+              //  Debug.Log("manulOrientation false");
             }
             else
             {
-                Debug.Log("manulOrientation true");
+             //   Debug.Log("manulOrientation true");
             }
 
             transform.rotation = Quaternion.LookRotation(orientationVec);

@@ -99,8 +99,8 @@ void  Apply (Transform dummyTarget, Vector3 dummyCenter)
 
 	// When pressing Fire2 (alt) the camera will snap to the target direction real quick.
 	// It will stop snapping when it reaches the target
-	if (Input.GetButton("Fire2xxxxxx"))
-		snap = true;
+// 	if (Input.GetButton("Fire2xxxxxx"))
+// 		snap = true;
 
 	if (snap)
 	{
