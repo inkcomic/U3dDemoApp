@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using PathologicalGames;
+using DG.Tweening;
 public class test : MonoBehaviour {
 
 	// Use this for initialization

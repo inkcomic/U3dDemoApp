@@ -1,29 +1,15 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Componet/AttackModeSwitcher.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/test.cs">
     <Files>
-      <File FileName="Assets/Scripts/Componet/AttackModeSwitcher.cs" Line="39" Column="29" />
-      <File FileName="Assets/Scripts/Helper/MyHelper.cs" Line="472" Column="1" />
-      <File FileName="Assets/Scripts/Helper/Billboard.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Game/PlayerMgr.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Componet/MonsterAI.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Componet/Weapon/Gun/SimpleBullet.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Componet/Weapon/WeaponHitable.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Componet/Weapon/Gun/RangedWeapon.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Game/ActorMgr.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Game/LevelMgr.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Componet/PickableItemController.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Game/PickItemMgr.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/CsLight/ScriptMgr.cs" Line="9" Column="1" />
+      <File FileName="../../manual_dota/code/client/Assets/spine-unity/Editor/SpineEditorUtilities.cs" Line="1" Column="1" />
+      <File FileName="../../manual_dota/code/client/Assets/Scripts/View/Main/Main_UI_Scripts/UI_RightUpDownBTN.cs" Line="1" Column="1" />
+      <File FileName="Assets/test.cs" Line="9" Column="1" />
+      <File FileName="Assets/DOTween/readme.txt" Line="6" Column="22" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="/Users/developer/GitHub/U3dDemoApp/unity/Assets/Scripts/Game/PlayerMgr.cs" line="113" />
-      <Breakpoint file="/Users/developer/GitHub/U3dDemoApp/unity/Assets/Scripts/Game/PlayerMgr.cs" line="110" />
-      <Breakpoint file="/Users/developer/GitHub/U3dDemoApp/unity/Assets/Scripts/Componet/Weapon/Gun/SimpleBullet.cs" line="55" />
-      <Breakpoint file="/Users/developer/GitHub/U3dDemoApp/unity/Assets/Scripts/Game/LevelMgr.cs" line="139" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>
