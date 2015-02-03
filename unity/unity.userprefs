@@ -1,13 +1,6 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/test.cs">
-    <Files>
-      <File FileName="../../manual_dota/code/client/Assets/spine-unity/Editor/SpineEditorUtilities.cs" Line="1" Column="1" />
-      <File FileName="../../manual_dota/code/client/Assets/Scripts/View/Main/Main_UI_Scripts/UI_RightUpDownBTN.cs" Line="1" Column="1" />
-      <File FileName="Assets/test.cs" Line="9" Column="1" />
-      <File FileName="Assets/DOTween/readme.txt" Line="6" Column="22" />
-    </Files>
-  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workbench />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
