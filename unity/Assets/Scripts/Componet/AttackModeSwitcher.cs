@@ -9,7 +9,10 @@ public class AttackModeSwitcher : MonoBehaviour {
     public GameObject mAtkPad = null;
 	// Use this for initialization
 	void Start () {
-	
+
+        EasyButton.On_ButtonDown += On_ButtonDown;
+
+        Switcher();
 	}
 	
 	// Update is called once per frame
@@ -40,6 +43,14 @@ public class AttackModeSwitcher : MonoBehaviour {
             {
                 player.SwitchAtkMode(isAutoAtkMode);
             }
+        }
+    }
+
+    void On_ButtonDown(string buttonName)
+    {
+        if (buttonName == "switcherBtn")
+        {
+            Switcher();
         }
     }
 }

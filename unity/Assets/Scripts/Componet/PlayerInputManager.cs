@@ -86,14 +86,11 @@ public class PlayerInputManager : MonoBehaviour {
 
     void On_ButtonUp(string buttonName)
     {
-        PlayerMgr act = LevelMgr.inst.GetPlayer() as PlayerMgr;
-        act.OnPadBtnUp();
-
-
-//         if (buttonName == "switcherBtn")
-//         {
-//             act.SwitchAtkMode();
-//         }
+        if (buttonName == "FireButton")
+        {
+            PlayerMgr act = LevelMgr.inst.GetPlayer() as PlayerMgr;
+            act.OnPadBtnUp();
+        }
     }	
 }
 
