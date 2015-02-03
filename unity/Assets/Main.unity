@@ -228,9 +228,9 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 1190576914}
   - {fileID: 1997245314}
   - {fileID: 1139533724}
-  - {fileID: 1190576914}
   m_Father: {fileID: 0}
   m_RootOrder: 8
 --- !u!114 &339917025
@@ -244,7 +244,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60756ea5710d0334ab97eb59806cd911, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m: {fileID: 0}
+  mAtkBtn: {fileID: 1997245312}
+  mAtkPad: {fileID: 1190576912}
 --- !u!1 &420037016
 GameObject:
   m_ObjectHideFlags: 0
@@ -727,7 +728,7 @@ MonoBehaviour:
   buttonState: 3
   anchor: 7
   offset: {x: 0, y: 0}
-  scale: {x: .300000012, y: .300000012}
+  scale: {x: .5, y: .5}
   isSwipeIn: 0
   isSwipeOut: 0
   interaction: 0
@@ -758,7 +759,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 339917024}
-  m_RootOrder: 1
+  m_RootOrder: 2
 --- !u!1 &1190576912
 GameObject:
   m_ObjectHideFlags: 0
@@ -861,7 +862,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 339917024}
-  m_RootOrder: 2
+  m_RootOrder: 0
 --- !u!1 &1231778970
 GameObject:
   m_ObjectHideFlags: 0
@@ -1673,7 +1674,7 @@ MonoBehaviour:
   enable: 1
   isActivated: 1
   showDebugArea: 1
-  selected: 0
+  selected: 1
   isUseGuiLayout: 1
   buttonState: 3
   anchor: 8
@@ -1709,7 +1710,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 339917024}
-  m_RootOrder: 0
+  m_RootOrder: 1
 --- !u!1 &2090156102
 GameObject:
   m_ObjectHideFlags: 0

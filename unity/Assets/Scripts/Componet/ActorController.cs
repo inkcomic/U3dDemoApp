@@ -207,7 +207,7 @@ public class ActorController : MonoBehaviour
                 // Choose target speed
                 //* We want to support analog input but make sure you cant walk faster diagonally than just forward or sideways
                 float targetSpeed = Mathf.Min(targetDirection.magnitude, 1.0f);
-                Debug.Log(targetSpeed);
+
                 _characterState = CharacterState.Idle;
 
                 if (isMeleeAttacking )
@@ -448,7 +448,14 @@ public class ActorController : MonoBehaviour
 	    //if (IsGrounded())
 	    {
             if (!manulOrientation)
+            {
                 orientationVec = moveDirection;
+                Debug.Log("manulOrientation false");
+            }
+            else
+            {
+                Debug.Log("manulOrientation true");
+            }
 
             transform.rotation = Quaternion.LookRotation(orientationVec);
 

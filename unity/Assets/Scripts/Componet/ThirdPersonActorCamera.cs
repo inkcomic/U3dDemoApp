@@ -34,8 +34,9 @@ private float heightVelocity = 0.0f;
 private float  angleVelocity = 0.0f;
 private bool snap = false;
 private ActorController controller;
-private float targetHeight = 100000.0f; 
+private float targetHeight = 100000.0f;
 
+bool rotateAroundY = false;
 void Awake ()
 {
 	if(!cameraTransform && Camera.main)
@@ -98,7 +99,7 @@ void  Apply (Transform dummyTarget, Vector3 dummyCenter)
 
 	// When pressing Fire2 (alt) the camera will snap to the target direction real quick.
 	// It will stop snapping when it reaches the target
-	if (Input.GetButton("Fire2"))
+	if (Input.GetButton("Fire2xxxxxx"))
 		snap = true;
 
 	if (snap)
@@ -202,9 +203,17 @@ void SetUpRotation (Vector3 centerPos,Vector3  headPos)
 	Quaternion yRotation = Quaternion.LookRotation(new Vector3(offsetToCenter.x, 0, offsetToCenter.z));
 
 	Vector3 relativeOffset = Vector3.forward * distance + Vector3.down * height;
-	cameraTransform.rotation = yRotation * Quaternion.LookRotation(relativeOffset);
+    
+    if(rotateAroundY)
+    {
+        cameraTransform.rotation = yRotation * Quaternion.LookRotation(relativeOffset);
+    }
+    else
+    {
+        cameraTransform.rotation = Quaternion.LookRotation(relativeOffset);
+    }
 
-	// Calculate the projected center position and top position in world space
+    // Calculate the projected center position and top position in world space
 	Ray centerRay = cameraTransform.camera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 1f));
 	Ray topRay = cameraTransform.camera.ViewportPointToRay(new Vector3(0.5f, clampHeadPositionScreenSpace, 1f));
 

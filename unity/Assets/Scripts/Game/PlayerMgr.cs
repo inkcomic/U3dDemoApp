@@ -6,7 +6,8 @@ public class PlayerMgr : ActorMgr{
     GameObject mNearestGO = null;
 
     bool isAutoAtkMode = true;
-    bool isBtnPressing = false;
+    bool isAtkBtnPressing = false;
+    bool isAtkJoyPressing = false;
 	// Use this for initialization
 	void Start () {
       
@@ -25,8 +26,8 @@ public class PlayerMgr : ActorMgr{
 #if UNITY_EDITOR
         float h = Input.GetAxisRaw("Horizontal");
         float v = Input.GetAxisRaw("Vertical");
-        OnPadMove(new Vector2(h,v));
-            
+        OnPadMove(new Vector2(h, v));
+
 
         if (Input.GetKey(KeyCode.Alpha1))
         {
@@ -36,7 +37,7 @@ public class PlayerMgr : ActorMgr{
         {
             LevelMgr.inst.GetPlayer().ChangeWeapon(WeaponType.ePistol);
         }
-       
+
 
         if (Input.GetButton("Fire2"))
         {
@@ -47,131 +48,6 @@ public class PlayerMgr : ActorMgr{
             OnPadBtnUp();
         }
 #endif
-//         ActorMgr actMgr = LevelMgr.inst.GetPlayer();
-//         if (actMgr != null&&actMgr.mController!=null)
-//         {
-//             ActorController _act = actMgr.mController;
-// 
-//             Transform cameraTransform = Camera.main.transform;
-//             // Forward vector relative to the camera along the x-z plane	
-//             Vector3 forward = cameraTransform.TransformDirection(Vector3.forward);
-//             forward.y = 0;
-//             forward = forward.normalized;
-// 
-//             // Right vector relative to the camera
-//             // Always orthogonal to the forward vector
-//             Vector3 right = new Vector3(forward.z, 0, -forward.x);
-// 
-//             float v = Input.GetAxisRaw("Vertical");
-//             float h = Input.GetAxisRaw("Horizontal");
-// 
-//             // Are we moving backwards or looking backwards
-//             if (v < -0.2f)
-//                 _act.movingBack = true;
-//             else
-//                 _act.movingBack = false;
-// 
-//             bool wasMoving = _act.isMoving;
-//             _act.isMoving = Mathf.Abs(h) > 0.1f || Mathf.Abs(v) > 0.1f;
-// 
-//             // Target direction relative to the camera
-//             Vector3 targetDirection = h * right + v * forward;
-// 
-//             _act.targetDirection = targetDirection;
-// 
-//             if (isAutoAtkMode)
-//             {
-//                 if (Input.GetButton("Fire1"))
-//                 {
-//                     GameObject nearestGO = null;
-//                     float lastSqrMag = -1;
-//                     //foreach(var o in LevelMgr.inst.dictLevelActor)
-//                     foreach (var o in LevelMgr.inst.dictLevelObject.Keys)
-//                     {
-//                         if (o.layer == 11)
-//                         {
-//                             Vector3 vec = o.transform.position - mGameObj.transform.position;
-//                             float _sqrMag = vec.sqrMagnitude;
-// 
-//                             if (nearestGO == null || _sqrMag < lastSqrMag)
-//                             {
-//                                 nearestGO = o;
-//                                 lastSqrMag = _sqrMag;
-//                             }
-//                         }
-// 
-//                     }
-// 
-//                     if (nearestGO != null)
-//                     {
-//                         _act.orientationVec = nearestGO.gameObject.transform.position - mGameObj.transform.position;
-//                         _act.orientationVec.y = 0;
-//                         _act.manulOrientation = true;
-// 
-//                         ActorFire();
-//                     }
-// 
-//                    
-//                 }
-//                 else
-//                 {
-//                     _act.manulOrientation = false;
-//                 }
-// 
-//             }
-//             else
-//              //build orientation pad
-//             {
-//                 float v1 = 0;
-//                 float h1 = 0;
-// 
-//                 if (Input.GetKey(KeyCode.J))
-//                 {
-//                     h1 = -1;
-//                 }
-//                 else if (Input.GetKey(KeyCode.L))
-//                 {
-//                     h1 = 1;
-//                 }
-// 
-//                 if (Input.GetKey(KeyCode.I))
-//                 {
-//                     v1 = 1;
-//                 }
-//                 else if (Input.GetKey(KeyCode.K))
-//                 {
-//                     v1 = -1;
-//                 }
-// 
-//                 if (h1 != 0 || v1!=0)
-//                 {
-//                     // Target direction relative to the camera
-//                     Vector3 orientation = h1 * right + v1 * forward;
-// 		
-// 					orientation.y=0;
-//                     _act.orientationVec = orientation;
-//                     _act.manulOrientation = true;
-//                 }
-//                 else
-//                 {
-//                     _act.manulOrientation = false;
-//                 }
-//             }
-// 
-// 
-//             _act.forceWalking = _act.manulOrientation;
-// 
-// 
-// 
-//             if (Input.GetKey(KeyCode.Alpha1))
-//             {
-//                 LevelMgr.inst.GetPlayer().ChangeWeapon(WeaponType.eAex);
-//             }
-//             else if (Input.GetKey(KeyCode.Alpha2))
-//             {
-//                 LevelMgr.inst.GetPlayer().ChangeWeapon(WeaponType.ePistol);
-//             }
-//         }
     }
 
 
@@ -283,40 +159,14 @@ public class PlayerMgr : ActorMgr{
 
         if (isAutoAtkMode)
         {
-            if (isBtnPressing)
-            {
-               
-                float lastSqrMag = -1;
-                //foreach(var o in LevelMgr.inst.dictLevelActor)
-                foreach (var o in LevelMgr.inst.dictLevelObject.Keys)
-                {
-                    if (o.layer == 11)
-                    {
-                        Vector3 vec = o.transform.position - mGameObj.transform.position;
-                        float _sqrMag = vec.sqrMagnitude;
-
-                        if (mNearestGO == null || _sqrMag < lastSqrMag)
-                        {
-                            mNearestGO = o;
-                            lastSqrMag = _sqrMag;
-                        }
-                    }
-
-                }
-            }
-            else
-            {
-                mController.manulOrientation = false;
-
-                mNearestGO = null;
-            }
+            
         }
         else
         //build orientation pad
         {
             mNearestGO = null;
 
-            if (h != 0 || v != 0)
+            if ((h != 0 || v != 0) && !isAtkJoyPressing)
             {
                 //see OnAttackPadMovePressing 
                 // Target direction relative to the camera
@@ -331,105 +181,30 @@ public class PlayerMgr : ActorMgr{
                 mController.manulOrientation = false;
             }
         }
-      //  _act.forceWalking = _act.manulOrientation;
-
-//         if (isAutoAtkMode)
-//         {
-//             if (Input.GetButton("Fire1"))
-//             {
-//                 GameObject nearestGO = null;
-//                 float lastSqrMag = -1;
-//                 //foreach(var o in LevelMgr.inst.dictLevelActor)
-//                 foreach (var o in LevelMgr.inst.dictLevelObject.Keys)
-//                 {
-//                     if (o.layer == 11)
-//                     {
-//                         Vector3 vec = o.transform.position - mGameObj.transform.position;
-//                         float _sqrMag = vec.sqrMagnitude;
-// 
-//                         if (nearestGO == null || _sqrMag < lastSqrMag)
-//                         {
-//                             nearestGO = o;
-//                             lastSqrMag = _sqrMag;
-//                         }
-//                     }
-// 
-//                 }
-// 
-//                 if (nearestGO != null)
-//                 {
-//                     _act.orientationVec = nearestGO.gameObject.transform.position - mGameObj.transform.position;
-//                     _act.orientationVec.y = 0;
-//                     _act.manulOrientation = true;
-// 
-//                     ActorFire();
-//                 }
-// 
-// 
-//             }
-//             else
-//             {
-//                 _act.manulOrientation = false;
-//             }
-// 
-//         }
-//         else
-//         //build orientation pad
-//         {
-//             float v1 = 0;
-//             float h1 = 0;
-// 
-//             if (Input.GetKey(KeyCode.J))
-//             {
-//                 h1 = -1;
-//             }
-//             else if (Input.GetKey(KeyCode.L))
-//             {
-//                 h1 = 1;
-//             }
-// 
-//             if (Input.GetKey(KeyCode.I))
-//             {
-//                 v1 = 1;
-//             }
-//             else if (Input.GetKey(KeyCode.K))
-//             {
-//                 v1 = -1;
-//             }
-// 
-//             if (h1 != 0 || v1 != 0)
-//             {
-//                 // Target direction relative to the camera
-//                 Vector3 orientation = h1 * right + v1 * forward;
-// 
-//                 orientation.y = 0;
-//                 _act.orientationVec = orientation;
-//                 _act.manulOrientation = true;
-//             }
-//             else
-//             {
-//                 _act.manulOrientation = false;
-//             }
-//         }
-// 
-// 
-//         _act.forceWalking = _act.manulOrientation;
-// 
-// 
-// 
-//         if (Input.GetKey(KeyCode.Alpha1))
-//         {
-//             LevelMgr.inst.GetPlayer().ChangeWeapon(WeaponType.eAex);
-//         }
-//         else if (Input.GetKey(KeyCode.Alpha2))
-//         {
-//             LevelMgr.inst.GetPlayer().ChangeWeapon(WeaponType.ePistol);
-//         }
     }
 
     public void OnPadBtnPressing()
     {
-        isBtnPressing = true;
+        isAtkBtnPressing = true;
+
+  
+        float lastSqrMag = -1;
+        //foreach(var o in LevelMgr.inst.dictLevelActor)
+        foreach (var o in LevelMgr.inst.dictLevelObject.Keys)
+        {
+            if (o.layer == 11)
+            {
+                Vector3 vec = o.transform.position - mGameObj.transform.position;
+                float _sqrMag = vec.sqrMagnitude;
+
+                if (mNearestGO == null || _sqrMag < lastSqrMag)
+                {
+                    mNearestGO = o;
+                    lastSqrMag = _sqrMag;
+                }
+            }
+
+        }
 
         if (mNearestGO != null)
         {
@@ -437,16 +212,24 @@ public class PlayerMgr : ActorMgr{
             mController.orientationVec.y = 0;
             mController.manulOrientation = true;
         }
+        
+
+        
         ActorFire();
 
         mController.forceWalking = true;
     }
     public void OnPadBtnUp()
     {
-        isBtnPressing = false;
+        isAtkBtnPressing = false;
 
         ActorController _act = mController;
         _act.forceWalking = false;
+
+
+        mController.manulOrientation = false;
+        mNearestGO = null;
+
     }
 
     public void OnAttackPadMovePressing(Vector2 axis)
@@ -471,7 +254,7 @@ public class PlayerMgr : ActorMgr{
 
 
 
-        isBtnPressing = true;
+        isAtkJoyPressing = true;
         ActorFire();
         mController.forceWalking = true;
 
@@ -480,7 +263,7 @@ public class PlayerMgr : ActorMgr{
     {
         mController.manulOrientation = false;
 
-        isBtnPressing = false;
+        isAtkJoyPressing = false;
         mController.forceWalking = false;
 
     }
