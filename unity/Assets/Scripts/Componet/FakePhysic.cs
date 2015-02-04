@@ -55,7 +55,10 @@ public class FakePhysic : MonoBehaviour {
             RaycastHit hitInfo;
 
             Vector3 nextS = GlobalDefine.FakeGravity * Time.fixedDeltaTime * Time.fixedDeltaTime * 100.0f;
-            bool findObj = Physics.Raycast(transform.position, nextS, out hitInfo, nextS.magnitude);
+
+            LayerMask mask = 1 << LayerMask.NameToLayer("Player") | 1 << LayerMask.NameToLayer("Monster");
+            mask = ~mask;
+            bool findObj = Physics.Raycast(transform.position, nextS, out hitInfo, nextS.magnitude, mask);
 
             if (findObj)
             {

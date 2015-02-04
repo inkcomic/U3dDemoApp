@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: green
+  m_Name: TileGreen
   m_Shader: {fileID: 7, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: []
   m_CustomRenderQueue: -1
@@ -18,11 +18,11 @@ Material:
           name: _MainTex
         second:
           m_Texture: {fileID: 2800000, guid: 2bf7e81cfbbb6cb429e4869e6c51b81f, type: 3}
-          m_Scale: {x: .5, y: .5}
+          m_Scale: {x: .00499999989, y: .00499999989}
           m_Offset: {x: 0, y: 0}
     m_Floats: {}
     m_Colors:
       data:
         first:
           name: _Color
-        second: {r: .417420775, g: .75, b: .209558845, a: 1}
+        second: {r: .437018216, g: 1, b: .33088237, a: 1}

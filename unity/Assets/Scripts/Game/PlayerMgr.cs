@@ -226,7 +226,7 @@ public class PlayerMgr : ActorMgr{
         ActorController _act = mController;
         _act.forceWalking = false;
 
-
+       // mController.moveDirection = mController.targetDirection = mController.orientationVec;
         mController.manulOrientation = false;
         mNearestGO = null;
 
@@ -261,6 +261,7 @@ public class PlayerMgr : ActorMgr{
     }
     public void OnAttackPadMoveUp()
     {
+        //mController.moveDirection = mController.targetDirection = mController.orientationVec;
         mController.manulOrientation = false;
 
         isAtkJoyPressing = false;

@@ -390,8 +390,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraTransform: {fileID: 0}
-  distance: 2.5
-  height: 4
+  distance: 3
+  height: 5
   angularSmoothLag: .300000012
   angularMaxSpeed: 15
   heightSmoothLag: .300000012
@@ -422,6 +422,7 @@ MonoBehaviour:
   jumpAnimationSpeed: 1.14999998
   landAnimationSpeed: 1
   meleAttackAnimationSpeed: 2
+  moveDirection: {x: 0, y: 0, z: 0}
   movingBack: 0
   isMoving: 0
   targetDirection: {x: 0, y: 0, z: 0}

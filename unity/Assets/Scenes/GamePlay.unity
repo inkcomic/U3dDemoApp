@@ -133,7 +133,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &246941196
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -211,6 +211,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 339917024}
   - 114: {fileID: 339917025}
+  - 114: {fileID: 339917026}
   m_Layer: 0
   m_Name: Easy
   m_TagString: Untagged
@@ -247,8 +248,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60756ea5710d0334ab97eb59806cd911, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mAtkBtn: {fileID: 0}
-  mAtkPad: {fileID: 0}
+  mFireBtn: {fileID: 1997245312}
+  mFirePad: {fileID: 1190576912}
+--- !u!114 &339917026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 339917023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69e8f290ea294884d81ee19925f721ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &420037016
 GameObject:
   m_ObjectHideFlags: 0
@@ -264,7 +276,6 @@ GameObject:
   - 114: {fileID: 420037017}
   - 114: {fileID: 420037023}
   - 114: {fileID: 420037024}
-  - 114: {fileID: 420037025}
   - 114: {fileID: 420037026}
   m_Layer: 0
   m_Name: Main Camera
@@ -372,17 +383,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ResUpdateDone: 0
---- !u!114 &420037025
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 420037016}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69e8f290ea294884d81ee19925f721ce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &420037026
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -531,6 +531,10 @@ Prefab:
     - target: {fileID: 100002, guid: 5a103a215cfcf8340bee9640d6cd7cba, type: 2}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: 5a103a215cfcf8340bee9640d6cd7cba, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5a103a215cfcf8340bee9640d6cd7cba, type: 2}
@@ -718,7 +722,7 @@ GameObject:
   - 4: {fileID: 1139533724}
   - 114: {fileID: 1139533723}
   m_Layer: 0
-  m_Name: switcherBtn
+  m_Name: SwitcherButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -812,7 +816,7 @@ MonoBehaviour:
   dynamicJoystick: 0
   area: 0
   joyAnchor: 9
-  joystickPositionOffset: {x: 31.8999996, y: 34.5999985}
+  joystickPositionOffset: {x: -15.7700005, y: -23.5}
   zoneRadius: 66.0999985
   touchSize: 30
   deadZone: 20
@@ -915,7 +919,7 @@ MonoBehaviour:
   dynamicJoystick: 0
   area: 0
   joyAnchor: 7
-  joystickPositionOffset: {x: -14.1599998, y: 14.4899998}
+  joystickPositionOffset: {x: 5.11999989, y: -12.8999996}
   zoneRadius: 100
   touchSize: 30
   deadZone: 20
@@ -1078,7 +1082,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &1308612966
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1404,7 +1408,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1681582761}
   m_Layer: 0
-  m_Name: Level
+  m_Name: LevelDefault
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1463,6 +1467,10 @@ Prefab:
     - target: {fileID: 400000, guid: d29db6e9e38cb4faea49328f6e60adb0, type: 2}
       propertyPath: m_RootOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d29db6e9e38cb4faea49328f6e60adb0, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d29db6e9e38cb4faea49328f6e60adb0, type: 2}
@@ -1593,6 +1601,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 4e1409c9ea9584de088f47b7f7d12ed0, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4e1409c9ea9584de088f47b7f7d12ed0, type: 2}
   m_RootGameObject: {fileID: 246941195}
@@ -1689,11 +1701,11 @@ MonoBehaviour:
   enable: 1
   isActivated: 1
   showDebugArea: 1
-  selected: 1
+  selected: 0
   isUseGuiLayout: 1
   buttonState: 3
   anchor: 8
-  offset: {x: 0, y: 0}
+  offset: {x: -48.7000008, y: -55.9099998}
   scale: {x: 1, y: 1}
   isSwipeIn: 0
   isSwipeOut: 0

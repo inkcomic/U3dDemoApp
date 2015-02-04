@@ -36,7 +36,7 @@ public class MeleeWeapon : BaseWeapon {
         {
             WeaponHitable hitable = other.GetComponent<WeaponHitable>();
             if (hitable)
-                hitable.OnWeaponHit(mOwnerActor.mGameObj, ownerStatus.myMgr);
+                hitable.OnWeaponHit(mOwnerActor.mGameObj, ownerStatus.myMgr,500);
         }
        
 

@@ -13,6 +13,7 @@ public class ActorMgr :LevelObject{
         LoadGameObjectFromPrefab(strPath);
 
         mStatus = mGameObj.GetComponent<GameActorStatus>();
+        //mController = mGameObj.GetComponent<ActorController>();
         mController = mGameObj.GetComponent<ActorController>();
         mHPBar = mGameObj.GetComponent<HPBar>();
 
@@ -196,16 +197,16 @@ public class ActorMgr :LevelObject{
         SetWeaponFire(false);
     }
 
-    bool OnWeaponHitDamage(GameObject other, ActorMgr owner)
+    bool OnWeaponHitDamage(GameObject other, ActorMgr owner,uint nDamage)
     {
         //GameActorStatus sat = other.GetComponent<GameActorStatus>();
         //if (sat != null && sat.myMgr!=null)
         {
             if (mGameObj != other)
             {
-                if(OnDamage(100, this.mGameObj))
+                if (OnDamage(nDamage, this.mGameObj))
                 {
-                   LevelMgr.inst.OnPlayerDead(this);
+                    LevelMgr.inst.OnActorDead(this, mStatus.actorType);
 
                 }
                 return true;
@@ -224,9 +225,9 @@ public class ActorMgr :LevelObject{
 
 
 
-    public virtual bool OnWeaponHit(GameObject other, ActorMgr owner)
+    public virtual bool OnWeaponHit(GameObject other, ActorMgr owner, uint nDamage)
     {
-        return OnWeaponHitDamage(other, owner);
+        return OnWeaponHitDamage(other, owner,nDamage);
     }
 
 

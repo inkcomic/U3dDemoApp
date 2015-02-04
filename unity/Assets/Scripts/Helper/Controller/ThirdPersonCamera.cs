@@ -112,10 +112,10 @@ void  Apply (Transform dummyTarget, Vector3 dummyCenter)
 	else
 	{
 
-		if (controller.GetLockCameraTimer () < lockCameraTimeout)
-		{
-			targetAngle = currentAngle;
-		}
+// 		if (controller.GetLockCameraTimer () < lockCameraTimeout)
+// 		{
+// 			targetAngle = currentAngle;
+// 		}
 
 		// Lock the camera when moving backwards!
 		// * It is really confusing to do 180 degree spins when turning around.

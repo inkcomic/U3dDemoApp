@@ -26,6 +26,8 @@ public class LevelMgr {
     ActorMgr testMonster = new ActorMgr();
 
     public List<LevelObject> listWantDestroyLevelObject = new List<LevelObject>();
+
+    List<Vector3> listMonsterSpawner = new List<Vector3>();
     public void LoadLevel(int nId=1)
     {
         if (CurrentLevel != null)
@@ -37,12 +39,58 @@ public class LevelMgr {
         string strFilePath = string.Format("Levels/{0}/Level", nId);
 
         CurrentLevel = MyHelper.InstantiateFromResources(strFilePath);
-
+        CurrentLevel.name = "Level";
+        LoadLevelSpecialPoint();
         LoadPlayer();
 
-        AddMonster("Models/Monster/1/Monster");
+        SpawnMonster(1);
+    }
+    public void LoadLevelSpecialPoint()
+    {
+        listMonsterSpawner.Clear();
+
+        GameObject go = GameObject.Find("Level/Special");
+        foreach (Transform child in go.transform)
+        {
+            if (child.gameObject.name == "MonsterSpawner")
+            {
+                listMonsterSpawner.Add(child.position);
+            }
+        }
     }
 
+    public void SpawnMonster(int nNum)
+    {
+        //find nearest point
+        if (listMonsterSpawner.Count>0)
+        {
+            ActorMgr player = GetPlayer();
+            Vector3 vPlayer = player.mGameObj.transform.position;
+            Vector3 vNearest = listMonsterSpawner[0];
+            foreach (Vector3 v in listMonsterSpawner)
+            {
+
+                if ((v - vPlayer).sqrMagnitude < vNearest.sqrMagnitude)
+                {
+                    vNearest = v;
+                }
+            }
+
+            // add monster
+            for (int i = 0; i < nNum; i++)
+            {
+                ActorMgr newAct = AddMonster("Models/Monster/1/Monster");
+                Vector3 vec = newAct.mGameObj.transform.position;
+                vec.x = i * 2;
+
+                newAct.mGameObj.transform.position = vec;
+
+                newAct.mGameObj.transform.position += vNearest;
+            }
+
+        }
+        
+    }
     void LoadPlayer()
     {
         if (CurrentLevel!=null)
@@ -172,22 +220,34 @@ public class LevelMgr {
         }
         
     }
-    public void OnPlayerDead(ActorMgr actor)
+    public void OnActorDead(ActorMgr actor,ActorType tt)
     {
-        DestroyActor(actor);
-
-
-
-        
-        for(int i=0;i<1;i++)
+        //random give gift
+        if(Random.Range(0,100)<=10)
         {
-            ActorMgr newAct = AddMonster("Models/Monster/1/Monster");
-            Vector3 vec = newAct.mGameObj.transform.position;
-            vec.x = i * 2;
-
-            newAct.mGameObj.transform.position = vec;
+            PickItemMgr it = AddItemMgr((Random.Range(0, 2) == 0) ? PickItemType.eAex : PickItemType.ePistol);
+            it.mGameObj.transform.position = actor.mGameObj.transform.position + new Vector3(0, 0.8f, 0);
+            it.ThrowIt((Vector3.zero - actor.mGameObj.transform.transform.forward) + new Vector3(0, 1.0f, 0));
         }
         
+        DestroyActor(actor);
+
+        if (tt==ActorType.eMonster)
+        {
+            if (Random.Range(0, 100) <= 10)
+            {
+                SpawnMonster(3);
+            }
+            else
+            {
+                SpawnMonster(1);
+            }
+            
+        }
+        else
+        {
+
+        }
        // n++;
     }
 

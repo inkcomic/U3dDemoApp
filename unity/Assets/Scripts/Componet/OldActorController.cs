@@ -7,7 +7,7 @@ using System.Collections;
 
 [RequireComponent(typeof(CharacterController))]
 
-public class ActorController : MonoBehaviour
+public class OldActorController : MonoBehaviour
 {
 
     public AnimationClip idleAnimation ;
@@ -65,10 +65,10 @@ public class ActorController : MonoBehaviour
     private float groundedTimeout = 0.25f;
 
     // The camera doesnt start following the target immediately but waits for a split second to avoid too much waving around.
-   // private float lockCameraTimer = 0.0f;
+    private float lockCameraTimer = 0.0f;
 
     // The current move direction in x-z
-    public Vector3 moveDirection = Vector3.zero;
+    private Vector3 moveDirection = Vector3.zero;
     // The current vertical speed
     private float verticalSpeed = 0.0f;
     // The current x-z move speed
@@ -128,6 +128,12 @@ public class ActorController : MonoBehaviour
         if (!_animation)
             Debug.Log("The character you would like to control doesn't have animations. Moving her might look weird.");
 
+        /*
+    public var idleAnimation : AnimationClip;
+    public var walkAnimation : AnimationClip;
+    public var runAnimation : AnimationClip;
+    public var jumpPoseAnimation : AnimationClip;	
+        */
         if (!idleAnimation)
         {
             _animation = null;
@@ -154,6 +160,14 @@ public class ActorController : MonoBehaviour
             _animation = null;
             Debug.Log("No attack animation found. Turning off animations.");
         }
+//         else
+//         {
+//             AnimationEvent startEvent = new AnimationEvent();
+//             startEvent.time = attack_meleeAnimation.length;
+//             startEvent.functionName = "OnAttack0CallBack";
+//             _animation.GetClip(attack_meleeAnimation.name).AddEvent(startEvent);
+//         }
+
     }
 
     void UpdateSmoothedMovementDirection ()
@@ -163,7 +177,11 @@ public class ActorController : MonoBehaviour
             // Grounded controls
             if (grounded)
             {
-   
+                // Lock camera for short period when transitioning moving & standing still
+                lockCameraTimer += Time.deltaTime;
+//                  if (isMoving != wasMoving)
+//                      lockCameraTimer = 0.0f;
+
                 // We store speed and direction seperately,
                 // so that when the character stands still we still have a valid forward direction
                 // moveDirection is always normalized, and we only update it if there is user input.
@@ -226,6 +244,10 @@ public class ActorController : MonoBehaviour
             // In air controls
             else
             {
+                // Lock camera while in air
+                if (jumping)
+                    lockCameraTimer = 0.0f;
+
                 if (isMoving)
                     inAirVelocity += targetDirection.normalized * Time.deltaTime * inAirControlAcceleration;
             }
@@ -488,10 +510,10 @@ public class ActorController : MonoBehaviour
 	    return movingBack;
     }
 
-//     public float GetLockCameraTimer () 
-//     {
-// 	    return lockCameraTimer;
-//     }
+    public float GetLockCameraTimer () 
+    {
+	    return lockCameraTimer;
+    }
 
     bool IsMoving ()
     {

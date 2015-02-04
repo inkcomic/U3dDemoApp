@@ -54,7 +54,7 @@ public class SimpleBullet : MonoBehaviour
         WeaponHitable hitable = other.GetComponent<WeaponHitable>();
         bool deleteMe = false;
         if (hitable)
-            deleteMe = hitable.OnWeaponHit(bulletOwner.mGameObj, bulletOwner);
+            deleteMe = hitable.OnWeaponHit(bulletOwner.mGameObj, bulletOwner,100);
 
         if (deleteMe)
             Disappear();

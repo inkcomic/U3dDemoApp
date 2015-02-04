@@ -5,8 +5,8 @@ public class AttackModeSwitcher : MonoBehaviour {
 
     bool isAutoAtkMode = true;
 
-    public GameObject mAtkBtn=null;
-    public GameObject mAtkPad = null;
+    public GameObject mFireBtn=null;
+    public GameObject mFirePad = null;
 	// Use this for initialization
 	void Start () {
 
@@ -24,18 +24,18 @@ public class AttackModeSwitcher : MonoBehaviour {
     {
         isAutoAtkMode = !isAutoAtkMode;
 
-        if (mAtkBtn && mAtkPad)
+        if (mFireBtn && mFirePad)
         {
-            mAtkBtn.SetActive(false);
-            mAtkPad.SetActive(false);
+            mFireBtn.SetActive(false);
+            mFirePad.SetActive(false);
 
             if (isAutoAtkMode)
             {
-                mAtkBtn.SetActive(true);
+                mFireBtn.SetActive(true);
             }
             else
             {
-                mAtkPad.SetActive(true);
+                mFirePad.SetActive(true);
             }
 
             PlayerMgr player = LevelMgr.inst.GetPlayer() as PlayerMgr;
@@ -48,7 +48,7 @@ public class AttackModeSwitcher : MonoBehaviour {
 
     void On_ButtonDown(string buttonName)
     {
-        if (buttonName == "switcherBtn")
+        if (buttonName == "SwitcherButton")
         {
             Switcher();
         }
