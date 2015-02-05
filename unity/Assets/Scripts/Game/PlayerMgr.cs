@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+using System.Collections.Generic;
 public class PlayerMgr : ActorMgr{
     
     GameObject mNearestGO = null;
@@ -183,28 +183,56 @@ public class PlayerMgr : ActorMgr{
         }
     }
 
+
+    GameObject GetNearestMonster(float radius=3.5f)
+    {
+        GameObject nearestGO = null;
+        List<GameObject> listObj = new List<GameObject>();
+
+        Vector3 v = mGameObj.transform.position;
+        Collider []cds = Physics.OverlapSphere(v, radius);
+        if (cds!=null)
+        {
+            for (int i = 0; i < cds.Length;i++ )
+            {
+                Collider c = cds[i];
+                
+                //if (sta && (sta.actorType == ActorType.eMonster))
+                if (c.gameObject.layer == LayerMask.NameToLayer("Monster"))
+                {
+                    listObj.Add(c.gameObject);
+                }
+            }
+
+           
+            {
+                float lastSqrMag = -1;
+                //foreach(var o in LevelMgr.inst.dictLevelActor)
+                foreach (var o in listObj)
+                {
+                    if (o.layer == LayerMask.NameToLayer("Monster"))
+                    {
+                        Vector3 vec = o.transform.position - mGameObj.transform.position;
+                        float _sqrMag = vec.sqrMagnitude;
+
+                        if (nearestGO == null || _sqrMag < lastSqrMag)
+                        {
+                            nearestGO = o;
+                            lastSqrMag = _sqrMag;
+                        }
+                    }
+
+                }
+            }
+        }
+
+        return nearestGO;
+    }
     public void OnPadBtnPressing()
     {
         isAtkBtnPressing = true;
 
-  
-        float lastSqrMag = -1;
-        //foreach(var o in LevelMgr.inst.dictLevelActor)
-        foreach (var o in LevelMgr.inst.dictLevelObject.Keys)
-        {
-            if (o.layer == 11)
-            {
-                Vector3 vec = o.transform.position - mGameObj.transform.position;
-                float _sqrMag = vec.sqrMagnitude;
-
-                if (mNearestGO == null || _sqrMag < lastSqrMag)
-                {
-                    mNearestGO = o;
-                    lastSqrMag = _sqrMag;
-                }
-            }
-
-        }
+        mNearestGO = GetNearestMonster();
 
         if (mNearestGO != null)
         {

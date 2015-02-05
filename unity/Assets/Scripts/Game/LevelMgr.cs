@@ -284,12 +284,12 @@ public class LevelMgr {
 
 
 
-    public void DespawnPoolObject(Transform instPrefab, string poolName = "Default")
+    public void DespawnPoolObject(Transform instPrefab,float seconds=0.0f, string poolName = "Default")
     {
         SpawnPool shapesPool = PoolManager.Pools[poolName];
         if (shapesPool)
         {
-            shapesPool.Despawn(instPrefab); 
+            shapesPool.Despawn(instPrefab, seconds); 
         }
     }
 }

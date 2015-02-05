@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-
+using DG.Tweening;
 public class ActorMgr :LevelObject{
     public GameActorStatus mStatus = null;
     public ActorController mController = null;
@@ -155,12 +155,15 @@ public class ActorMgr :LevelObject{
 
         }
 
-
         //do effect
         {
-            GameObject go = ParticleMgr.inst.PlayParticle("Effect/Prefab/1");
+            Transform newObj = LevelMgr.inst.SpawnPoolObject("effect_blood");
+
+            GameObject go = newObj.gameObject;
             go.transform.position = this.mGameObj.transform.position;
             go.transform.rotation = this.mGameObj.transform.rotation;
+
+            LevelMgr.inst.DespawnPoolObject(newObj,2.0f);
             //ParticleSystem ps = go.GetComponent<ParticleSystem>();
         }
         //temp call

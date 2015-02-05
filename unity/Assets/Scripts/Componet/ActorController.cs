@@ -488,11 +488,6 @@ public class ActorController : MonoBehaviour
 	    return movingBack;
     }
 
-//     public float GetLockCameraTimer () 
-//     {
-// 	    return lockCameraTimer;
-//     }
-
     bool IsMoving ()
     {
 	    return Mathf.Abs(Input.GetAxisRaw("Vertical")) + Mathf.Abs(Input.GetAxisRaw("Horizontal")) > 0.5f;
@@ -508,18 +503,9 @@ public class ActorController : MonoBehaviour
 	    return lastGroundedTime + groundedTimeout > Time.time;
     }
 
-    void Reset ()
-    {
-	    gameObject.tag = "Player";
-    }
 
     void OnCollisionEnter (Collision collision)
     {
-//         if (collisionEnterDelegate != null)
-//         {
-//             collisionEnterDelegate(collision);
-//         }
-        
 
     }
 

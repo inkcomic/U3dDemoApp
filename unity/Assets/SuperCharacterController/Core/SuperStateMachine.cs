@@ -108,4 +108,10 @@ public class SuperStateMachine : MonoBehaviour {
     protected virtual void LateGlobalSuperUpdate() { }
 
     static void DoNothing() { }
+
+
+    void Update()
+    {
+        SuperUpdate();
+    }
 }
