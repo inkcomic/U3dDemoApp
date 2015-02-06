@@ -27,7 +27,7 @@ public class MeleeWeapon : BaseWeapon {
     {
         base.Setup(owner);
 
-        mOwnerActor = ownerStatus.myMgr;
+        mOwnerActor = ownerStatus.myLevelObject as ActorMgr;
     }
 
     void OnTriggerEnter(Collider other)
@@ -36,7 +36,7 @@ public class MeleeWeapon : BaseWeapon {
         {
             WeaponHitable hitable = other.GetComponent<WeaponHitable>();
             if (hitable)
-                hitable.OnWeaponHit(mOwnerActor.mGameObj, ownerStatus.myMgr,500);
+                hitable.OnWeaponHit(mOwnerActor.mGameObj, ownerStatus.myLevelObject as ActorMgr, 500);
         }
        
 

@@ -1,18 +1,18 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PickItemMgr:LevelObject{
-    PickableItemController controller = null;
-	public void Load(PickItemType t)
+public class ItemPackMgr:LevelObject{
+    ItemPackController controller = null;
+    public void Load(ItemPackType t)
     {
         switch(t)
         {
-            case PickItemType.eAex:
+            case ItemPackType.eAex:
                 {
                     LoadGameObjectFromPrefab("Models/Item/Prefab/itembox_aex");
                 }
                 break;
-            case PickItemType.ePistol:
+            case ItemPackType.ePistol:
                 {
                     LoadGameObjectFromPrefab("Models/Item/Prefab/itembox_pistol");
                 }
@@ -20,7 +20,7 @@ public class PickItemMgr:LevelObject{
         }
         if(mGameObj)
         {
-            controller = mGameObj.GetComponent<PickableItemController>();
+            controller = mGameObj.GetComponent<ItemPackController>();
         }
     }
 

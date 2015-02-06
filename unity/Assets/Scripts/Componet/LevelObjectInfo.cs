@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class GameActorStatus : MonoBehaviour
+public class LevelObjectInfo : MonoBehaviour
 {
 
 
@@ -15,13 +15,13 @@ public class GameActorStatus : MonoBehaviour
 	
 	}
 
-    public uint nHP = 100;
-    public uint nMaxHP = 100;
+    //public uint nHP = 100;
+    //public uint nMaxHP = 100;
 
-    public ActorType actorType;
+    public LevelObjectType actorType;
 
     [HideInInspector]
     public GameObject currentWeapon = null;
     [HideInInspector]
-    public ActorMgr myMgr = null;
+    public LevelObject myLevelObject = null;
 }

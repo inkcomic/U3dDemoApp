@@ -132,9 +132,9 @@ public class LevelMgr {
         AddLevelObject(newActor);
         return newActor;
     }
-    public PickItemMgr AddItemMgr(PickItemType t)
+    public ItemPackMgr AddItemMgr(ItemPackType t)
     {
-        PickItemMgr newActor = new PickItemMgr();
+        ItemPackMgr newActor = new ItemPackMgr();
         newActor.Load(t);
         AddLevelObject(newActor);
         return newActor;
@@ -220,19 +220,19 @@ public class LevelMgr {
         }
         
     }
-    public void OnActorDead(ActorMgr actor,ActorType tt)
+    public void OnActorDead(ActorMgr actor, LevelObjectType tt)
     {
         //random give gift
         if(Random.Range(0,100)<=10)
         {
-            PickItemMgr it = AddItemMgr((Random.Range(0, 2) == 0) ? PickItemType.eAex : PickItemType.ePistol);
+            ItemPackMgr it = AddItemMgr((Random.Range(0, 2) == 0) ? ItemPackType.eAex : ItemPackType.ePistol);
             it.mGameObj.transform.position = actor.mGameObj.transform.position + new Vector3(0, 0.8f, 0);
             it.ThrowIt((Vector3.zero - actor.mGameObj.transform.transform.forward) + new Vector3(0, 1.0f, 0));
         }
         
         DestroyActor(actor);
 
-        if (tt==ActorType.eMonster)
+        if (tt == LevelObjectType.eMonster)
         {
             if (Random.Range(0, 100) <= 10)
             {

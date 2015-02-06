@@ -6,10 +6,11 @@ public enum WeaponMode
     eMeleeWeapon=0,
     eRangedWeapon
 };
-public enum ActorType
+public enum LevelObjectType
 {
     eMonster=0,
     eMainPlayer,
+    ItemPack,
     
 };
 public enum WeaponType
@@ -21,7 +22,7 @@ public enum WeaponType
     //ranged weapon
     ePistol,
 };
-public enum PickItemType
+public enum ItemPackType
 {
     eAex = WeaponType.eAex,
     ePistol = WeaponType.ePistol,

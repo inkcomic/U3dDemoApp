@@ -65,7 +65,7 @@ public class RangedWeapon : BaseWeapon
                 SimpleBullet newBullete = newObj.GetComponent<SimpleBullet>();
                 if (newBullete)
                 {
-                    newBullete.Setup(ownerStatus.myMgr, gameObject.transform.forward);
+                    newBullete.Setup(ownerStatus.myLevelObject as ActorMgr, gameObject.transform.forward);
                 }
                 else
                 {

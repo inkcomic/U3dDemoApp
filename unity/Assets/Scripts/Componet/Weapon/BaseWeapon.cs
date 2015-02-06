@@ -5,7 +5,7 @@ public class BaseWeapon : MonoBehaviour {
 
     Material clone_mat = null;
 
-    protected GameActorStatus ownerStatus = null;
+    protected LevelObjectInfo ownerStatus = null;
 
 	// Use this for initialization
 	protected virtual void Start () {
@@ -43,7 +43,7 @@ public class BaseWeapon : MonoBehaviour {
             ownerStatus.currentWeapon = null;
         }
 
-        ownerStatus = owner.GetComponent<GameActorStatus>();
+        ownerStatus = owner.GetComponent<LevelObjectInfo>();
         ownerStatus.currentWeapon = this.gameObject;
 
         //my_owner = owner;

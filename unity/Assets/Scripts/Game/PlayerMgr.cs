@@ -56,17 +56,17 @@ public class PlayerMgr : ActorMgr{
         base.OnCollisionEnter(col);
 
         //check item
-        PickableItemController item = col.collider.GetComponent<PickableItemController>();
+        ItemPackController item = col.collider.GetComponent<ItemPackController>();
         if (item)
         {
             switch (item.mItemType)
             {
-                case PickItemType.eAex:
+                case ItemPackType.eAex:
                     {
                         ChangeWeapon((WeaponType)item.mItemType);
                     }
                     break;
-                case PickItemType.ePistol:
+                case ItemPackType.ePistol:
                     {
                         ChangeWeapon((WeaponType)item.mItemType);
                     }
@@ -83,7 +83,7 @@ public class PlayerMgr : ActorMgr{
         base.OnTriggerEnter(cd);
 
         //check item
-        PickableItemController item = cd.GetComponent<PickableItemController>();
+        ItemPackController item = cd.GetComponent<ItemPackController>();
         if (item && item.IsUseable())
         {
             //throw old weapon (create a fake one)
@@ -92,13 +92,13 @@ public class PlayerMgr : ActorMgr{
                 BaseWeapon w = mStatus.currentWeapon.GetComponent<BaseWeapon>();
                 if (w.weapon_mode == WeaponMode.eMeleeWeapon)
                 {
-                    PickItemMgr it = LevelMgr.inst.AddItemMgr(PickItemType.eAex);
+                    ItemPackMgr it = LevelMgr.inst.AddItemMgr(ItemPackType.eAex);
                     it.mGameObj.transform.position = mGameObj.transform.position + new Vector3(0, 0.8f, 0);
                     it.ThrowIt(mGameObj.transform.transform.forward + new Vector3(0, 1.0f, 0));
                 }
                 else
                 {
-                    PickItemMgr it = LevelMgr.inst.AddItemMgr(PickItemType.ePistol);
+                    ItemPackMgr it = LevelMgr.inst.AddItemMgr(ItemPackType.ePistol);
                     it.mGameObj.transform.position = mGameObj.transform.position + new Vector3(0, 0.8f, 0);
                     it.ThrowIt(mGameObj.transform.transform.forward + new Vector3(0, 1.0f, 0));
                 }
@@ -108,12 +108,12 @@ public class PlayerMgr : ActorMgr{
 
             switch (item.mItemType)
             {
-                case PickItemType.eAex:
+                case ItemPackType.eAex:
                     {
                         ChangeWeapon((WeaponType)item.mItemType);
                     }
                     break;
-                case PickItemType.ePistol:
+                case ItemPackType.ePistol:
                     {
                         ChangeWeapon((WeaponType)item.mItemType);
                     }

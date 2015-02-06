@@ -3,21 +3,24 @@ using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 public class ActorMgr :LevelObject{
-    public GameActorStatus mStatus = null;
+    public LevelObjectInfo mStatus = null;
     public ActorController mController = null;
     public HPBar mHPBar = null;
 
     public WeaponHitable mWeaponHitable = null;
+
+
+    public Data.ActorStatus mActorStatus = new Data.ActorStatus();
     public void LoadObject(string strPath)
     {
         LoadGameObjectFromPrefab(strPath);
 
-        mStatus = mGameObj.GetComponent<GameActorStatus>();
+        mStatus = mGameObj.GetComponent<LevelObjectInfo>();
         //mController = mGameObj.GetComponent<ActorController>();
         mController = mGameObj.GetComponent<ActorController>();
         mHPBar = mGameObj.GetComponent<HPBar>();
 
-        mStatus.myMgr = this;
+        mStatus.myLevelObject = this;
 
         mWeaponHitable = mGameObj.GetComponent<WeaponHitable>();
         //register weapon hit event
@@ -30,10 +33,10 @@ public class ActorMgr :LevelObject{
     }
     public bool GetHPBarStatus(out uint nHP, out uint nMax)
     {
-        if (mStatus != null)
+        if (mActorStatus != null)
         {
-            nMax = mStatus.nMaxHP;
-            nHP = mStatus.nHP;
+            nMax = mActorStatus.nMaxHP;
+            nHP = mActorStatus.nHP;
             return true;
         }
         nHP = 0;
@@ -43,22 +46,22 @@ public class ActorMgr :LevelObject{
 
     public void SetHPBarStatus(uint nHP, uint nMax = 0)
     {
-        if (mStatus != null)
+        if (mActorStatus != null)
         {
             if (nMax == 0)
-                mStatus.nMaxHP = 1;
+                mActorStatus.nMaxHP = 1;
             else
-                mStatus.nMaxHP = nMax;
+                mActorStatus.nMaxHP = nMax;
 
-            mStatus.nHP = nHP;
+            mActorStatus.nHP = nHP;
         }
 
         //temp call
         {
             if (mHPBar != null)
             {
-                mHPBar.nHP = mStatus.nHP;
-                mHPBar.nMaxHP = mStatus.nMaxHP;
+                mHPBar.nHP = mActorStatus.nHP;
+                mHPBar.nMaxHP = mActorStatus.nMaxHP;
             }
         }
     }
@@ -139,16 +142,16 @@ public class ActorMgr :LevelObject{
         bool bKilled = false;
         if (mGameObj != null)
         {
-            if (mStatus.nHP >= 0)
+            if (mActorStatus.nHP >= 0)
             {
-                if (mStatus.nHP > nDamage)
+                if (mActorStatus.nHP > nDamage)
                 {
-                    mStatus.nHP -= nDamage;
+                    mActorStatus.nHP -= nDamage;
                     bKilled = false;
                 }
                 else
                 {
-                    mStatus.nHP = 0;
+                    mActorStatus.nHP = 0;
                     bKilled = true;
                 }
             }
@@ -170,8 +173,8 @@ public class ActorMgr :LevelObject{
         {
             if (mHPBar != null)
             {
-                mHPBar.nHP = mStatus.nHP;
-                mHPBar.nMaxHP = mStatus.nMaxHP;
+                mHPBar.nHP = mActorStatus.nHP;
+                mHPBar.nMaxHP = mActorStatus.nMaxHP;
             }
         }
         return bKilled;
@@ -202,7 +205,7 @@ public class ActorMgr :LevelObject{
 
     bool OnWeaponHitDamage(GameObject other, ActorMgr owner,uint nDamage)
     {
-        //GameActorStatus sat = other.GetComponent<GameActorStatus>();
+        //LevelObjectInfo sat = other.GetComponent<LevelObjectInfo>();
         //if (sat != null && sat.myMgr!=null)
         {
             if (mGameObj != other)

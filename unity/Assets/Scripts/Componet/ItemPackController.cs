@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PickableItemController : FakePhysic{
-   
-    public PickItemType mItemType = PickItemType.eAex;
+public class ItemPackController : FakePhysic{
+
+    public ItemPackType mItemType = ItemPackType.eAex;
 	// Use this for initialization
     public override void Start()
     {

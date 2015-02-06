@@ -25,8 +25,4 @@ public class LevelObject {
     }
     public virtual void Update() { }
 
-    //~LevelObject()
-    //{
-    //    Destroy();
-    //}
 }
