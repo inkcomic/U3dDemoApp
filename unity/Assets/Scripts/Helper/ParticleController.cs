@@ -38,7 +38,7 @@ public class ParticleController : MonoBehaviour
 			{
 				this.AnimationEndCallBack = null;
 
-                ParticleMgr.inst.DestroyParticle(this.transform.parent.gameObject);
+                ParticleMgr.inst.DestroyParticle(this.transform.parent.gameObject,true);
 
                // MyHelper.RemoveChildren(this.gameObject);
 				//DestroyImmediate(particle);

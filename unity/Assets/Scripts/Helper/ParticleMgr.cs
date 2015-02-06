@@ -148,15 +148,23 @@ public class ParticleMgr {
     }
 
 
-    public void DestroyParticle(GameObject go)
+    public void DestroyParticle(GameObject go,bool inPool)
     {
-        if (go.transform.parent)
+        if(inPool)
         {
-            go.transform.parent = null;
+            LevelMgr.inst.DespawnPoolObject(go.transform);
         }
-   
-        createdParticles.Remove(go);
+        else
+        {
+            if (go.transform.parent)
+            {
+                go.transform.parent = null;
+            }
 
-        LevelMgr.inst.DestroyLevelObject(go);
+            createdParticles.Remove(go);
+
+            LevelMgr.inst.DestroyLevelObject(go);
+        }
+        
     }
 }

@@ -163,7 +163,7 @@ public class ActorMgr :LevelObject{
             go.transform.position = this.mGameObj.transform.position;
             go.transform.rotation = this.mGameObj.transform.rotation;
 
-            LevelMgr.inst.DespawnPoolObject(newObj,2.0f);
+            //ParticleMgr.inst.DestroyParticle(go,true);
             //ParticleSystem ps = go.GetComponent<ParticleSystem>();
         }
         //temp call
