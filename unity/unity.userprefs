@@ -1,6 +1,16 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.Workbench ActiveDocument="../../manual_dota/code/client/Assets/Scripts/Model/MainStore/GoodsItemVO.cs">
+    <Files>
+      <File FileName="../../manual_dota/code/client/Assets/Scripts/Model/MainMailBox/EmailItemVO.cs" Line="1" Column="1" />
+      <File FileName="../../manual_dota/code/client/Assets/Scripts/Model/MainMailBox/EmailState.cs" Line="1" Column="1" />
+      <File FileName="../../manual_dota/code/client/Assets/Scripts/Controller/MainMailBoxController.cs" Line="1" Column="1" />
+      <File FileName="../../manual_dota/code/client/Assets/Scripts/Controller/MainStoreController.cs" Line="1" Column="1" />
+      <File FileName="../../manual_dota/code/client/Assets/Scripts/Model/VO/common/EquipmentVO.cs" Line="19" Column="5" />
+      <File FileName="../../manual_dota/code/client/Assets/Scripts/Model/MainStore/GoodsItemVO.cs" Line="22" Column="39" />
+      <File FileName="../../manual_dota/code/client/Assets/Scripts/Model/MainStore/GoodsCostType.cs" Line="1" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
